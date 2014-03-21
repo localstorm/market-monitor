@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="swt1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/macos64/swt.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

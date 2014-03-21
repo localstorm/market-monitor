@@ -1,0 +1,1 @@
+"C:\Program Files\Java\jdk1.7.0_15\bin\java" -cp "../lib/*;../lib/win64/*;../out/production/market-monitor" co.kuznetsov.market.Main "C:\Documents and Settings\localstorm\Dropbox\Covert\Finance\Options\SpreadsMonitoring\spreads.txt"
