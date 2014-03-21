@@ -64,6 +64,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="Main.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="50" selection-start="386" selection-end="386" vertical-scroll-proportion="0.4" vertical-offset="0" max-vertical-offset="1836">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SourceVIX.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/feeds/SourceVIX.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="39" column="19" selection-start="1232" selection-end="1232" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
+              <folding>
+                <element signature="e#1211#1212#0" expanded="true" />
+                <element signature="e#1244#1245#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="QuoteHolder.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/QuoteHolder.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -75,19 +98,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MarketMonitor.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/MarketMonitor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="42" selection-start="1478" selection-end="1478" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="918">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SpreadsParser.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="SpreadsParser.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/SpreadsParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="39" selection-start="1329" selection-end="1329" vertical-scroll-proportion="0.8" vertical-offset="204" max-vertical-offset="918">
+            <state line="40" column="39" selection-start="1329" selection-end="1329" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="918">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -107,19 +121,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SanityUtils.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/feeds/SanityUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="13" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Source.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/feeds/Source.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="23" selection-start="291" selection-end="291" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
+            <state line="14" column="8" selection-start="276" selection-end="276" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
               <folding />
             </state>
           </provider>
@@ -164,7 +169,7 @@
       <file leaf-file-name="Ticker.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/Ticker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="6" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
+            <state line="12" column="46" selection-start="154" selection-end="154" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
               <folding />
             </state>
           </provider>
@@ -184,19 +189,20 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/src/co/kuznetsov/market/gui/Alerter.java" />
-        <option value="$PROJECT_DIR$/src/co/kuznetsov/market/Main.java" />
         <option value="$PROJECT_DIR$/src/co/kuznetsov/market/market/WarnLevel.java" />
         <option value="$PROJECT_DIR$/src/co/kuznetsov/market/market/SpreadHolder.java" />
         <option value="$PROJECT_DIR$/src/co/kuznetsov/market/market/Tickers.java" />
-        <option value="$PROJECT_DIR$/src/co/kuznetsov/market/market/Ticker.java" />
         <option value="$PROJECT_DIR$/src/co/kuznetsov/market/feeds/Source.java" />
         <option value="$PROJECT_DIR$/src/co/kuznetsov/market/feeds/SourceNDQ.java" />
         <option value="$PROJECT_DIR$/src/co/kuznetsov/market/feeds/SourceRUT.java" />
         <option value="$PROJECT_DIR$/src/co/kuznetsov/market/feeds/SourceSNP500.java" />
-        <option value="$PROJECT_DIR$/src/co/kuznetsov/market/market/MarketMonitor.java" />
         <option value="$PROJECT_DIR$/src/co/kuznetsov/market/market/QuoteHolder.java" />
         <option value="$PROJECT_DIR$/src/co/kuznetsov/market/market/Spread.java" />
         <option value="$PROJECT_DIR$/src/co/kuznetsov/market/market/SpreadsParser.java" />
+        <option value="$PROJECT_DIR$/src/co/kuznetsov/market/feeds/SourceVIX.java" />
+        <option value="$PROJECT_DIR$/src/co/kuznetsov/market/market/MarketMonitor.java" />
+        <option value="$PROJECT_DIR$/src/co/kuznetsov/market/market/Ticker.java" />
+        <option value="$PROJECT_DIR$/src/co/kuznetsov/market/Main.java" />
       </list>
     </option>
   </component>
@@ -355,6 +361,11 @@
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="co.kuznetsov.market.feeds" />
+    </key>
+  </component>
   <component name="RemoteSynchronizer">
     <option name="generalOptions">
       <GeneralOptions />
@@ -502,12 +513,12 @@
       <updated>1395407316548</updated>
       <workItem from="1395407319857" duration="66000" />
       <workItem from="1395407988350" duration="551000" />
-      <workItem from="1395410970354" duration="2002000" />
+      <workItem from="1395410970354" duration="3003000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2619000" />
+    <option name="totallyTimeSpent" value="3620000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1928" height="1044" extended-state="6" />
@@ -565,16 +576,6 @@
         <state line="46" column="37" selection-start="1672" selection-end="1672" vertical-scroll-proportion="0.0" vertical-offset="782" max-vertical-offset="1921">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1540#1765#0" expanded="true" />
-            <element signature="e#1754#1755#0" expanded="true" />
-            <element signature="e#1810#1962#0" expanded="true" />
-            <element signature="e#1951#1952#0" expanded="true" />
-            <element signature="e#2104#3554#0" expanded="true" />
-            <element signature="e#2536#2798#0" expanded="true" />
-            <element signature="e#2767#2768#0" expanded="true" />
-            <element signature="e#3068#3329#0" expanded="true" />
-            <element signature="e#3298#3299#0" expanded="true" />
-            <element signature="e#3543#3544#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -607,16 +608,6 @@
         <state line="11" column="13" selection-start="244" selection-end="244" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="1581">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1540#1765#0" expanded="true" />
-            <element signature="e#1754#1755#0" expanded="true" />
-            <element signature="e#1810#1962#0" expanded="true" />
-            <element signature="e#1951#1952#0" expanded="true" />
-            <element signature="e#2104#3554#0" expanded="true" />
-            <element signature="e#2536#2798#0" expanded="true" />
-            <element signature="e#2767#2768#0" expanded="true" />
-            <element signature="e#3068#3329#0" expanded="true" />
-            <element signature="e#3298#3299#0" expanded="true" />
-            <element signature="e#3543#3544#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -638,32 +629,6 @@
     <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/feeds/SanityUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="13" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="28" selection-start="898" selection-end="898" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="2023">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1540#1765#0" expanded="true" />
-            <element signature="e#1754#1755#0" expanded="true" />
-            <element signature="e#1810#1962#0" expanded="true" />
-            <element signature="e#1951#1952#0" expanded="true" />
-            <element signature="e#2104#3554#0" expanded="true" />
-            <element signature="e#2536#2798#0" expanded="true" />
-            <element signature="e#2767#2768#0" expanded="true" />
-            <element signature="e#3068#3329#0" expanded="true" />
-            <element signature="e#3298#3299#0" expanded="true" />
-            <element signature="e#3543#3544#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/feeds/Source.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="23" selection-start="291" selection-end="291" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
           <folding />
         </state>
       </provider>
@@ -698,15 +663,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/QuoteHolder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="24" selection-start="580" selection-end="590" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
-          <folding>
-            <element signature="e#423#443#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/SpreadHolder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="28" column="60" selection-start="721" selection-end="721" vertical-scroll-proportion="0.0" vertical-offset="278" max-vertical-offset="1360">
@@ -726,23 +682,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/MarketMonitor.java">
+    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/SpreadsParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="42" selection-start="1478" selection-end="1478" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="918">
+        <state line="40" column="39" selection-start="1329" selection-end="1329" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="918">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/QuoteHolder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="24" selection-start="580" selection-end="590" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
+          <folding>
+            <element signature="e#423#443#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/feeds/Source.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="8" selection-start="276" selection-end="276" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/Ticker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="6" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
+        <state line="12" column="46" selection-start="154" selection-end="154" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/SpreadsParser.java">
+    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/MarketMonitor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="39" selection-start="1329" selection-end="1329" vertical-scroll-proportion="0.8" vertical-offset="204" max-vertical-offset="918">
+        <state line="43" column="39" selection-start="1245" selection-end="1245" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="952">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/feeds/SourceVIX.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="19" selection-start="1232" selection-end="1232" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
+          <folding>
+            <element signature="e#1211#1212#0" expanded="true" />
+            <element signature="e#1244#1245#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="50" selection-start="386" selection-end="386" vertical-scroll-proportion="0.4" vertical-offset="0" max-vertical-offset="1836">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

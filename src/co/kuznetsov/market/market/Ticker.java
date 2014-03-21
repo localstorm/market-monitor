@@ -7,5 +7,6 @@ package co.kuznetsov.market.market;
 public enum Ticker {
     SNP500,
     RUT,
-    NDQ
+    NDQ,
+    VIX
 }

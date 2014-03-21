@@ -1,9 +1,6 @@
 package co.kuznetsov.market.market;
 
-import co.kuznetsov.market.feeds.Source;
-import co.kuznetsov.market.feeds.SourceNDQ;
-import co.kuznetsov.market.feeds.SourceRUT;
-import co.kuznetsov.market.feeds.SourceSNP500;
+import co.kuznetsov.market.feeds.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,6 +20,7 @@ public class MarketMonitor {
     private Source snp500 = new SourceSNP500();
     private Source rut = new SourceRUT();
     private Source ndx = new SourceNDQ();
+    private Source vix = new SourceVIX();
 
 
     public WarnLevel evalDangerLevel() throws IOException {
@@ -46,6 +44,7 @@ public class MarketMonitor {
         quoteHolder.update(snp500.getTicker(), snp500.getCurrent());
         quoteHolder.update(rut.getTicker(), rut.getCurrent());
         quoteHolder.update(ndx.getTicker(), ndx.getCurrent());
+        quoteHolder.update(vix.getTicker(), vix.getCurrent());
         quoteHolder.printQuotes(System.out);
     }
 

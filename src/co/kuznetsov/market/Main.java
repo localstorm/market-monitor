@@ -12,6 +12,8 @@ import org.eclipse.swt.widgets.*;
  *         Date: 21.03.14
  */
 public class Main {
+    public static final long REFRESH_LOOP = 10000;
+
     public static void main(String[] args) throws Exception {
         if (args.length != 1) {
             System.err.println("Usage: <path to market config>");
@@ -80,7 +82,7 @@ public class Main {
                                     tip.setVisible(false);
                                 }
                             });
-                            Thread.sleep(5000);
+                            Thread.sleep(REFRESH_LOOP);
                         } catch (Exception e) {
                             alerter.offline(display);
                             e.printStackTrace(System.err);
@@ -91,7 +93,7 @@ public class Main {
                                     tip.setVisible(true);
                                 }
                             });
-                            Thread.sleep(5000);
+                            Thread.sleep(REFRESH_LOOP);
                         }
                     }
                 } catch (InterruptedException e) {
