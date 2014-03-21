@@ -43,6 +43,7 @@ public class MarketMonitor {
         quoteHolder.update("SNP500", snp500.getCurrent());
         quoteHolder.update("RUT", rut.getCurrent());
         quoteHolder.update("NDX", ndx.getCurrent());
+        quoteHolder.printQuotes(System.out);
     }
 
     public void setConfigPath(String configPath) {
