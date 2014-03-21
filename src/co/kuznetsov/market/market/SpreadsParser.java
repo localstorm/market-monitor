@@ -25,7 +25,7 @@ public class SpreadsParser {
 
             String[] spreads = line.split(":");
             if (spreads.length != 2) {
-                throw new IOException("Incorrect spread: "+ spreads[1]);
+                throw new IOException("Incorrect spread: [" + line + "]");
             }
             String ticker = spreads[0];
 
@@ -33,14 +33,14 @@ public class SpreadsParser {
                 Tickers t = Tickers.valueOf(ticker);
                 String[] lohi = spreads[1].split("-");
                 if (lohi.length != 2) {
-                    throw new IllegalArgumentException("Incorrect spread: "+ spreads[1]);
+                    throw new IllegalArgumentException("Incorrect spread: [" + spreads[1] + "]");
                 }
 
                 BigDecimal lo = new BigDecimal(lohi[0]);
                 BigDecimal hi = new BigDecimal(lohi[1]);
                 result.add(new Spread(t.name(), lo, hi));
             } catch (Exception e) {
-                throw new IOException("Unknown ticker: " + ticker, e);
+                throw new IOException("Problematic line: " + line, e);
             }
         }
         return result;
