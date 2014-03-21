@@ -1,6 +1,7 @@
 package co.kuznetsov.market;
 
 import co.kuznetsov.market.market.MarketMonitor;
+import co.kuznetsov.market.market.WarnLevel;
 import org.eclipse.swt.*;
 import org.eclipse.swt.graphics.*;
 import org.eclipse.swt.widgets.*;
@@ -64,7 +65,8 @@ public class Main {
                     try {
                         while (!this.isInterrupted()) {
                             try {
-                                int alertLevel = marketMonitor.evalDangerLevel();
+                                WarnLevel wl = marketMonitor.evalDangerLevel();
+                                int alertLevel = wl.getLevel();
                                 alerter.status(display, alertLevel);
                                 Display.getDefault().syncExec(new Runnable() {
                                     public void run() {

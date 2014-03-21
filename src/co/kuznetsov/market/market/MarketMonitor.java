@@ -24,7 +24,7 @@ public class MarketMonitor {
     private Source rut = new SourceRUT();
     private Source ndx = new SourceNDX();
 
-    public int evalDangerLevel() throws IOException {
+    public WarnLevel evalDangerLevel() throws IOException {
         reloadSpreads();
         reloadQuotes();
         return spreadHolder.getWarnLevel(quoteHolder);

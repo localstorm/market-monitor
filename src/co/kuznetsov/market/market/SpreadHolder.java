@@ -13,6 +13,7 @@ public class SpreadHolder {
     private final static int MAX_WARNING = 10;
 
     private List<Spread> spreads = new CopyOnWriteArrayList<Spread>();
+    private int currentLevel = 0;
 
     public void addSpread(Spread sp) {
         spreads.add(sp);
@@ -22,7 +23,7 @@ public class SpreadHolder {
         spreads.clear();
     }
 
-    public int getWarnLevel(QuoteHolder quoteHolder) {
+    public WarnLevel getWarnLevel(QuoteHolder quoteHolder) {
         int max = 0;
         for(Spread s : spreads) {
             BigDecimal current = quoteHolder.getCurrent(s.getTicker());
@@ -31,10 +32,10 @@ public class SpreadHolder {
             BigDecimal spread  = s.getHi().subtract(s.getLo());
 
             if (deltaLo.compareTo(BigDecimal.ZERO) <= 0) {
-                return MAX_WARNING;
+                return new WarnLevel(MAX_WARNING, 0, MAX_WARNING - currentLevel);
             }
             if (deltaHi.compareTo(BigDecimal.ZERO) <= 0) {
-                return MAX_WARNING;
+                return new WarnLevel(MAX_WARNING, 0, MAX_WARNING - currentLevel);
             }
             BigDecimal spDiv2 = spread.divide(BigDecimal.valueOf(2));
 
@@ -60,7 +61,9 @@ public class SpreadHolder {
             }
         }
 
-        return max;
+        WarnLevel wl = new WarnLevel(max, 0, max - currentLevel);
+        currentLevel = max;
+        return wl;
     }
 
     private int round(BigDecimal val) {
