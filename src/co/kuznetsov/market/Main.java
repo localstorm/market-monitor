@@ -39,7 +39,7 @@ public class Main {
         final ToolTip tip = new ToolTip(shell, SWT.BALLOON | SWT.ICON_INFORMATION);
         tip.setMessage("Unable to reload quotes/spreads!");
         final TrayItem item = new TrayItem(tray, SWT.NONE);
-        item.setToolTipText("Options DEFCON");
+
 
         final Menu menu = new Menu(shell, SWT.POP_UP);
         MenuItem mi = new MenuItem(menu, SWT.PUSH);
@@ -71,10 +71,11 @@ public class Main {
                     while (!this.isInterrupted()) {
                         try {
                             WarnLevel wl = marketMonitor.evalDangerLevel();
-                            int alertLevel = wl.getLevel();
+                            final int alertLevel = wl.getLevel();
                             alerter.status(display, alertLevel);
                             Display.getDefault().syncExec(new Runnable() {
                                 public void run() {
+                                    item.setToolTipText("Options DEFCON ("+alertLevel+")");
                                     item.setImage(alerter.getImage());
                                     tip.setVisible(false);
                                 }
@@ -85,6 +86,7 @@ public class Main {
                             e.printStackTrace(System.err);
                             Display.getDefault().syncExec(new Runnable() {
                                 public void run() {
+                                    item.setToolTipText("Options DEFCON (ERROR!)");
                                     item.setImage(alerter.getImage());
                                     tip.setVisible(true);
                                 }
