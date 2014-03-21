@@ -1,7 +1,7 @@
 package co.kuznetsov.market.market;
 
 import co.kuznetsov.market.feeds.Source;
-import co.kuznetsov.market.feeds.SourceNDX;
+import co.kuznetsov.market.feeds.SourceNDQ;
 import co.kuznetsov.market.feeds.SourceRUT;
 import co.kuznetsov.market.feeds.SourceSNP500;
 
@@ -20,16 +20,17 @@ public class MarketMonitor {
     private String fixingTime = "00:00";
     private String spreadsPath;
 
-    private int premarketLevel = -1;
     private Source snp500 = new SourceSNP500();
     private Source rut = new SourceRUT();
-    private Source ndx = new SourceNDX();
+    private Source ndx = new SourceNDQ();
 
 
     public WarnLevel evalDangerLevel() throws IOException {
         reloadSpreads();
         reloadQuotes();
-        return spreadHolder.getWarnLevel(quoteHolder);
+        WarnLevel wl = spreadHolder.getWarnLevel(quoteHolder);
+        System.out.println("Warn Level: " + wl.getLevel());
+        return wl;
     }
 
     private void reloadSpreads() throws IOException  {
@@ -42,9 +43,9 @@ public class MarketMonitor {
     }
 
     private void reloadQuotes() throws IOException {
-        quoteHolder.update("SNP500", snp500.getCurrent());
-        quoteHolder.update("RUT", rut.getCurrent());
-        quoteHolder.update("NDX", ndx.getCurrent());
+        quoteHolder.update(snp500.getTicker(), snp500.getCurrent());
+        quoteHolder.update(rut.getTicker(), rut.getCurrent());
+        quoteHolder.update(ndx.getTicker(), ndx.getCurrent());
         quoteHolder.printQuotes(System.out);
     }
 
@@ -53,6 +54,6 @@ public class MarketMonitor {
     }
 
     public void setFixingTime(String fixingTime) {
-        this.spreadsPath = fixingTime;
+        this.fixingTime = fixingTime;
     }
 }

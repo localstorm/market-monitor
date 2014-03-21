@@ -1,5 +1,6 @@
 package co.kuznetsov.market.feeds;
 
+import co.kuznetsov.market.market.Ticker;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -33,5 +34,10 @@ public class SourceSNP500 implements Source {
             }
             throw new IOException("Unable to extract SNP500");
         }
+    }
+
+    @Override
+    public Ticker getTicker() {
+        return Ticker.SNP500;
     }
 }

@@ -1,5 +1,6 @@
 package co.kuznetsov.market.feeds;
 
+import co.kuznetsov.market.market.Ticker;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -32,5 +33,10 @@ public class SourceRUT implements Source  {
             }
             throw new IOException("Unable to extract RUT");
         }
+    }
+
+    @Override
+    public Ticker getTicker() {
+        return Ticker.RUT;
     }
 }

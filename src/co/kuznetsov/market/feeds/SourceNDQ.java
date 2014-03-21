@@ -1,5 +1,6 @@
 package co.kuznetsov.market.feeds;
 
+import co.kuznetsov.market.market.Ticker;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -15,7 +16,7 @@ import static co.kuznetsov.market.feeds.SanityUtils.sanity;
  * @author localstorm
  *         Date: 21.03.14
  */
-public class SourceNDX implements Source {
+public class SourceNDQ implements Source {
     @Override
     public BigDecimal getCurrent() throws IOException {
         Document doc = Jsoup.parse(new URL("http://finance.yahoo.com/q?s=%5EIXIC"), 10000);
@@ -34,4 +35,8 @@ public class SourceNDX implements Source {
         }
     }
 
+    @Override
+    public Ticker getTicker() {
+        return Ticker.NDQ;
+    }
 }

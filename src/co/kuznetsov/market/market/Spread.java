@@ -7,11 +7,11 @@ import java.math.BigDecimal;
  *         Date: 21.03.14
  */
 public class Spread {
-    private String ticker;
+    private Ticker ticker;
     private BigDecimal lo;
     private BigDecimal hi;
 
-    public Spread(String ticker, BigDecimal lo, BigDecimal hi) {
+    public Spread(Ticker ticker, BigDecimal lo, BigDecimal hi) {
         this.ticker = ticker;
         this.lo = lo;
         this.hi = hi;
@@ -25,7 +25,7 @@ public class Spread {
         return hi;
     }
 
-    public String getTicker() {
+    public Ticker getTicker() {
         return ticker;
     }
 }

@@ -1,5 +1,7 @@
 package co.kuznetsov.market.feeds;
 
+import co.kuznetsov.market.market.Ticker;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 
@@ -10,5 +12,6 @@ import java.math.BigDecimal;
 public interface Source {
 
     BigDecimal getCurrent() throws IOException;
+    Ticker getTicker();
 
 }
