@@ -22,7 +22,6 @@ public class Main {
 
         final Display display = new Display();
         Shell shell = new Shell(display);
-        Image image = new Image(display, 16, 16);
 
         final Alerter alerter = new Alerter(display);
         alerter.status(display, 0);
@@ -62,7 +61,7 @@ public class Main {
             }
         });
         item.setImage(alerter.getImage());
-        item.setHighlightImage(image);
+        item.setHighlightImage(alerter.getImage());
         item.setToolTip(tip);
 
 
@@ -79,6 +78,7 @@ public class Main {
                                 public void run() {
                                     item.setToolTipText("Options DEFCON ("+alertLevel+")");
                                     item.setImage(alerter.getImage());
+                                    item.setHighlightImage(alerter.getImage());
                                     tip.setVisible(false);
                                 }
                             });
@@ -90,6 +90,7 @@ public class Main {
                                 public void run() {
                                     item.setToolTipText("Options DEFCON (ERROR!)");
                                     item.setImage(alerter.getImage());
+                                    item.setHighlightImage(alerter.getImage());
                                     tip.setVisible(true);
                                 }
                             });
@@ -110,7 +111,6 @@ public class Main {
 
         watcher.interrupt();
         watcher.join(10000);
-        image.dispose();
         alerter.dispose();
         display.dispose();
     }
