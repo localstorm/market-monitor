@@ -1,14 +1,13 @@
 package co.kuznetsov.market.market;
 
-import co.kuznetsov.market.sources.Source;
-import co.kuznetsov.market.sources.SourceNDX;
-import co.kuznetsov.market.sources.SourceRUT;
-import co.kuznetsov.market.sources.SourceSNP500;
+import co.kuznetsov.market.feeds.Source;
+import co.kuznetsov.market.feeds.SourceNDX;
+import co.kuznetsov.market.feeds.SourceRUT;
+import co.kuznetsov.market.feeds.SourceSNP500;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-
 
 /**
  * @author localstorm
@@ -18,11 +17,14 @@ public class MarketMonitor {
     private SpreadHolder spreadHolder = new SpreadHolder();
     private QuoteHolder quoteHolder = new QuoteHolder();
 
-    private String configPath;
+    private String fixingTime = "00:00";
+    private String spreadsPath;
 
+    private int premarketLevel = -1;
     private Source snp500 = new SourceSNP500();
     private Source rut = new SourceRUT();
     private Source ndx = new SourceNDX();
+
 
     public WarnLevel evalDangerLevel() throws IOException {
         reloadSpreads();
@@ -33,7 +35,7 @@ public class MarketMonitor {
     private void reloadSpreads() throws IOException  {
         spreadHolder.removeSpreads();
         SpreadsParser sp = new SpreadsParser();
-        List<Spread> spreads = sp.parse(new File(configPath));
+        List<Spread> spreads = sp.parse(new File(spreadsPath));
         for (Spread s: spreads) {
             spreadHolder.addSpread(s);
         }
@@ -46,7 +48,11 @@ public class MarketMonitor {
         quoteHolder.printQuotes(System.out);
     }
 
-    public void setConfigPath(String configPath) {
-        this.configPath = configPath;
+    public void setSpreadsPath(String spreadsPath) {
+        this.spreadsPath = spreadsPath;
+    }
+
+    public void setFixingTime(String fixingTime) {
+        this.spreadsPath = fixingTime;
     }
 }

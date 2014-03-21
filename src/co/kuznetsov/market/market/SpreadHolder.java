@@ -32,10 +32,10 @@ public class SpreadHolder {
             BigDecimal spread  = s.getHi().subtract(s.getLo());
 
             if (deltaLo.compareTo(BigDecimal.ZERO) <= 0) {
-                return new WarnLevel(MAX_WARNING, 0, MAX_WARNING - currentLevel);
+                return new WarnLevel(MAX_WARNING, MAX_WARNING - currentLevel);
             }
             if (deltaHi.compareTo(BigDecimal.ZERO) <= 0) {
-                return new WarnLevel(MAX_WARNING, 0, MAX_WARNING - currentLevel);
+                return new WarnLevel(MAX_WARNING, MAX_WARNING - currentLevel);
             }
             BigDecimal spDiv2 = spread.divide(BigDecimal.valueOf(2));
 
@@ -61,7 +61,7 @@ public class SpreadHolder {
             }
         }
 
-        WarnLevel wl = new WarnLevel(max, 0, max - currentLevel);
+        WarnLevel wl = new WarnLevel(max, max - currentLevel);
         currentLevel = max;
         return wl;
     }

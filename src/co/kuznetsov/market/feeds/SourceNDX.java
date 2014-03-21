@@ -1,4 +1,4 @@
-package co.kuznetsov.market.sources;
+package co.kuznetsov.market.feeds;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 
-import static co.kuznetsov.market.sources.SanityUtils.sanity;
+import static co.kuznetsov.market.feeds.SanityUtils.sanity;
 
 /**
  * @author localstorm

@@ -1,4 +1,4 @@
-package co.kuznetsov.market.sources;
+package co.kuznetsov.market.feeds;
 
 import java.math.BigDecimal;
 

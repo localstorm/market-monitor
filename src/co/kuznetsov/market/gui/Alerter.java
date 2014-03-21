@@ -1,4 +1,4 @@
-package co.kuznetsov.market;
+package co.kuznetsov.market.gui;
 
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
