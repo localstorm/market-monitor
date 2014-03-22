@@ -14,13 +14,15 @@ import java.util.concurrent.atomic.AtomicInteger;
  *         Date: 21.03.14
  */
 public class QuoteHolder {
+    private static final long MARKET_DATA_DOWNTIME_THRESHOLD = 120000;
+
     private Map<Ticker, BigDecimal> tickers = new ConcurrentSkipListMap<>();
     private Map<Ticker, AtomicInteger> noChangeCounters = new ConcurrentHashMap<>();
     private Fixing fixing = new Fixing();
     private MarketHash marketHash = new MarketHash(fixing);
 
     public boolean isMarketOpen() {
-        return marketHash.getLastUpdate() > (System.currentTimeMillis() - 120000);
+        return marketHash.getLastUpdate() > (System.currentTimeMillis() - MARKET_DATA_DOWNTIME_THRESHOLD);
     }
 
     public void update(Ticker ticker, BigDecimal current) {
@@ -36,7 +38,7 @@ public class QuoteHolder {
             if (count.get() >= 100) {
                 if (!current.equals(fixing.getQuote(ticker))) {
                     fixing.fixQuote(ticker, current);
-                    System.out.println("Fixing: "+ticker + ": " + current);
+                    System.out.println("Fixing: " + ticker + ": " + current);
                 }
                 noChangeCounters.remove(ticker);
             }

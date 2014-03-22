@@ -2,17 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c5105e8-84ce-455b-8a71-296628526862" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/gui/Alerter.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/gui/Alerter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/monitor/QuoteHolder.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/monitor/QuoteHolder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="market-monitor.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395485676691" ignored="false" />
+    <file path="/Dummy.txt" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395486061314" ignored="false" />
     <file path="/Main.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395475377912" ignored="false" />
-    <file path="/QuoteHolder.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395485863383" ignored="false" />
+    <file path="/QuoteHolder.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395486103161" ignored="false" />
     <file path="/Fixing.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395465500125" ignored="false" />
     <file path="/SpreadHolder.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395467512258" ignored="false" />
-    <file path="/Alerter.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395475365236" ignored="false" />
+    <file path="/Alerter.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395486810614" ignored="false" />
     <file path="/fragment.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395466416019" ignored="false" />
     <file path="/MarketHash.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395467801988" ignored="false" />
     <file path="/WarnLevel.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395467488491" ignored="false" />
@@ -87,10 +88,30 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QuoteHolder.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="QuoteHolder.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/monitor/QuoteHolder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="19" selection-start="2039" selection-end="2039" vertical-scroll-proportion="0.55801105">
+            <state line="10" column="18" selection-start="323" selection-end="323" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Fixing.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/monitor/Fixing.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="74" column="18" selection-start="2694" selection-end="2694" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Alerter.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/gui/Alerter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="70" column="32" selection-start="2392" selection-end="2392" vertical-scroll-proportion="0.38674033">
               <folding />
             </state>
           </provider>
@@ -150,15 +171,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MarketHash.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/monitor/MarketHash.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="66" selection-start="319" selection-end="319" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindManager">
@@ -189,10 +201,10 @@
         <option value="$PROJECT_DIR$/src/co/kuznetsov/market/monitor/MarketHash.java" />
         <option value="$PROJECT_DIR$/src/co/kuznetsov/market/feeds/yahoo/SourceNDQ.java" />
         <option value="$PROJECT_DIR$/src/co/kuznetsov/market/feeds/google/SourceRUT.java" />
-        <option value="$PROJECT_DIR$/src/co/kuznetsov/market/gui/Alerter.java" />
         <option value="$PROJECT_DIR$/src/co/kuznetsov/market/Main.java" />
         <option value="$PROJECT_DIR$/src/co/kuznetsov/market/monitor/MarketMonitor.java" />
         <option value="$PROJECT_DIR$/src/co/kuznetsov/market/monitor/QuoteHolder.java" />
+        <option value="$PROJECT_DIR$/src/co/kuznetsov/market/gui/Alerter.java" />
       </list>
     </option>
   </component>
@@ -599,14 +611,18 @@
       <created>1395485683336</created>
       <updated>1395485683336</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Minor fix">
+      <created>1395486065280</created>
+      <updated>1395486065280</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="3620000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1280" height="714" extended-state="0" />
+    <frame x="0" y="22" width="1280" height="714" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -679,7 +695,7 @@
     <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Safer I/O" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor fix" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -696,6 +712,7 @@
     <MESSAGE value="Linux support" />
     <MESSAGE value="Icon refresh improved" />
     <MESSAGE value="Safer I/O" />
+    <MESSAGE value="Minor fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -732,13 +749,6 @@
     <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/feeds/yahoo/SourceNDQ.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="24" selection-start="328" selection-end="328" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/monitor/Fixing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="18" selection-start="2694" selection-end="2694" vertical-scroll-proportion="1.961326">
           <folding />
         </state>
       </provider>
@@ -785,13 +795,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/gui/Alerter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="19" selection-start="968" selection-end="968" vertical-scroll-proportion="0.74585634">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="70" column="69" selection-start="2243" selection-end="2243" vertical-scroll-proportion="0.0">
@@ -810,7 +813,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/monitor/QuoteHolder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="19" selection-start="2039" selection-end="2039" vertical-scroll-proportion="0.55801105">
+        <state line="10" column="18" selection-start="323" selection-end="323" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/monitor/Fixing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="18" selection-start="2694" selection-end="2694" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/gui/Alerter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70" column="32" selection-start="2392" selection-end="2392" vertical-scroll-proportion="0.38674033">
           <folding />
         </state>
       </provider>

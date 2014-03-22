@@ -66,8 +66,15 @@ public class Alerter {
             down(display);
         }
         if (!wl.isMarketOpen()) {
-            gc.drawLine(0,0,15,15);
-            gc.drawLine(15,0,0,15);
+            Color c1 = new Color(display, 0xFF, 0xFF, 0xFF);
+            gc.setForeground(c1);
+
+            gc.drawLine(2, 2, 13, 13);
+            gc.drawLine(3, 2, 13, 12);
+            gc.drawLine(2, 3, 12, 13);
+            gc.drawLine(12, 2, 2, 12);
+            gc.drawLine(13, 2, 2, 13);
+            gc.drawLine(13, 3, 3, 13);
         }
 
         boolean needRefresh = (currentLevel.get() != warnLevel) ||
