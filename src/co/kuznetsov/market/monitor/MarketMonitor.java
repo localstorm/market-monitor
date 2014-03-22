@@ -44,10 +44,10 @@ public class MarketMonitor {
     }
 
     private void reloadQuotes() throws IOException {
-        quoteHolder.update(snp500.getTicker(), snp500.getCurrent());
-        quoteHolder.update(rut.getTicker(), rut.getCurrent());
-        quoteHolder.update(ndx.getTicker(), ndx.getCurrent());
-        quoteHolder.update(vix.getTicker(), vix.getCurrent());
+        loadWithRetry(snp500);
+        loadWithRetry(rut);
+        loadWithRetry(ndx);
+        loadWithRetry(vix);
         quoteHolder.printQuotes(System.out);
     }
 
@@ -55,4 +55,18 @@ public class MarketMonitor {
         this.spreadsPath = spreadsPath;
     }
 
+    private void loadWithRetry(Source src) throws IOException {
+        int retry = 5;
+        do {
+            try {
+                retry--;
+                quoteHolder.update(src.getTicker(), src.getCurrent());
+                return;
+            } catch(Exception e) {
+                if (retry == 0) {
+                    throw e;
+                }
+            }
+        } while (true);
+    }
 }
