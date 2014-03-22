@@ -14,7 +14,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  *         Date: 21.03.14
  */
 public class QuoteHolder {
-    private static final long MARKET_DATA_DOWNTIME_THRESHOLD = 120000;
+    private static final long MARKET_DATA_DOWNTIME_THRESHOLD = 120000L;
+    private static final int FIXING_THRESHOLD = 100;
 
     private Map<Ticker, BigDecimal> tickers = new ConcurrentSkipListMap<>();
     private Map<Ticker, AtomicInteger> noChangeCounters = new ConcurrentHashMap<>();
@@ -35,7 +36,7 @@ public class QuoteHolder {
             } else {
                 count.incrementAndGet();
             }
-            if (count.get() >= 100) {
+            if (count.get() >= FIXING_THRESHOLD) {
                 if (!current.equals(fixing.getQuote(ticker))) {
                     fixing.fixQuote(ticker, current);
                     System.out.println("Fixing: " + ticker + ": " + current);
