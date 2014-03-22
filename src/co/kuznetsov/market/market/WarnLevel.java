@@ -17,15 +17,8 @@ public class WarnLevel {
         return level;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
     public int getDelta() {
         return delta;
     }
 
-    public void setDelta(int delta) {
-        this.delta = delta;
-    }
 }

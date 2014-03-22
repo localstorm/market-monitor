@@ -12,8 +12,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class SpreadHolder {
     private final static int MAX_WARNING = 10;
 
-    private List<Spread> spreads = new CopyOnWriteArrayList<Spread>();
-    private int currentLevel = 0;
+    private List<Spread> spreads = new CopyOnWriteArrayList<>();
 
     public void addSpread(Spread sp) {
         spreads.add(sp);
@@ -25,45 +24,53 @@ public class SpreadHolder {
 
     public WarnLevel getWarnLevel(QuoteHolder quoteHolder) {
         int max = 0;
+        int maxFixing = 0;
         for(Spread s : spreads) {
             BigDecimal current = quoteHolder.getCurrent(s.getTicker());
-            BigDecimal deltaLo = current.subtract(s.getLo());
-            BigDecimal deltaHi = s.getHi().subtract(current);
-            BigDecimal spread  = s.getHi().subtract(s.getLo());
-
-            if (deltaLo.compareTo(BigDecimal.ZERO) <= 0) {
-                return new WarnLevel(MAX_WARNING, MAX_WARNING - currentLevel);
-            }
-            if (deltaHi.compareTo(BigDecimal.ZERO) <= 0) {
-                return new WarnLevel(MAX_WARNING, MAX_WARNING - currentLevel);
-            }
-            BigDecimal spDiv2 = spread.divide(BigDecimal.valueOf(2));
-
-            MathContext digit4 = new MathContext(4);
-
-            BigDecimal wLo;
-            if (deltaLo.compareTo(spDiv2) <= 0) {
-                wLo = BigDecimal.TEN.multiply(BigDecimal.ONE.subtract(deltaLo.divide(spDiv2, digit4)));
-            } else {
-                wLo = BigDecimal.ZERO;
-            }
-
-            BigDecimal wHi;
-            if (deltaHi.compareTo(spDiv2) <= 0) {
-                wHi = BigDecimal.TEN.multiply(BigDecimal.ONE.subtract(deltaHi.divide(spDiv2, digit4)));
-            } else {
-                wHi = BigDecimal.ZERO;
-            }
-
-            int level = Math.max(round(wHi), round(wLo));
+            BigDecimal fixing = quoteHolder.getLastFixing(s.getTicker());
+            int level = getWarningLevel(s, current);
+            int fixingLevel = getWarningLevel(s, fixing);
             if (max < level) {
                 max = level;
             }
+            if (maxFixing < fixingLevel) {
+                maxFixing = fixingLevel;
+            }
         }
 
-        WarnLevel wl = new WarnLevel(max, max - currentLevel);
-        currentLevel = max;
-        return wl;
+        return new WarnLevel(max, max - maxFixing);
+    }
+
+    private int getWarningLevel(Spread s, BigDecimal current) {
+        BigDecimal deltaLo = current.subtract(s.getLo());
+        BigDecimal deltaHi = s.getHi().subtract(current);
+        BigDecimal spread  = s.getHi().subtract(s.getLo());
+
+        if (deltaLo.compareTo(BigDecimal.ZERO) <= 0) {
+            return MAX_WARNING;
+        }
+        if (deltaHi.compareTo(BigDecimal.ZERO) <= 0) {
+            return MAX_WARNING;
+        }
+        BigDecimal spDiv2 = spread.divide(BigDecimal.valueOf(2));
+
+        MathContext digit4 = new MathContext(4);
+
+        BigDecimal wLo;
+        if (deltaLo.compareTo(spDiv2) <= 0) {
+            wLo = BigDecimal.TEN.multiply(BigDecimal.ONE.subtract(deltaLo.divide(spDiv2, digit4)));
+        } else {
+            wLo = BigDecimal.ZERO;
+        }
+
+        BigDecimal wHi;
+        if (deltaHi.compareTo(spDiv2) <= 0) {
+            wHi = BigDecimal.TEN.multiply(BigDecimal.ONE.subtract(deltaHi.divide(spDiv2, digit4)));
+        } else {
+            wHi = BigDecimal.ZERO;
+        }
+
+        return Math.max(round(wHi), round(wLo));
     }
 
     private int round(BigDecimal val) {

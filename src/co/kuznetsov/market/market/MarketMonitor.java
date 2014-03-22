@@ -14,7 +14,6 @@ public class MarketMonitor {
     private SpreadHolder spreadHolder = new SpreadHolder();
     private QuoteHolder quoteHolder = new QuoteHolder();
 
-    private String fixingTime = "00:00";
     private String spreadsPath;
 
     private Source snp500 = new SourceSNP500();
@@ -52,7 +51,4 @@ public class MarketMonitor {
         this.spreadsPath = spreadsPath;
     }
 
-    public void setFixingTime(String fixingTime) {
-        this.fixingTime = fixingTime;
-    }
 }

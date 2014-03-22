@@ -1,5 +1,6 @@
 package co.kuznetsov.market.gui;
 
+import co.kuznetsov.market.market.WarnLevel;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
@@ -17,7 +18,6 @@ public class Alerter {
 
     private Image alerter;
     private GC gc;
-    private int dayOpenLevel = 0;
 
     public Alerter(Display display) {
         alerter = new Image(display, 16, 16);
@@ -25,11 +25,13 @@ public class Alerter {
         offline(display);
     }
 
-    public void status(Display display, int warnLevel) {
+    public void status(Display display, WarnLevel wl) {
         Color c = null;
+        int warnLevel = wl.getLevel();
         if (warnLevel == 5) {
             c = new Color(display, YELLOW[0], YELLOW[1], YELLOW[2]);
         }
+
         if (warnLevel < 5) {
             int danger = warnLevel;
             int safetyLevel = 5 - danger;
@@ -37,6 +39,7 @@ public class Alerter {
                                    (int) ((0.2 * danger) * YELLOW[1] +  (0.2 * safetyLevel) * GREEN[1]),
                                    (int) ((0.2 * danger) * YELLOW[2] +  (0.2 * safetyLevel) * GREEN[2]));
         }
+
         if (warnLevel > 5) {
             int danger = warnLevel - 5;
             int safetyLevel = 5 - danger;
@@ -47,13 +50,13 @@ public class Alerter {
 
         gc.setBackground(c);
         gc.fillRectangle(alerter.getBounds());
-        if (warnLevel > dayOpenLevel) {
+
+        if (wl.getDelta() > 0) {
             up(display);
-        } else {
+        }
+        if (wl.getDelta() < 0) {
             down(display);
         }
-
-
     }
 
     private void up(Display display) {

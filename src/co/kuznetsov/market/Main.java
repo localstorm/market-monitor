@@ -4,7 +4,6 @@ import co.kuznetsov.market.gui.Alerter;
 import co.kuznetsov.market.market.MarketMonitor;
 import co.kuznetsov.market.market.WarnLevel;
 import org.eclipse.swt.*;
-import org.eclipse.swt.graphics.*;
 import org.eclipse.swt.widgets.*;
 
 /**
@@ -24,18 +23,16 @@ public class Main {
         Shell shell = new Shell(display);
 
         final Alerter alerter = new Alerter(display);
-        alerter.status(display, 0);
+        alerter.status(display, new WarnLevel(0, 0));
 
         final MarketMonitor marketMonitor = new MarketMonitor();
         marketMonitor.setSpreadsPath(args[0]);
-        marketMonitor.setFixingTime("16:00"); // TODO: implement
 
         final Tray tray = display.getSystemTray();
         if (tray == null) {
             System.err.println("The system tray is not available");
             return;
         }
-
 
         final ToolTip tip = new ToolTip(shell, SWT.BALLOON | SWT.ICON_INFORMATION);
         tip.setMessage("Unable to reload quotes/spreads!");
@@ -71,12 +68,11 @@ public class Main {
                 try {
                     while (!this.isInterrupted()) {
                         try {
-                            WarnLevel wl = marketMonitor.evalDangerLevel();
-                            final int alertLevel = wl.getLevel();
-                            alerter.status(display, alertLevel);
+                            final WarnLevel wl = marketMonitor.evalDangerLevel();
+                            alerter.status(display, wl);
                             Display.getDefault().syncExec(new Runnable() {
                                 public void run() {
-                                    item.setToolTipText("Options DEFCON ("+alertLevel+")");
+                                    item.setToolTipText("Options DEFCON (" + wl.getLevel() + ")");
                                     item.setImage(alerter.getImage());
                                     item.setHighlightImage(alerter.getImage());
                                     tip.setVisible(false);
