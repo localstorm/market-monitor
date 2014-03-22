@@ -77,7 +77,7 @@ public class Alerter {
             gc.drawLine(13, 3, 3, 13);
         }
 
-        boolean needRefresh = (currentLevel.get() != warnLevel) ||
+        boolean needRefresh = (wl.getLevel() != currentLevel.get()) ||
                               (wl.isMarketOpen() != currentMarket.get()) ||
                               (wl.getDelta() != currentDelta.get());
         currentDelta.set(wl.getDelta());
