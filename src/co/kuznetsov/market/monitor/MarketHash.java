@@ -23,7 +23,6 @@ public class MarketHash {
     private void hash(StringBuilder sb) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA1");
-            md.reset();
             byte[] hash = md.digest(sb.toString().getBytes());
             long newChecksum = new BigInteger(1, hash).longValue();
             if (currentChecksum.get() !=0 && newChecksum != currentChecksum.get()) {
