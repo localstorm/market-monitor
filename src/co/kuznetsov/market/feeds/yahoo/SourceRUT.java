@@ -1,5 +1,6 @@
-package co.kuznetsov.market.feeds;
+package co.kuznetsov.market.feeds.yahoo;
 
+import co.kuznetsov.market.feeds.Source;
 import co.kuznetsov.market.monitor.Ticker;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -16,27 +17,27 @@ import static co.kuznetsov.market.feeds.SanityUtils.sanity;
  * @author localstorm
  *         Date: 21.03.14
  */
-public class SourceVIX implements Source {
+public class SourceRUT implements Source {
     @Override
     public BigDecimal getCurrent() throws IOException {
-        Document doc = Jsoup.parse(new URL("http://finance.yahoo.com/q?s=%5EVIX"), 10000);
-        Elements elements = doc.getElementsByAttributeValue("id", "yfs_l10_^vix");
+        Document doc = Jsoup.parse(new URL("http://finance.yahoo.com/q?s=%5ERUT"), 10000);
+        Elements elements = doc.getElementsByAttributeValue("id", "yfs_l10_^rut");
         if (elements.isEmpty()) {
-            throw new IOException("Unable to extract VIX");
+            throw new IOException("Unable to extract RUT");
         } else {
             for (Element e: elements) {
                 if (e.nodeName().equalsIgnoreCase("span")) {
                     String txt = e.text();
                     txt = txt.replace(",", "");
-                    return sanity("VIX", new BigDecimal(txt), 5,100);
+                    return sanity("RUT", new BigDecimal(txt), 100, 3000);
                 }
             }
-            throw new IOException("Unable to extract VIX");
+            throw new IOException("Unable to extract RUT");
         }
     }
 
     @Override
     public Ticker getTicker() {
-        return Ticker.VIX;
+        return Ticker.RUT;
     }
 }

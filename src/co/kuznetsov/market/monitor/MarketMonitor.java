@@ -1,6 +1,10 @@
 package co.kuznetsov.market.monitor;
 
 import co.kuznetsov.market.feeds.*;
+import co.kuznetsov.market.feeds.yahoo.SourceNDQ;
+import co.kuznetsov.market.feeds.yahoo.SourceRUT;
+import co.kuznetsov.market.feeds.yahoo.SourceSNP500;
+import co.kuznetsov.market.feeds.yahoo.SourceVIX;
 
 import java.io.File;
 import java.io.IOException;
