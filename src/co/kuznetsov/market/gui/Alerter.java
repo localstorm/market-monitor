@@ -15,9 +15,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class Alerter {
 
-    private int [] RED      = {0xFF, 0x45, 0};
+    private int [] RED      = {0xCC, 0x45, 0};
     private int [] YELLOW   = {0xFF, 0xFF, 0x66};
-    private int [] GREEN    = {0, 0x80, 0};
+    private int [] GREEN    = {0, 0xCC, 0};
 
     private AtomicInteger currentDelta  = new AtomicInteger(0);
     private AtomicInteger currentLevel  = new AtomicInteger(0);

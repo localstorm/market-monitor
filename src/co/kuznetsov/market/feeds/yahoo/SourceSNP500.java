@@ -10,6 +10,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
+import java.util.Random;
 
 import static co.kuznetsov.market.feeds.SanityUtils.sanity;
 
