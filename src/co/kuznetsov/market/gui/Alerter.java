@@ -33,12 +33,8 @@ public class Alerter {
     }
 
     public boolean status(Display display, WarnLevel wl) {
-        Color c = null;
+        Color c = new Color(display, YELLOW[0], YELLOW[1], YELLOW[2]);;
         int warnLevel = wl.getLevel();
-
-        if (warnLevel == 5) {
-            c = new Color(display, YELLOW[0], YELLOW[1], YELLOW[2]);
-        }
 
         if (warnLevel < 5) {
             int danger = warnLevel;
@@ -47,7 +43,6 @@ public class Alerter {
                                    (int) ((0.2 * danger) * YELLOW[1] +  (0.2 * safetyLevel) * GREEN[1]),
                                    (int) ((0.2 * danger) * YELLOW[2] +  (0.2 * safetyLevel) * GREEN[2]));
         }
-
         if (warnLevel > 5) {
             int danger = warnLevel - 5;
             int safetyLevel = 5 - danger;
@@ -59,22 +54,20 @@ public class Alerter {
         gc.setBackground(c);
         gc.fillRectangle(alerter.getBounds());
 
-        if (wl.getDelta() > 0) {
-            up(display);
-        }
-        if (wl.getDelta() < 0) {
-            down(display);
-        }
-        if (!wl.isMarketOpen()) {
-            Color c1 = new Color(display, 0xFF, 0xFF, 0xFF);
-            gc.setForeground(c1);
+        Color cInv = new Color(display, 255 - c.getRed(), 255 - c.getGreen(), 255 - c.getBlue());
 
-            gc.drawLine(2, 2, 13, 13);
-            gc.drawLine(3, 2, 13, 12);
-            gc.drawLine(2, 3, 12, 13);
-            gc.drawLine(12, 2, 2, 12);
-            gc.drawLine(13, 2, 2, 13);
-            gc.drawLine(13, 3, 3, 13);
+        if (!wl.isMarketOpen()) {
+            marketClosed(cInv);
+        } else {
+            if (wl.getDelta() > 0) {
+                up(cInv);
+            }
+            if (wl.getDelta() < 0) {
+                down(cInv);
+            }
+            if (wl.getDelta() == 0) {
+                flat(cInv);
+            }
         }
 
         boolean needRefresh = (wl.getLevel() != currentLevel.get()) ||
@@ -86,20 +79,46 @@ public class Alerter {
         return needRefresh;
     }
 
-    private void up(Display display) {
-        Color c = new Color(display, 0, 0, 0);
-        gc.setForeground(c);
-        gc.drawLine(7, 5, 3, 9);
-        gc.drawLine(8, 5, 12, 9);
-        gc.drawLine(3, 9, 12, 9);
+    private void marketClosed(Color cInv) {
+        gc.setForeground(cInv);
+
+        gc.drawLine(2, 2, 13, 13);
+        gc.drawLine(3, 2, 13, 12);
+        gc.drawLine(2, 3, 12, 13);
+        gc.drawLine(12, 2, 2, 12);
+        gc.drawLine(13, 2, 2, 13);
+        gc.drawLine(13, 3, 3, 13);
     }
 
-    private void down(Display display) {
-        Color c = new Color(display, 0, 0, 0);
+    private void up(Color c) {
         gc.setForeground(c);
-        gc.drawLine(3, 6, 7, 10);
-        gc.drawLine(8, 10, 12, 6);
-        gc.drawLine(3, 6, 12, 6);
+        gc.drawLine(12, 2, 2, 12);
+        gc.drawLine(13, 2, 2, 13);
+        gc.drawLine(13, 3, 3, 13);
+
+        gc.drawLine(7, 2, 13, 2);
+        gc.drawLine(7, 3, 13, 3);
+        gc.drawLine(12, 8, 12, 2);
+        gc.drawLine(13, 8, 13, 2);
+    }
+
+    private void down(Color c) {
+        gc.setForeground(c);
+        gc.drawLine(2, 2, 13, 13);
+        gc.drawLine(3, 2, 13, 12);
+        gc.drawLine(2, 3, 12, 13);
+
+        gc.drawLine(13, 7, 13, 13);
+        gc.drawLine(12, 7, 12, 13);
+        gc.drawLine(7, 13, 13, 13);
+        gc.drawLine(7, 12, 13, 12);
+    }
+
+    private void flat(Color c) {
+        gc.setForeground(c);
+
+        gc.drawLine(2, 7, 13, 7);
+        gc.drawLine(2, 8, 13, 8);
     }
 
     public void offline(Display display) {
