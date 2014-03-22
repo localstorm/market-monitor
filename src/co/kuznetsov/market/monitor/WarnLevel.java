@@ -1,4 +1,4 @@
-package co.kuznetsov.market.market;
+package co.kuznetsov.market.monitor;
 
 /**
  * @author localstorm
@@ -7,10 +7,12 @@ package co.kuznetsov.market.market;
 public class WarnLevel {
     private int level;
     private int delta;
+    private boolean marketOpen;
 
-    public WarnLevel(int level, int delta) {
+    public WarnLevel(int level, int delta, boolean marketOpen) {
         this.level = level;
         this.delta = delta;
+        this.marketOpen = marketOpen;
     }
 
     public int getLevel() {
@@ -19,6 +21,10 @@ public class WarnLevel {
 
     public int getDelta() {
         return delta;
+    }
+
+    public boolean isMarketOpen() {
+        return marketOpen;
     }
 
 }

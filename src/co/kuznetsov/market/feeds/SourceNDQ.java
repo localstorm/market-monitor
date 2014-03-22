@@ -1,6 +1,6 @@
 package co.kuznetsov.market.feeds;
 
-import co.kuznetsov.market.market.Ticker;
+import co.kuznetsov.market.monitor.Ticker;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

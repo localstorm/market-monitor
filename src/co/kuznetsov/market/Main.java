@@ -1,8 +1,8 @@
 package co.kuznetsov.market;
 
 import co.kuznetsov.market.gui.Alerter;
-import co.kuznetsov.market.market.MarketMonitor;
-import co.kuznetsov.market.market.WarnLevel;
+import co.kuznetsov.market.monitor.MarketMonitor;
+import co.kuznetsov.market.monitor.WarnLevel;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.*;
 
@@ -23,7 +23,7 @@ public class Main {
         Shell shell = new Shell(display);
 
         final Alerter alerter = new Alerter(display);
-        alerter.status(display, new WarnLevel(0, 0));
+        alerter.status(display, new WarnLevel(0, 0, false));
 
         final MarketMonitor marketMonitor = new MarketMonitor();
         marketMonitor.setSpreadsPath(args[0]);

@@ -1,6 +1,6 @@
 package co.kuznetsov.market.feeds;
 
-import co.kuznetsov.market.market.Ticker;
+import co.kuznetsov.market.monitor.Ticker;
 
 import java.io.IOException;
 import java.math.BigDecimal;

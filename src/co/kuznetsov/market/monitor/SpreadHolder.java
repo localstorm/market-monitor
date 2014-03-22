@@ -1,4 +1,4 @@
-package co.kuznetsov.market.market;
+package co.kuznetsov.market.monitor;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -38,7 +38,7 @@ public class SpreadHolder {
             }
         }
 
-        return new WarnLevel(max, max - maxFixing);
+        return new WarnLevel(max, max - maxFixing, quoteHolder.isMarketOpen());
     }
 
     private int getWarningLevel(Spread s, BigDecimal current) {

@@ -1,6 +1,6 @@
 package co.kuznetsov.market.gui;
 
-import co.kuznetsov.market.market.WarnLevel;
+import co.kuznetsov.market.monitor.WarnLevel;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
@@ -56,6 +56,10 @@ public class Alerter {
         }
         if (wl.getDelta() < 0) {
             down(display);
+        }
+        if (!wl.isMarketOpen()) {
+            gc.drawLine(0,0,15,15);
+            gc.drawLine(15,0,0,15);
         }
     }
 

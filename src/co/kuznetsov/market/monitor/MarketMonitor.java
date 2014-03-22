@@ -1,4 +1,4 @@
-package co.kuznetsov.market.market;
+package co.kuznetsov.market.monitor;
 
 import co.kuznetsov.market.feeds.*;
 

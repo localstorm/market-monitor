@@ -1,4 +1,4 @@
-package co.kuznetsov.market.market;
+package co.kuznetsov.market.monitor;
 
 import java.io.PrintStream;
 import java.math.BigDecimal;
@@ -15,6 +15,11 @@ public class QuoteHolder {
     private Map<Ticker, BigDecimal> tickers = new ConcurrentSkipListMap<>();
     private Map<Ticker, AtomicInteger> noChangeCounters = new ConcurrentHashMap<>();
     private Fixing fixing = new Fixing();
+    private MarketHash marketHash = new MarketHash(fixing);
+
+    public boolean isMarketOpen() {
+        return marketHash.getLastUpdate() > (System.currentTimeMillis() - 120000);
+    }
 
     public void update(Ticker ticker, BigDecimal current) {
         BigDecimal prev = this.tickers.put(ticker, current);
@@ -36,6 +41,7 @@ public class QuoteHolder {
         } else {
             noChangeCounters.remove(ticker);
         }
+        marketHash.update(this);
     }
 
     public BigDecimal getCurrent(Ticker ticker) {

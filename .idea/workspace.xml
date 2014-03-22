@@ -2,17 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c5105e8-84ce-455b-8a71-296628526862" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/monitor/MarketHash.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/market/Fixing.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/monitor/Fixing.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/market/MarketMonitor.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/monitor/MarketMonitor.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/market/QuoteHolder.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/monitor/QuoteHolder.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/market/Spread.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/monitor/Spread.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/market/SpreadHolder.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/monitor/SpreadHolder.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/market/SpreadsParser.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/monitor/SpreadsParser.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/market/Ticker.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/monitor/Ticker.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/market/WarnLevel.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/monitor/WarnLevel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/gui/Alerter.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/gui/Alerter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/Main.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/market/QuoteHolder.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/market/QuoteHolder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/feeds/Source.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/feeds/Source.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/feeds/SourceNDQ.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/feeds/SourceNDQ.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/feeds/SourceRUT.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/feeds/SourceRUT.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/feeds/SourceSNP500.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/feeds/SourceSNP500.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/feeds/SourceVIX.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/feeds/SourceVIX.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="market-monitor.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395465352629" ignored="false" />
-    <file path="/Main.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395464615927" ignored="false" />
-    <file path="/QuoteHolder.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395465663914" ignored="false" />
+    <file path="/Main.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395467533577" ignored="false" />
+    <file path="/QuoteHolder.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395467002782" ignored="false" />
     <file path="/Fixing.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395465500125" ignored="false" />
-    <file path="/SpreadHolder.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395464225457" ignored="false" />
-    <file path="/Alerter.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395464483339" ignored="false" />
+    <file path="/SpreadHolder.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395467512258" ignored="false" />
+    <file path="/Alerter.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395467662276" ignored="false" />
+    <file path="/fragment.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395466416019" ignored="false" />
+    <file path="/MarketHash.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395467801988" ignored="false" />
+    <file path="/WarnLevel.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395467488491" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,37 +89,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="QuoteHolder.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/QuoteHolder.java">
+      <file leaf-file-name="WarnLevel.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/monitor/WarnLevel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="0" selection-start="116" selection-end="116" vertical-scroll-proportion="0.13812155">
+            <state line="26" column="26" selection-start="540" selection-end="540" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="MarketMonitor.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/MarketMonitor.java">
+        <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/monitor/MarketMonitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="0" selection-start="1574" selection-end="1574" vertical-scroll-proportion="0.0">
+            <state line="52" column="0" selection-start="1575" selection-end="1575" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WarnLevel.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/WarnLevel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="0" selection-start="329" selection-end="329" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="19" selection-start="302" selection-end="302" vertical-scroll-proportion="0.0">
+            <state line="74" column="49" selection-start="2489" selection-end="2489" vertical-scroll-proportion="0.38674033">
               <folding />
             </state>
           </provider>
@@ -110,26 +119,48 @@
       <file leaf-file-name="Alerter.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/gui/Alerter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="0" selection-start="502" selection-end="502" vertical-scroll-proportion="0.0">
+            <state line="52" column="32" selection-start="1822" selection-end="1822" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="SpreadHolder.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/SpreadHolder.java">
+        <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/monitor/SpreadHolder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="57" selection-start="438" selection-end="438" vertical-scroll-proportion="0.0">
+            <state line="40" column="77" selection-start="1166" selection-end="1166" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Fixing.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/Fixing.java">
+      <file leaf-file-name="SpreadsParser.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/monitor/SpreadsParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="21" selection-start="228" selection-end="228" vertical-scroll-proportion="0.0">
+            <state line="40" column="39" selection-start="1330" selection-end="1330" vertical-scroll-proportion="0.0">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QuoteHolder.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/monitor/QuoteHolder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="31" selection-start="633" selection-end="645" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MarketHash.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/monitor/MarketHash.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="45" selection-start="1099" selection-end="1099" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -144,9 +175,9 @@
         </entry>
       </file>
       <file leaf-file-name="Ticker.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/Ticker.java">
+        <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/monitor/Ticker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="12" selection-start="105" selection-end="105" vertical-scroll-proportion="0.0">
+            <state line="6" column="12" selection-start="106" selection-end="106" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -170,11 +201,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/co/kuznetsov/market/market/Tickers.java" />
-        <option value="$PROJECT_DIR$/src/co/kuznetsov/market/feeds/Source.java" />
-        <option value="$PROJECT_DIR$/src/co/kuznetsov/market/feeds/SourceNDQ.java" />
-        <option value="$PROJECT_DIR$/src/co/kuznetsov/market/feeds/SourceRUT.java" />
-        <option value="$PROJECT_DIR$/src/co/kuznetsov/market/feeds/SourceSNP500.java" />
         <option value="$PROJECT_DIR$/src/co/kuznetsov/market/market/Spread.java" />
         <option value="$PROJECT_DIR$/src/co/kuznetsov/market/market/SpreadsParser.java" />
         <option value="$PROJECT_DIR$/src/co/kuznetsov/market/feeds/SourceVIX.java" />
@@ -182,10 +208,15 @@
         <option value="$PROJECT_DIR$/src/co/kuznetsov/market/market/SpreadHolder.java" />
         <option value="$PROJECT_DIR$/src/co/kuznetsov/market/market/MarketMonitor.java" />
         <option value="$PROJECT_DIR$/src/co/kuznetsov/market/market/WarnLevel.java" />
-        <option value="$PROJECT_DIR$/src/co/kuznetsov/market/gui/Alerter.java" />
-        <option value="$PROJECT_DIR$/src/co/kuznetsov/market/Main.java" />
         <option value="$PROJECT_DIR$/src/co/kuznetsov/market/market/Fixing.java" />
         <option value="$PROJECT_DIR$/src/co/kuznetsov/market/market/QuoteHolder.java" />
+        <option value="$PROJECT_DIR$/src/co/kuznetsov/market/market/MarketHash.java" />
+        <option value="$PROJECT_DIR$/src/co/kuznetsov/market/monitor/QuoteHolder.java" />
+        <option value="$PROJECT_DIR$/src/co/kuznetsov/market/monitor/WarnLevel.java" />
+        <option value="$PROJECT_DIR$/src/co/kuznetsov/market/monitor/SpreadHolder.java" />
+        <option value="$PROJECT_DIR$/src/co/kuznetsov/market/Main.java" />
+        <option value="$PROJECT_DIR$/src/co/kuznetsov/market/gui/Alerter.java" />
+        <option value="$PROJECT_DIR$/src/co/kuznetsov/market/monitor/MarketHash.java" />
       </list>
     </option>
   </component>
@@ -250,6 +281,46 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="market" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="market-monitor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="market-monitor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="market" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="monitor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="market-monitor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="market-monitor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="lib" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -280,6 +351,9 @@
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="co.kuznetsov.market.feeds" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="co.kuznetsov.market.market" />
     </key>
   </component>
   <component name="RemoteSynchronizer">
@@ -424,6 +498,24 @@
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="DETECT_NESTED_COPIES" value="true" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="2c5105e8-84ce-455b-8a71-296628526862" name="Default" comment="" />
@@ -442,6 +534,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32828283" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -452,7 +545,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28119937" sideWeight="0.6717687" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28119937" sideWeight="0.67171717" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3279483" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="RemoteSynchronizer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -462,7 +555,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32881355" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -531,30 +623,9 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/feeds/SourceRUT.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="25" selection-start="1243" selection-end="1243" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/feeds/SourceSNP500.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="28" selection-start="1259" selection-end="1259" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/Spread.java">
+    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/monitor/Spread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="8" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/SpreadsParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="39" selection-start="1329" selection-end="1329" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -580,9 +651,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/Ticker.java">
+    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/monitor/Ticker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="12" selection-start="105" selection-end="105" vertical-scroll-proportion="0.0">
+        <state line="6" column="12" selection-start="106" selection-end="106" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -594,51 +665,76 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/SpreadHolder.java">
+    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/monitor/Fixing.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="57" selection-start="438" selection-end="438" vertical-scroll-proportion="0.0">
+        <state line="38" column="22" selection-start="1222" selection-end="1222" vertical-scroll-proportion="0.33333334">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/WarnLevel.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_10.jdk/Contents/Home/src.zip!/java/lang/StringBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="329" selection-end="329" vertical-scroll-proportion="0.0">
+        <state line="126" column="25" selection-start="4246" selection-end="4246" vertical-scroll-proportion="0.33333334">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/monitor/QuoteHolder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="31" selection-start="633" selection-end="645" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/monitor/SpreadHolder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="77" selection-start="1166" selection-end="1166" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/monitor/SpreadsParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="39" selection-start="1330" selection-end="1330" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/monitor/MarketMonitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="0" selection-start="1575" selection-end="1575" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/monitor/WarnLevel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="26" selection-start="540" selection-end="540" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/gui/Alerter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="502" selection-end="502" vertical-scroll-proportion="0.0">
+        <state line="52" column="32" selection-start="1822" selection-end="1822" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/monitor/MarketHash.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="45" selection-start="1099" selection-end="1099" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="19" selection-start="302" selection-end="302" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/MarketMonitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="0" selection-start="1574" selection-end="1574" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/Fixing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="21" selection-start="228" selection-end="228" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/QuoteHolder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="116" selection-end="116" vertical-scroll-proportion="0.13812155">
+        <state line="74" column="49" selection-start="2489" selection-end="2489" vertical-scroll-proportion="0.38674033">
           <folding />
         </state>
       </provider>
