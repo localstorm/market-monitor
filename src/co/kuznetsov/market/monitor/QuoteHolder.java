@@ -2,6 +2,8 @@ package co.kuznetsov.market.monitor;
 
 import java.io.PrintStream;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListMap;
@@ -57,10 +59,17 @@ public class QuoteHolder {
     }
 
     public void printQuotes(PrintStream out) {
+        out.print(now() + " ");
         for (Ticker ticker : tickers.keySet()) {
             out.print(ticker.name() + ": " + tickers.get(ticker));
             out.print("   ");
         }
         out.println();
+    }
+
+    private String now() {
+        Date now = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        return sdf.format(now) + "\t";
     }
 }
