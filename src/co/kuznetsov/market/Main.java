@@ -3,7 +3,7 @@ package co.kuznetsov.market;
 import co.kuznetsov.market.gui.Alerter;
 import co.kuznetsov.market.market.MarketMonitor;
 import co.kuznetsov.market.market.WarnLevel;
-import org.eclipse.swt.*;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.*;
 
 /**
