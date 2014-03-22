@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2c5105e8-84ce-455b-8a71-296628526862" name="Default" comment="" />
+    <list default="true" id="2c5105e8-84ce-455b-8a71-296628526862" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/market/QuoteHolder.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/market/QuoteHolder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="market-monitor.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395463008554" ignored="false" />
+    <file path="/Dummy.txt" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395465352629" ignored="false" />
     <file path="/Main.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395464615927" ignored="false" />
-    <file path="/QuoteHolder.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395463083903" ignored="false" />
-    <file path="/Fixing.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395464884200" ignored="false" />
+    <file path="/QuoteHolder.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395465663914" ignored="false" />
+    <file path="/Fixing.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395465500125" ignored="false" />
     <file path="/SpreadHolder.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395464225457" ignored="false" />
     <file path="/Alerter.java" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395464483339" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -71,7 +74,7 @@
       <file leaf-file-name="QuoteHolder.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/QuoteHolder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="28" selection-start="631" selection-end="631" vertical-scroll-proportion="0.3401163">
+            <state line="33" column="66" selection-start="1274" selection-end="1274" vertical-scroll-proportion="0.1436464">
               <folding />
             </state>
           </provider>
@@ -99,11 +102,7 @@
         <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="12" column="37" selection-start="300" selection-end="300" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2360#2801#0" expanded="true" />
-                <element signature="e#2770#2771#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -121,9 +120,7 @@
         <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/SpreadHolder.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="19" column="57" selection-start="438" selection-end="438" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -131,10 +128,8 @@
       <file leaf-file-name="Fixing.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/Fixing.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="16" selection-start="512" selection-end="512" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="12" column="21" selection-start="228" selection-end="228" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -195,10 +190,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1" />
-    <option name="y" value="24" />
+    <option name="y" value="22" />
     <option name="width" value="1280" />
-    <option name="height" value="708" />
+    <option name="height" value="714" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -211,7 +205,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
-    <option name="STATE" value="2" />
+    <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
@@ -424,6 +418,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -449,19 +456,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -526,7 +520,7 @@
     <option name="totallyTimeSpent" value="3620000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="24" width="1280" height="708" extended-state="7" />
+    <frame x="0" y="22" width="1280" height="714" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -543,7 +537,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20745543" sideWeight="0.6717687" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3282313" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3279483" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="RemoteSynchronizer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="IvyIDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -684,19 +678,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/MarketMonitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="0" selection-start="1574" selection-end="1574" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/SpreadHolder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="57" selection-start="438" selection-end="438" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -717,26 +702,27 @@
     <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="37" selection-start="300" selection-end="300" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2360#2801#0" expanded="true" />
-            <element signature="e#2770#2771#0" expanded="true" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/MarketMonitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="0" selection-start="1574" selection-end="1574" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/Fixing.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="16" selection-start="512" selection-end="512" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="12" column="21" selection-start="228" selection-end="228" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/market/QuoteHolder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="28" selection-start="631" selection-end="631" vertical-scroll-proportion="0.3401163">
+        <state line="33" column="66" selection-start="1274" selection-end="1274" vertical-scroll-proportion="0.1436464">
           <folding />
         </state>
       </provider>

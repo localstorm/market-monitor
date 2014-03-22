@@ -14,8 +14,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  *         Date: 21.03.14
  */
 public class QuoteHolder {
-    private Map<Ticker, BigDecimal> tickers = new ConcurrentSkipListMap<Ticker, BigDecimal>();
-    private Map<Ticker, AtomicInteger> noChangeCounters = new ConcurrentHashMap<Ticker, AtomicInteger>();
+    private Map<Ticker, BigDecimal> tickers = new ConcurrentSkipListMap<>();
+    private Map<Ticker, AtomicInteger> noChangeCounters = new ConcurrentHashMap<>();
     private Fixing fixing = new Fixing();
 
     public void update(Ticker ticker, BigDecimal current) {
@@ -29,7 +29,10 @@ public class QuoteHolder {
                 count.incrementAndGet();
             }
             if (count.get() >= 100) {
-                fixing.fixQuote(ticker, current);
+                if (!current.equals(fixing.getQuote(ticker))) {
+                    fixing.fixQuote(ticker, current);
+                    System.out.println("Fixing: "+ticker + ": " + current);
+                }
                 noChangeCounters.remove(ticker);
             }
         } else {
