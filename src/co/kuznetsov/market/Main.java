@@ -69,15 +69,16 @@ public class Main {
                     while (!this.isInterrupted()) {
                         try {
                             final WarnLevel wl = marketMonitor.evalDangerLevel();
-                            alerter.status(display, wl);
-                            Display.getDefault().syncExec(new Runnable() {
-                                public void run() {
-                                    item.setToolTipText("Options DEFCON (" + wl.getLevel() + ", " + market(wl)+")");
-                                    item.setImage(alerter.getImage());
-                                    item.setHighlightImage(alerter.getImage());
-                                    tip.setVisible(false);
-                                }
-                            });
+                            if (alerter.status(display, wl)) {
+                                Display.getDefault().syncExec(new Runnable() {
+                                    public void run() {
+                                        item.setToolTipText("Options DEFCON (" + wl.getLevel() + ", " + market(wl)+")");
+                                        item.setImage(alerter.getImage());
+                                        item.setHighlightImage(alerter.getImage());
+                                        tip.setVisible(false);
+                                    }
+                                });
+                            }
                             Thread.sleep(REFRESH_LOOP);
                         } catch (Exception e) {
                             alerter.offline(display);

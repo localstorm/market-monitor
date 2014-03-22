@@ -6,6 +6,9 @@ import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * @author localstorm
  *         Date: 21.03.14
@@ -16,6 +19,10 @@ public class Alerter {
     private int [] YELLOW   = {0xFF, 0xFF, 0x66};
     private int [] GREEN    = {0, 0x80, 0};
 
+    private AtomicInteger currentDelta  = new AtomicInteger(0);
+    private AtomicInteger currentLevel  = new AtomicInteger(0);
+    private AtomicBoolean currentMarket = new AtomicBoolean(false);
+
     private Image alerter;
     private GC gc;
 
@@ -25,9 +32,10 @@ public class Alerter {
         offline(display);
     }
 
-    public void status(Display display, WarnLevel wl) {
+    public boolean status(Display display, WarnLevel wl) {
         Color c = null;
         int warnLevel = wl.getLevel();
+
         if (warnLevel == 5) {
             c = new Color(display, YELLOW[0], YELLOW[1], YELLOW[2]);
         }
@@ -61,6 +69,14 @@ public class Alerter {
             gc.drawLine(0,0,15,15);
             gc.drawLine(15,0,0,15);
         }
+
+        boolean needRefresh = (currentLevel.get() != warnLevel) ||
+                              (wl.isMarketOpen() != currentMarket.get()) ||
+                              (wl.getDelta() != currentDelta.get());
+        currentDelta.set(wl.getDelta());
+        currentLevel.set(wl.getLevel());
+        currentMarket.set(wl.isMarketOpen());
+        return needRefresh;
     }
 
     private void up(Display display) {
@@ -83,6 +99,9 @@ public class Alerter {
         Color c = new Color(display, 0, 0, 0);
         gc.setBackground(c);
         gc.fillRectangle(alerter.getBounds());
+        currentLevel.set(-1);
+        currentMarket.set(false);
+        currentDelta.set(0);
     }
 
     public void dispose() {
