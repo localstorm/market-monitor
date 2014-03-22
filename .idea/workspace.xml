@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2c5105e8-84ce-455b-8a71-296628526862" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/market/Fixing.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/gui/Alerter.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/gui/Alerter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/Main.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/market/MarketMonitor.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/market/MarketMonitor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/market/QuoteHolder.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/market/QuoteHolder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/market/SpreadHolder.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/market/SpreadHolder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/market/WarnLevel.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/market/WarnLevel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="2c5105e8-84ce-455b-8a71-296628526862" name="Default" comment="" />
     <ignored path="market-monitor.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="2c5105e8-84ce-455b-8a71-296628526862" time="1395463008554" ignored="false" />
