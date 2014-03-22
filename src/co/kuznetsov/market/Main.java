@@ -72,7 +72,7 @@ public class Main {
                             alerter.status(display, wl);
                             Display.getDefault().syncExec(new Runnable() {
                                 public void run() {
-                                    item.setToolTipText("Options DEFCON (" + wl.getLevel() + ")");
+                                    item.setToolTipText("Options DEFCON (" + wl.getLevel() + ", " + market(wl)+")");
                                     item.setImage(alerter.getImage());
                                     item.setHighlightImage(alerter.getImage());
                                     tip.setVisible(false);
@@ -109,5 +109,13 @@ public class Main {
         watcher.join(10000);
         alerter.dispose();
         display.dispose();
+    }
+
+    private static String market(WarnLevel wl) {
+        if (wl.isMarketOpen()) {
+            return "market is open";
+        } else {
+            return "market is closed";
+        }
     }
 }
