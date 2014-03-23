@@ -70,7 +70,12 @@ public class SpreadHolder {
             wHi = BigDecimal.ZERO;
         }
 
-        return Math.max(round(wHi), round(wLo));
+        BigDecimal point5 = new BigDecimal("0.5");
+        if (wHi.compareTo(point5) < 0 && wLo.compareTo(point5) < 0) {
+            return 0;
+        } else {
+            return Math.max(round(wHi), round(wLo));
+        }
     }
 
     private int round(BigDecimal val) {
