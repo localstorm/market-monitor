@@ -79,7 +79,7 @@ public class Main {
                             if (alerter.status(display, wl)) {
                                 Display.getDefault().syncExec(new Runnable() {
                                     public void run() {
-                                        item.setToolTipText("Options DEFCON (" + wl.getLevel() + ", " + market(wl)+")");
+                                        item.setToolTipText("Options DEFCON (" + marketStatus(wl) + ")");
                                         item.setImage(alerter.getImage());
                                         item.setHighlightImage(alerter.getImage());
                                         tip.setVisible(false);
@@ -119,11 +119,11 @@ public class Main {
         display.dispose();
     }
 
-    private static String market(WarnLevel wl) {
+    private static String marketStatus(WarnLevel wl) {
         if (wl.isMarketOpen()) {
-            return "market is open";
+            return  wl.getLevel() + ", market is open";
         } else {
-            return "market is closed";
+            return wl.getLevel() + ", market is closed";
         }
     }
 }
