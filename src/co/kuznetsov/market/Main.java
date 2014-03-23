@@ -11,16 +11,23 @@ import org.eclipse.swt.widgets.*;
  *         Date: 21.03.14
  */
 public class Main {
+    public static final String APP_NAME = "Market Monitor";
     public static final long REFRESH_LOOP = 10000;
 
     public static void main(String[] args) throws Exception {
+
         if (args.length != 1) {
             System.err.println("Usage: <path to market config>");
             return;
         }
 
-        final Display display = new Display();
+        Display.setAppName(APP_NAME);
+        final Display display = Display.getDefault();
+
+        // TODO: init app menu for Mac
+
         Shell shell = new Shell(display);
+        shell.setText(APP_NAME);
 
         final Alerter alerter = new Alerter(display);
         alerter.status(display, new WarnLevel(0, 0, false));

@@ -17,7 +17,7 @@ public class Alerter {
 
     private int [] RED      = {0xCC, 0x45, 0};
     private int [] YELLOW   = {0xFF, 0xFF, 0x66};
-    private int [] GREEN    = {0, 0xCC, 0};
+    private int [] GREEN    = {0,    0xCC, 0};
 
     private AtomicInteger currentDelta  = new AtomicInteger(0);
     private AtomicInteger currentLevel  = new AtomicInteger(0);
@@ -33,7 +33,7 @@ public class Alerter {
     }
 
     public boolean status(Display display, WarnLevel wl) {
-        Color c = new Color(display, YELLOW[0], YELLOW[1], YELLOW[2]);;
+        Color c = new Color(display, YELLOW[0], YELLOW[1], YELLOW[2]);
         int warnLevel = wl.getLevel();
 
         if (warnLevel < 5) {
@@ -79,12 +79,13 @@ public class Alerter {
         return needRefresh;
     }
 
-    private void marketClosed(Color cInv) {
-        gc.setForeground(cInv);
+    private void marketClosed(Color с) {
+        gc.setForeground(с);
 
         gc.drawLine(2, 2, 13, 13);
         gc.drawLine(3, 2, 13, 12);
         gc.drawLine(2, 3, 12, 13);
+
         gc.drawLine(12, 2, 2, 12);
         gc.drawLine(13, 2, 2, 13);
         gc.drawLine(13, 3, 3, 13);
