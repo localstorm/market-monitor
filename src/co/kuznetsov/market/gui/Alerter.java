@@ -33,28 +33,11 @@ public class Alerter {
     }
 
     public boolean status(Display display, WarnLevel wl) {
-        Color c = new Color(display, YELLOW[0], YELLOW[1], YELLOW[2]);
-        int warnLevel = wl.getLevel();
-
-        if (warnLevel < 5) {
-            int danger = warnLevel;
-            int safetyLevel = 5 - danger;
-            c = new Color(display, (int) ((0.2 * danger) * YELLOW[0] +  (0.2 * safetyLevel) * GREEN[0]),
-                                   (int) ((0.2 * danger) * YELLOW[1] +  (0.2 * safetyLevel) * GREEN[1]),
-                                   (int) ((0.2 * danger) * YELLOW[2] +  (0.2 * safetyLevel) * GREEN[2]));
-        }
-        if (warnLevel > 5) {
-            int danger = warnLevel - 5;
-            int safetyLevel = 5 - danger;
-            c = new Color(display, (int) ((0.2 * danger) * RED[0] +  (0.2 * safetyLevel) * YELLOW[0]),
-                                   (int) ((0.2 * danger) * RED[1] +  (0.2 * safetyLevel) * YELLOW[1]),
-                                   (int) ((0.2 * danger) * RED[2] +  (0.2 * safetyLevel) * YELLOW[2]));
-        }
+        Color    c = getWarningColor(display, wl);
+        Color cInv = invertColor(display, c);
 
         gc.setBackground(c);
         gc.fillRectangle(alerter.getBounds());
-
-        Color cInv = new Color(display, 255 - c.getRed(), 255 - c.getGreen(), 255 - c.getBlue());
 
         if (!wl.isMarketOpen()) {
             marketClosed(cInv);
@@ -77,6 +60,31 @@ public class Alerter {
         currentLevel.set(wl.getLevel());
         currentMarket.set(wl.isMarketOpen());
         return needRefresh;
+    }
+
+    private Color invertColor(Display display, Color c) {
+        return new Color(display, 255 - c.getRed(), 255 - c.getGreen(), 255 - c.getBlue());
+    }
+
+    private Color getWarningColor(Display display, WarnLevel wl) {
+        Color c = new Color(display, YELLOW[0], YELLOW[1], YELLOW[2]);
+        int warnLevel = wl.getLevel();
+
+        if (warnLevel < 5) {
+            int danger = warnLevel;
+            int safetyLevel = 5 - danger;
+            c = new Color(display, (int) ((0.2 * danger) * YELLOW[0] +  (0.2 * safetyLevel) * GREEN[0]),
+                                   (int) ((0.2 * danger) * YELLOW[1] +  (0.2 * safetyLevel) * GREEN[1]),
+                                   (int) ((0.2 * danger) * YELLOW[2] +  (0.2 * safetyLevel) * GREEN[2]));
+        }
+        if (warnLevel > 5) {
+            int danger = warnLevel - 5;
+            int safetyLevel = 5 - danger;
+            c = new Color(display, (int) ((0.2 * danger) * RED[0] +  (0.2 * safetyLevel) * YELLOW[0]),
+                                   (int) ((0.2 * danger) * RED[1] +  (0.2 * safetyLevel) * YELLOW[1]),
+                                   (int) ((0.2 * danger) * RED[2] +  (0.2 * safetyLevel) * YELLOW[2]));
+        }
+        return c;
     }
 
     private void marketClosed(Color с) {
