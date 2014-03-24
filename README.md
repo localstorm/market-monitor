@@ -11,3 +11,7 @@ To do this I source data from Yahoo Finance and the icon in system notification 
 green to amber and from amber gradually to red:
 
 ![Market Closed](/docs/images/market-closed.png "Market Closed")
+
+It also writes current index values to console: 
+
+![Console](/docs/images/console.png "Console")
