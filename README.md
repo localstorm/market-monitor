@@ -17,3 +17,7 @@ It also writes current index values to console:
 ![Console](/docs/images/console.png "Console")
 
 This tool greatly simplifies monitoring multiple non-directional trades and identify moments where manual intervention is necessary.  
+
+Spreads configuration is placed on local file system (it is recommended to place it in Dropbox or any other cloud storage) in text file:
+
+![Spreads config file](/docs/images/spreads-config.png "Spreads config file")
