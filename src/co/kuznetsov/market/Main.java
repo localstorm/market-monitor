@@ -76,7 +76,7 @@ public class Main {
                 try {
                     while (!this.isInterrupted()) {
                         try {
-                            final WarnLevel wl = marketMonitor.evalDangerLevel();
+                            final WarnLevel wl = marketMonitor.getCurrentWarnLevel();
                             if (alerter.status(display, wl)) {
                                 Display.getDefault().syncExec(new Runnable() {
                                     public void run() {

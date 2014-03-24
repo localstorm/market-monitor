@@ -23,22 +23,21 @@ public class SpreadHolder {
     }
 
     public WarnLevel getWarnLevel(QuoteHolder quoteHolder) {
-        int max = 0;
-        int maxFixing = 0;
+        int cur = 0;
         for(Spread s : spreads) {
             BigDecimal current = quoteHolder.getCurrent(s.getTicker());
-            BigDecimal fixing = quoteHolder.getLastFixing(s.getTicker());
             int level = getWarningLevel(s, current);
-            int fixingLevel = getWarningLevel(s, fixing);
-            if (max < level) {
-                max = level;
-            }
-            if (maxFixing < fixingLevel) {
-                maxFixing = fixingLevel;
+            if (cur < level) {
+                cur = level;
             }
         }
-
-        return new WarnLevel(max, max - maxFixing, quoteHolder.isMarketOpen());
+        int prevLevel = quoteHolder.getLastWarningLevel(cur);
+        boolean open = quoteHolder.isMarketOpen();
+        if (quoteHolder.isCanFixWarnLevel() && quoteHolder.getLastWarningLevel(cur) != cur) {
+            quoteHolder.fixWarnLevel(cur);
+            prevLevel = cur;
+        }
+        return new WarnLevel(cur, cur - prevLevel, open);
     }
 
     private int getWarningLevel(Spread s, BigDecimal current) {

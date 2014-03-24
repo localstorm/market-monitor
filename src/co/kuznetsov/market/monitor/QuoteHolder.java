@@ -14,7 +14,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  *         Date: 21.03.14
  */
 public class QuoteHolder {
-    private static final long MARKET_DATA_DOWNTIME_THRESHOLD = 120000L;
+    private static final long MARKET_WARN_FIXING_THRESHOLD   = 1200000L; // 20 minutes of downtime -> fix
+    private static final long MARKET_DATA_DOWNTIME_THRESHOLD = 120000L;  // 2 minutes of downtime
     private static final int FIXING_THRESHOLD = 20;
 
     private Map<Ticker, BigDecimal> tickers = new ConcurrentSkipListMap<>();
@@ -24,6 +25,10 @@ public class QuoteHolder {
 
     public boolean isMarketOpen() {
         return marketHash.getLastUpdate() > (System.currentTimeMillis() - MARKET_DATA_DOWNTIME_THRESHOLD);
+    }
+
+    public boolean isCanFixWarnLevel() {
+        return marketHash.getLastUpdate() > (System.currentTimeMillis() - MARKET_WARN_FIXING_THRESHOLD);
     }
 
     public void update(Ticker ticker, BigDecimal current) {
@@ -61,6 +66,15 @@ public class QuoteHolder {
         return f;
     }
 
+    public int getLastWarningLevel(int currentWarnLevel) {
+        Integer wl = this.fixing.getWarnLevel();
+        return (wl == null) ? currentWarnLevel : wl;
+    }
+
+    public void fixWarnLevel(int currentLevel) {
+        fixing.fixWarnLevel(currentLevel);
+    }
+
     public void printQuotes(PrintStream out) {
         out.print(now() + " ");
         for (Ticker ticker : tickers.keySet()) {
@@ -75,4 +89,6 @@ public class QuoteHolder {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         return sdf.format(now) + "\t";
     }
+
+
 }

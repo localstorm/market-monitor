@@ -26,7 +26,7 @@ public class MarketMonitor {
     private Source vix = new SourceVIX();
 
 
-    public WarnLevel evalDangerLevel() throws IOException {
+    public WarnLevel getCurrentWarnLevel() throws IOException {
         reloadSpreads();
         reloadQuotes();
         WarnLevel wl = spreadHolder.getWarnLevel(quoteHolder);
