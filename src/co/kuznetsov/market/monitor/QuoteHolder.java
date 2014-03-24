@@ -15,7 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class QuoteHolder {
     private static final long MARKET_DATA_DOWNTIME_THRESHOLD = 120000L;
-    private static final int FIXING_THRESHOLD = 100;
+    private static final int FIXING_THRESHOLD = 20;
 
     private Map<Ticker, BigDecimal> tickers = new ConcurrentSkipListMap<>();
     private Map<Ticker, AtomicInteger> noChangeCounters = new ConcurrentHashMap<>();

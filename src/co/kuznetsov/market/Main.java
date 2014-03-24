@@ -12,7 +12,8 @@ import org.eclipse.swt.widgets.*;
  */
 public class Main {
     public static final String APP_NAME = "Market Monitor";
-    public static final long REFRESH_LOOP = 10000;
+    public static final long REFRESH_LOOP_OPEN   = 5000;
+    public static final long REFRESH_LOOP_CLOSED = 60000;
 
     public static void main(String[] args) throws Exception {
 
@@ -86,7 +87,7 @@ public class Main {
                                     }
                                 });
                             }
-                            Thread.sleep(REFRESH_LOOP);
+                            Thread.sleep(wl.isMarketOpen() ? REFRESH_LOOP_OPEN : REFRESH_LOOP_CLOSED);
                         } catch (Exception e) {
                             alerter.offline(display);
                             e.printStackTrace(System.err);
@@ -98,7 +99,7 @@ public class Main {
                                     tip.setVisible(true);
                                 }
                             });
-                            Thread.sleep(REFRESH_LOOP);
+                            Thread.sleep(REFRESH_LOOP_OPEN);
                         }
                     }
                 } catch (InterruptedException e) {
