@@ -8,4 +8,6 @@ It sits in system notification area (Windows/MacOS are officially supported, Lin
 The whole thing is currently built for one sole purpose: to automonitor Iron Condor option strategy trading.
 
 To do this I source data from Yahoo Finance and the icon in system notification area changes its color from 
-green to amber and from amber gradually to red.
+green to amber and from amber gradually to red:
+
+!(/docs/images/market-closed.png "Market Closed:")
