@@ -10,4 +10,4 @@ The whole thing is currently built for one sole purpose: to automonitor Iron Con
 To do this I source data from Yahoo Finance and the icon in system notification area changes its color from 
 green to amber and from amber gradually to red:
 
-!(/docs/images/market-closed.png "Market Closed:")
+![](/docs/images/market-closed.png "Market Closed:")
