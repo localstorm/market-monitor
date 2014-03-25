@@ -38,9 +38,9 @@ public class SpreadHolder {
                 cur = level;
             }
         }
-        int prevLevel = quoteHolder.getLastWarningLevel(cur);
+        int prevLevel = quoteHolder.getLastWarningLevel();
         boolean open = quoteHolder.isMarketOpen();
-        if (quoteHolder.isCanFixWarnLevel() && quoteHolder.getLastWarningLevel(cur) != cur) {
+        if (quoteHolder.isCanFixWarnLevel() && prevLevel != cur) {
             quoteHolder.fixWarnLevel(cur);
             prevLevel = cur;
         }
@@ -50,7 +50,11 @@ public class SpreadHolder {
                 System.out.println("[" + level + "]:\t" + spread);
             }
         }
-        return new WarnLevel(cur, cur - prevLevel, open);
+        if (prevLevel >= 0) {
+            return new WarnLevel(cur, cur - prevLevel, open);
+        } else {
+            return new WarnLevel(cur, 0, open);
+        }
     }
 
     private int getWarningLevel(Spread s, BigDecimal current) {

@@ -66,9 +66,9 @@ public class QuoteHolder {
         return f;
     }
 
-    public int getLastWarningLevel(int currentWarnLevel) {
+    public int getLastWarningLevel() {
         Integer wl = this.fixing.getWarnLevel();
-        return (wl == null) ? currentWarnLevel : wl;
+        return (wl == null) ? -1 : wl;
     }
 
     public void fixWarnLevel(int currentLevel) {
