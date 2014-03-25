@@ -60,7 +60,8 @@ public class SpreadHolder {
     private int getWarningLevel(Spread s, BigDecimal current) {
         BigDecimal deltaLo = current.subtract(s.getLo());
         BigDecimal deltaHi = s.getHi().subtract(current);
-        BigDecimal spread  = s.getHi().subtract(s.getLo());
+        BigDecimal loHalf  = s.getMid().subtract(s.getLo());
+        BigDecimal hiHalf  = s.getHi().subtract(s.getMid());
 
         if (deltaLo.compareTo(BigDecimal.ZERO) <= 0 ||
             deltaHi.compareTo(BigDecimal.ZERO) <= 0) {
@@ -68,19 +69,18 @@ public class SpreadHolder {
         }
 
         MathContext digit4 = new MathContext(4);
-        BigDecimal spDiv2 = spread.divide(BigDecimal.valueOf(2));
 
         BigDecimal wLo;
         BigDecimal wHi;
 
-        if (deltaLo.compareTo(spDiv2) <= 0) {
-            wLo = BigDecimal.TEN.multiply(BigDecimal.ONE.subtract(deltaLo.divide(spDiv2, digit4)));
+        if (deltaLo.compareTo(loHalf) <= 0) {
+            wLo = BigDecimal.TEN.multiply(BigDecimal.ONE.subtract(deltaLo.divide(loHalf, digit4)));
         } else {
             wLo = BigDecimal.ZERO;
         }
 
-        if (deltaHi.compareTo(spDiv2) <= 0) {
-            wHi = BigDecimal.TEN.multiply(BigDecimal.ONE.subtract(deltaHi.divide(spDiv2, digit4)));
+        if (deltaHi.compareTo(hiHalf) <= 0) {
+            wHi = BigDecimal.TEN.multiply(BigDecimal.ONE.subtract(deltaHi.divide(hiHalf, digit4)));
         } else {
             wHi = BigDecimal.ZERO;
         }

@@ -9,12 +9,14 @@ import java.math.BigDecimal;
 public class Spread implements Comparable<Spread> {
     private Ticker ticker;
     private BigDecimal lo;
+    private BigDecimal mid;
     private BigDecimal hi;
 
-    public Spread(Ticker ticker, BigDecimal lo, BigDecimal hi) {
+    public Spread(Ticker ticker, BigDecimal lo, BigDecimal mid, BigDecimal hi) {
         this.ticker = ticker;
         this.lo = lo;
         this.hi = hi;
+        this.mid = (mid == null) ? lo.add(hi).divide(BigDecimal.valueOf(2)) : mid;
     }
 
     public BigDecimal getLo() {
@@ -23,6 +25,10 @@ public class Spread implements Comparable<Spread> {
 
     public BigDecimal getHi() {
         return hi;
+    }
+
+    public BigDecimal getMid() {
+        return mid;
     }
 
     public Ticker getTicker() {
@@ -45,6 +51,6 @@ public class Spread implements Comparable<Spread> {
     }
 
     public String toString() {
-        return ticker.name() + ":" + lo.toString() + "-" + hi.toString();
+        return ticker.name() + ":" + lo + "-(" + mid + ")-" + hi;
     }
 }
