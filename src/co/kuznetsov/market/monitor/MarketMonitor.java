@@ -17,18 +17,21 @@ public class MarketMonitor {
 
     private String spreadsPath;
 
-    private Source snp500 = new SourceSNP();
-    private Source rut = new SourceRUT();
-    private Source ndx = new SourceNDQ();
-    private Source vix = new SourceVIX();
-    private Source rvx = new SourceRVX();
-    private Source qqv = new SourceQQV();
+    private Source[] sources = new Source[]{
+            new SourceSNP(),
+            new SourceRUT(),
+            new SourceNDQ(),
+            new SourceVIX(),
+            new SourceRVX(),
+            new SourceQQV(),
+            new SourceOEX(),
+            new SourceVXO()
+    };
 
     public WarnLevel getCurrentWarnLevel() throws IOException {
         reloadSpreads();
         reloadQuotes();
-        WarnLevel wl = spreadHolder.getWarnLevel(quoteHolder);
-        return wl;
+        return spreadHolder.getWarnLevel(quoteHolder);
     }
 
     private void reloadSpreads() throws IOException  {
@@ -41,12 +44,9 @@ public class MarketMonitor {
     }
 
     private void reloadQuotes() throws IOException {
-        loadWithRetry(snp500);
-        loadWithRetry(rut);
-        loadWithRetry(ndx);
-        loadWithRetry(vix);
-        loadWithRetry(rvx);
-        loadWithRetry(qqv);
+        for (Source s: sources) {
+            loadWithRetry(s);
+        }
         quoteHolder.printQuotes(System.out);
     }
 

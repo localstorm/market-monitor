@@ -76,7 +76,7 @@ public class QuoteHolder {
     }
 
     public void printQuotes(PrintStream out) {
-        out.println("----["+now()+"]--------------------------------------->");
+        out.println("----["+now()+"]----------------------------------------------->");
         for (Ticker ticker : tickers.keySet()) {
             if (ticker.isIndex()) {
                 out.format("%4s: %7s   ", ticker.name(), tickers.get(ticker));
@@ -89,7 +89,7 @@ public class QuoteHolder {
             }
         }
         out.println();
-        out.println("<-----------------------------------------------------");
+        out.println("<-------------------------------------------------------------");
     }
 
     private String now() {

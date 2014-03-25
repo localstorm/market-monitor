@@ -17,12 +17,12 @@ import static co.kuznetsov.market.feeds.SanityUtils.sanity;
  * @author localstorm
  *         Date: 21.03.14
  */
-public class SourceSNP implements Source {
+public class SourceOEX implements Source {
 
     @Override
     public BigDecimal getCurrent() throws IOException {
-        Document doc = Jsoup.parse(new URL("http://finance.yahoo.com/q?s=%5EGSPC"), 10000);
-        Elements elements = doc.getElementsByAttributeValue("id", "yfs_l10_^gspc");
+        Document doc = Jsoup.parse(new URL("http://finance.yahoo.com/q?s=%5EOEX"), 10000);
+        Elements elements = doc.getElementsByAttributeValue("id", "yfs_l10_^oex");
         if (elements.isEmpty()) {
             throw new IOException("Unable to extract "+getTicker());
         } else {
@@ -39,6 +39,6 @@ public class SourceSNP implements Source {
 
     @Override
     public Ticker getTicker() {
-        return Ticker.SNP;
+        return Ticker.OEX;
     }
 }
