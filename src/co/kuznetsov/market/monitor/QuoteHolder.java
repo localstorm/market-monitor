@@ -28,7 +28,7 @@ public class QuoteHolder {
     }
 
     public boolean isCanFixWarnLevel() {
-        return marketHash.getLastUpdate() > (System.currentTimeMillis() - MARKET_WARN_FIXING_THRESHOLD);
+        return marketHash.getLastUpdate() <= (System.currentTimeMillis() - MARKET_WARN_FIXING_THRESHOLD);
     }
 
     public void update(Ticker ticker, BigDecimal current) {
