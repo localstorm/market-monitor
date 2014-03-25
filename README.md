@@ -14,6 +14,7 @@ green to amber and from amber gradually to red:
 
 It also writes current index values to console: 
 
+![Console](/docs/images/console.png "Console")
 
 This tool greatly simplifies monitoring multiple non-directional trades and identify moments where manual intervention is necessary.  
 
