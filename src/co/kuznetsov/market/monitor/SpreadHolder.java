@@ -2,7 +2,7 @@ package co.kuznetsov.market.monitor;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -24,9 +24,16 @@ public class SpreadHolder {
 
     public WarnLevel getWarnLevel(QuoteHolder quoteHolder) {
         int cur = 0;
+        Map<Integer, TreeSet<Spread>> levels = new TreeMap<>(Collections.reverseOrder());
         for(Spread s : spreads) {
             BigDecimal current = quoteHolder.getCurrent(s.getTicker());
             int level = getWarningLevel(s, current);
+            TreeSet<Spread> tickers = levels.get(level);
+            if (tickers == null) {
+                tickers = new TreeSet<>();
+                levels.put(level, tickers);
+            }
+            tickers.add(s);
             if (cur < level) {
                 cur = level;
             }
@@ -37,6 +44,12 @@ public class SpreadHolder {
             quoteHolder.fixWarnLevel(cur);
             prevLevel = cur;
         }
+
+        for (Integer level: levels.keySet()) {
+            for (Spread spread: levels.get(level)) {
+                System.out.println("[" + level + "]:\t" + spread);
+            }
+        }
         return new WarnLevel(cur, cur - prevLevel, open);
     }
 
@@ -45,24 +58,23 @@ public class SpreadHolder {
         BigDecimal deltaHi = s.getHi().subtract(current);
         BigDecimal spread  = s.getHi().subtract(s.getLo());
 
-        if (deltaLo.compareTo(BigDecimal.ZERO) <= 0) {
+        if (deltaLo.compareTo(BigDecimal.ZERO) <= 0 ||
+            deltaHi.compareTo(BigDecimal.ZERO) <= 0) {
             return MAX_WARNING;
         }
-        if (deltaHi.compareTo(BigDecimal.ZERO) <= 0) {
-            return MAX_WARNING;
-        }
-        BigDecimal spDiv2 = spread.divide(BigDecimal.valueOf(2));
 
         MathContext digit4 = new MathContext(4);
+        BigDecimal spDiv2 = spread.divide(BigDecimal.valueOf(2));
 
         BigDecimal wLo;
+        BigDecimal wHi;
+
         if (deltaLo.compareTo(spDiv2) <= 0) {
             wLo = BigDecimal.TEN.multiply(BigDecimal.ONE.subtract(deltaLo.divide(spDiv2, digit4)));
         } else {
             wLo = BigDecimal.ZERO;
         }
 
-        BigDecimal wHi;
         if (deltaHi.compareTo(spDiv2) <= 0) {
             wHi = BigDecimal.TEN.multiply(BigDecimal.ONE.subtract(deltaHi.divide(spDiv2, digit4)));
         } else {
@@ -70,10 +82,10 @@ public class SpreadHolder {
         }
 
         BigDecimal point5 = new BigDecimal("0.5");
-        if (wHi.compareTo(point5) < 0 && wLo.compareTo(point5) < 0) {
-            return 0;
-        } else {
+        if (wHi.compareTo(point5) >= 0 || wLo.compareTo(point5) >= 0) {
             return Math.max(round(wHi), round(wLo));
+        } else {
+            return 0;
         }
     }
 

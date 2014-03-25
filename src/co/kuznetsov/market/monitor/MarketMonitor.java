@@ -30,7 +30,6 @@ public class MarketMonitor {
         reloadSpreads();
         reloadQuotes();
         WarnLevel wl = spreadHolder.getWarnLevel(quoteHolder);
-        System.out.println("Warn Level: " + wl.getLevel());
         return wl;
     }
 
