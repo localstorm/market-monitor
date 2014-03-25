@@ -1,10 +1,7 @@
 package co.kuznetsov.market.monitor;
 
 import co.kuznetsov.market.feeds.*;
-import co.kuznetsov.market.feeds.yahoo.SourceNDQ;
-import co.kuznetsov.market.feeds.yahoo.SourceRUT;
-import co.kuznetsov.market.feeds.yahoo.SourceSNP500;
-import co.kuznetsov.market.feeds.yahoo.SourceVIX;
+import co.kuznetsov.market.feeds.yahoo.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,11 +17,12 @@ public class MarketMonitor {
 
     private String spreadsPath;
 
-    private Source snp500 = new SourceSNP500();
+    private Source snp500 = new SourceSNP();
     private Source rut = new SourceRUT();
     private Source ndx = new SourceNDQ();
     private Source vix = new SourceVIX();
-
+    private Source rvx = new SourceRVX();
+    private Source qqv = new SourceQQV();
 
     public WarnLevel getCurrentWarnLevel() throws IOException {
         reloadSpreads();
@@ -47,6 +45,8 @@ public class MarketMonitor {
         loadWithRetry(rut);
         loadWithRetry(ndx);
         loadWithRetry(vix);
+        loadWithRetry(rvx);
+        loadWithRetry(qqv);
         quoteHolder.printQuotes(System.out);
     }
 

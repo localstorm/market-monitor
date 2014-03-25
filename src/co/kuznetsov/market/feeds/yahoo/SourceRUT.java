@@ -23,16 +23,16 @@ public class SourceRUT implements Source {
         Document doc = Jsoup.parse(new URL("http://finance.yahoo.com/q?s=%5ERUT"), 10000);
         Elements elements = doc.getElementsByAttributeValue("id", "yfs_l10_^rut");
         if (elements.isEmpty()) {
-            throw new IOException("Unable to extract RUT");
+            throw new IOException("Unable to extract "+getTicker());
         } else {
             for (Element e: elements) {
                 if (e.nodeName().equalsIgnoreCase("span")) {
                     String txt = e.text();
                     txt = txt.replace(",", "");
-                    return sanity("RUT", new BigDecimal(txt), 100, 3000);
+                    return sanity(getTicker().name(), new BigDecimal(txt), 100, 3000);
                 }
             }
-            throw new IOException("Unable to extract RUT");
+            throw new IOException("Unable to extract "+getTicker());
         }
     }
 

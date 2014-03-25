@@ -76,18 +76,26 @@ public class QuoteHolder {
     }
 
     public void printQuotes(PrintStream out) {
-        out.print(now() + " ");
+        out.println("----["+now()+"]--------------------------------------->");
         for (Ticker ticker : tickers.keySet()) {
-            out.print(ticker.name() + ": " + tickers.get(ticker));
-            out.print("   ");
+            if (ticker.isIndex()) {
+                out.format("%4s: %7s   ", ticker.name(), tickers.get(ticker));
+            }
         }
         out.println();
+        for (Ticker ticker : tickers.keySet()) {
+            if (ticker.isVolatility()) {
+                out.format("%4s: %7s   ", ticker.name(), tickers.get(ticker));
+            }
+        }
+        out.println();
+        out.println("<-----------------------------------------------------");
     }
 
     private String now() {
         Date now = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        return sdf.format(now) + "\t";
+        return sdf.format(now);
     }
 
 

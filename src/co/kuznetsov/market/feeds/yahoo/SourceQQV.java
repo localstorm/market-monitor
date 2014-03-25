@@ -15,13 +15,14 @@ import static co.kuznetsov.market.feeds.SanityUtils.sanity;
 
 /**
  * @author localstorm
- *         Date: 21.03.14
+ *         Date: 25.03.14
  */
-public class SourceVIX implements Source {
+public class SourceQQV implements Source {
+
     @Override
     public BigDecimal getCurrent() throws IOException {
-        Document doc = Jsoup.parse(new URL("http://finance.yahoo.com/q?s=%5EVIX"), 10000);
-        Elements elements = doc.getElementsByAttributeValue("id", "yfs_l10_^vix");
+        Document doc = Jsoup.parse(new URL("http://finance.yahoo.com/q?s=%5EQQV"), 10000);
+        Elements elements = doc.getElementsByAttributeValue("id", "yfs_l10_^qqv");
         if (elements.isEmpty()) {
             throw new IOException("Unable to extract " + getTicker());
         } else {
@@ -29,7 +30,7 @@ public class SourceVIX implements Source {
                 if (e.nodeName().equalsIgnoreCase("span")) {
                     String txt = e.text();
                     txt = txt.replace(",", "");
-                    return sanity(getTicker().name(), new BigDecimal(txt), 5, 100);
+                    return sanity(getTicker().name(), new BigDecimal(txt), 2, 100);
                 }
             }
             throw new IOException("Unable to extract " + getTicker());
@@ -38,6 +39,6 @@ public class SourceVIX implements Source {
 
     @Override
     public Ticker getTicker() {
-        return Ticker.VIX;
+        return Ticker.QQV;
     }
 }

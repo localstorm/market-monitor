@@ -23,16 +23,16 @@ public class SourceNDQ implements Source {
         Document doc = Jsoup.parse(new URL("http://finance.yahoo.com/q?s=%5EIXIC"), 10000);
         Elements elements = doc.getElementsByAttributeValue("id", "yfs_l10_^ixic");
         if (elements.isEmpty()) {
-            throw new IOException("Unable to extract NDX");
+            throw new IOException("Unable to extract " + getTicker());
         } else {
-            for (Element e: elements) {
+            for (Element e : elements) {
                 if (e.nodeName().equalsIgnoreCase("span")) {
                     String txt = e.text();
                     txt = txt.replace(",", "");
-                    return sanity("NDX", new BigDecimal(txt), 1000,10000);
+                    return sanity(getTicker().name(), new BigDecimal(txt), 1000, 10000);
                 }
             }
-            throw new IOException("Unable to extract NDX");
+            throw new IOException("Unable to extract " + getTicker());
         }
     }
 
