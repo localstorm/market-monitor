@@ -85,7 +85,7 @@ public class Main {
                         try {
                             final WarnLevel wl = marketMonitor.getCurrentWarnLevel();
                             if (marketOpen != wl.isMarketOpen()) {
-                                marketOpen = wl.isMa:rketOpen();
+                                marketOpen = wl.isMarketOpen();
                                 if (!mute) {
                                     Player.playAsync(MARKET_BELL_SOUND_RESOURCE);
                                 }

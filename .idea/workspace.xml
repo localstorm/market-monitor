@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2c5105e8-84ce-455b-8a71-296628526862" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/co/kuznetsov/market/Main.java" afterPath="$PROJECT_DIR$/src/co/kuznetsov/market/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/market-monitor-macos.sh" afterPath="$PROJECT_DIR$/bin/market-monitor-macos.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="market-monitor.iws" />
@@ -141,10 +139,10 @@
         <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.5809859" vertical-offset="780" max-vertical-offset="1980">
-              <caret line="87" column="53" selection-start-line="87" selection-start-column="53" selection-end-line="87" selection-end-column="53" />
+              <caret line="87" column="52" selection-start-line="87" selection-start-column="52" selection-end-line="87" selection-end-column="52" />
               <folding>
-                <element signature="e#2528#4773#0" expanded="true" />
-                <element signature="e#4762#4763#0" expanded="true" />
+                <element signature="e#2528#4772#0" expanded="true" />
+                <element signature="e#4761#4762#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -689,7 +687,11 @@
       <created>1395719074307</created>
       <updated>1395719074308</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Mute sounds support added">
+      <created>1395854875544</created>
+      <updated>1395854875544</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -756,7 +758,8 @@
     <MESSAGE value="DEFCON 0 support" />
     <MESSAGE value="WarnLevel fixing" />
     <MESSAGE value="Minor improvements" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor improvements" />
+    <MESSAGE value="Mute sounds support added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mute sounds support added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -787,8 +790,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="1170" max-vertical-offset="2040">
           <caret line="78" column="69" selection-start-line="78" selection-start-column="69" selection-end-line="78" selection-end-column="69" />
           <folding>
-            <element signature="e#2528#4773#0" expanded="true" />
-            <element signature="e#4762#4763#0" expanded="true" />
+            <element signature="e#2528#4772#0" expanded="true" />
+            <element signature="e#4761#4762#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -837,8 +840,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="1170" max-vertical-offset="2040">
           <caret line="78" column="69" selection-start-line="78" selection-start-column="69" selection-end-line="78" selection-end-column="69" />
           <folding>
-            <element signature="e#2528#4773#0" expanded="true" />
-            <element signature="e#4762#4763#0" expanded="true" />
+            <element signature="e#2528#4772#0" expanded="true" />
+            <element signature="e#4761#4762#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -902,8 +905,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="2025">
           <caret line="7" column="23" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
-            <element signature="e#2528#4773#0" expanded="true" />
-            <element signature="e#4762#4763#0" expanded="true" />
+            <element signature="e#2528#4772#0" expanded="true" />
+            <element signature="e#4761#4762#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -959,8 +962,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="1800">
           <caret line="7" column="23" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
-            <element signature="e#2528#4773#0" expanded="true" />
-            <element signature="e#4762#4763#0" expanded="true" />
+            <element signature="e#2528#4772#0" expanded="true" />
+            <element signature="e#4761#4762#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1030,8 +1033,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="720" max-vertical-offset="1995">
           <caret line="48" column="21" selection-start-line="48" selection-start-column="21" selection-end-line="48" selection-end-column="21" />
           <folding>
-            <element signature="e#2528#4773#0" expanded="true" />
-            <element signature="e#4762#4763#0" expanded="true" />
+            <element signature="e#2528#4772#0" expanded="true" />
+            <element signature="e#4761#4762#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1174,10 +1177,10 @@
     <entry file="file://$PROJECT_DIR$/src/co/kuznetsov/market/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5809859" vertical-offset="780" max-vertical-offset="1980">
-          <caret line="87" column="53" selection-start-line="87" selection-start-column="53" selection-end-line="87" selection-end-column="53" />
+          <caret line="87" column="52" selection-start-line="87" selection-start-column="52" selection-end-line="87" selection-end-column="52" />
           <folding>
-            <element signature="e#2528#4773#0" expanded="true" />
-            <element signature="e#4762#4763#0" expanded="true" />
+            <element signature="e#2528#4772#0" expanded="true" />
+            <element signature="e#4761#4762#0" expanded="true" />
           </folding>
         </state>
       </provider>
