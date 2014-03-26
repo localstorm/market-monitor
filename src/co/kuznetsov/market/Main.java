@@ -13,12 +13,16 @@ import org.eclipse.swt.widgets.*;
  */
 public class Main {
     public static final String MARKET_BELL_SOUND_RESOURCE = "bell.wav";
+    public static final String MUTE_SYSTEM_PROPERTY = "market-monitor.mute";
+
     public static final String APP_NAME = "Market Monitor";
 
-    public static final long REFRESH_LOOP_OPEN   = 5000;
+    public static final long REFRESH_LOOP_OPEN = 5000;
     public static final long REFRESH_LOOP_CLOSED = 60000;
 
     public static void main(String[] args) throws Exception {
+        final boolean mute = Boolean.parseBoolean(System.getProperty(MUTE_SYSTEM_PROPERTY));
+
         if (args.length != 1) {
             System.err.println("Usage: <path to market config>");
             return;
@@ -81,8 +85,10 @@ public class Main {
                         try {
                             final WarnLevel wl = marketMonitor.getCurrentWarnLevel();
                             if (marketOpen != wl.isMarketOpen()) {
-                                marketOpen = wl.isMarketOpen();
-                                Player.playAsync(MARKET_BELL_SOUND_RESOURCE);
+                                marketOpen = wl.isMa:rketOpen();
+                                if (!mute) {
+                                    Player.playAsync(MARKET_BELL_SOUND_RESOURCE);
+                                }
                             }
                             if (alerter.status(display, wl)) {
                                 Display.getDefault().syncExec(new Runnable() {
@@ -129,7 +135,7 @@ public class Main {
 
     private static String marketStatus(WarnLevel wl) {
         if (wl.isMarketOpen()) {
-            return  wl.getLevel() + ", market is open";
+            return wl.getLevel() + ", market is open";
         } else {
             return wl.getLevel() + ", market is closed";
         }
