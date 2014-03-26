@@ -3,6 +3,7 @@ package co.kuznetsov.market;
 import co.kuznetsov.market.gui.Alerter;
 import co.kuznetsov.market.monitor.MarketMonitor;
 import co.kuznetsov.market.monitor.WarnLevel;
+import co.kuznetsov.market.sound.Player;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.*;
 
@@ -11,12 +12,13 @@ import org.eclipse.swt.widgets.*;
  *         Date: 21.03.14
  */
 public class Main {
+    public static final String MARKET_BELL_SOUND_RESOURCE = "bell.wav";
     public static final String APP_NAME = "Market Monitor";
+
     public static final long REFRESH_LOOP_OPEN   = 5000;
     public static final long REFRESH_LOOP_CLOSED = 60000;
 
     public static void main(String[] args) throws Exception {
-
         if (args.length != 1) {
             System.err.println("Usage: <path to market config>");
             return;
@@ -74,9 +76,14 @@ public class Main {
             @Override
             public void run() {
                 try {
+                    boolean marketOpen = false;
                     while (!this.isInterrupted()) {
                         try {
                             final WarnLevel wl = marketMonitor.getCurrentWarnLevel();
+                            if (marketOpen != wl.isMarketOpen()) {
+                                marketOpen = wl.isMarketOpen();
+                                Player.playAsync(MARKET_BELL_SOUND_RESOURCE);
+                            }
                             if (alerter.status(display, wl)) {
                                 Display.getDefault().syncExec(new Runnable() {
                                     public void run() {
