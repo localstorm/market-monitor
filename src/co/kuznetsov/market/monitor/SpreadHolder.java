@@ -11,6 +11,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class SpreadHolder {
     private final static int MAX_WARNING = 10;
+    private final static int MIN_WARNING = 0;
 
     private List<Spread> spreads = new CopyOnWriteArrayList<>();
 
@@ -58,6 +59,10 @@ public class SpreadHolder {
     }
 
     private int getWarningLevel(Spread s, BigDecimal current) {
+        if (s.getExpiration() != null && s.getExpiration().daysLeft() < 0) {
+            return MIN_WARNING;
+        }
+
         BigDecimal deltaLo = current.subtract(s.getLo());
         BigDecimal deltaHi = s.getHi().subtract(current);
         BigDecimal loHalf  = s.getMid().subtract(s.getLo());
