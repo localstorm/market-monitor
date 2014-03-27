@@ -30,7 +30,7 @@ public class SpreadHolder {
             int level = getWarningLevel(s, current);
             TreeSet<Spread> tickers = levels.get(level);
             if (tickers == null) {
-                tickers = new TreeSet<>();
+                tickers = new TreeSet<>(Collections.reverseOrder());
                 levels.put(level, tickers);
             }
             tickers.add(s);

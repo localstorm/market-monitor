@@ -43,10 +43,6 @@ public class Spread implements Comparable<Spread> {
 
     @Override
     public int compareTo(Spread o) {
-        int res = ticker.compareTo(o.ticker);
-        if (res != 0) {
-            return res;
-        }
         return expiration.compareTo(o.getExpiration());
     }
 
