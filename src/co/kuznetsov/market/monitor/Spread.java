@@ -47,13 +47,7 @@ public class Spread implements Comparable<Spread> {
         if (res != 0) {
             return res;
         }
-        if (lo.compareTo(o.lo) < 0 && hi.compareTo(o.hi) < 0) {
-            return -1;
-        }
-        if (lo.compareTo(o.lo) > 0 && hi.compareTo(o.hi) > 0) {
-            return 1;
-        }
-        return 1;
+        return expiration.compareTo(o.getExpiration());
     }
 
     public String toString() {
