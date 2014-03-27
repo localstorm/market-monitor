@@ -94,7 +94,7 @@ public class SpreadHolder {
         if (wHi.compareTo(point5) >= 0 || wLo.compareTo(point5) >= 0) {
             return Math.max(round(wHi), round(wLo));
         } else {
-            return 0;
+            return MIN_WARNING;
         }
     }
 
