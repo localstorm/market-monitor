@@ -1,6 +1,6 @@
 package co.kuznetsov.market.monitor;
 
-import co.kuznetsov.market.feeds.*;
+import co.kuznetsov.market.feeds.Source;
 import co.kuznetsov.market.feeds.yahoo.*;
 
 import java.io.File;
