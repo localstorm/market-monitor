@@ -73,7 +73,7 @@ public class Expiration {
     @Override
     public String toString() {
         String _month = Month.values()[month - 1].name();
-        return _month.charAt(0) + _month.substring(1).toLowerCase() + year + "Wk" + week;
+        return _month.charAt(0) + _month.substring(1).toLowerCase() + year + (week != 3 ? "Wk" + week : "");
     }
 
     private static enum Month {
