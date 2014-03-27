@@ -12,13 +12,15 @@ import org.eclipse.swt.widgets.*;
  *         Date: 21.03.14
  */
 public class Main {
-    public static final String MARKET_BELL_SOUND_RESOURCE = "bell.wav";
+    public static final String MARKET_CRITICAL_SOUND_RESOURCE = "critical.wav";
+    public static final String MARKET_BELL_SOUND_RESOURCE     = "bell.wav";
     public static final String MUTE_SYSTEM_PROPERTY = "market-monitor.mute";
 
     public static final String APP_NAME = "Market Monitor";
 
-    public static final long REFRESH_LOOP_OPEN = 5000;
-    public static final long REFRESH_LOOP_CLOSED = 60000;
+    public static final int  CRITICAL_WARN_THRESHOLD = 8;
+    public static final long REFRESH_LOOP_OPEN       = 5000;
+    public static final long REFRESH_LOOP_CLOSED     = 60000;
 
     public static void main(String[] args) throws Exception {
         final boolean mute = Boolean.parseBoolean(System.getProperty(MUTE_SYSTEM_PROPERTY));
@@ -84,12 +86,10 @@ public class Main {
                     while (!this.isInterrupted()) {
                         try {
                             final WarnLevel wl = marketMonitor.getCurrentWarnLevel();
-                            if (marketOpen != wl.isMarketOpen()) {
-                                marketOpen = wl.isMarketOpen();
-                                if (!mute) {
-                                    Player.playAsync(MARKET_BELL_SOUND_RESOURCE);
-                                }
-                            }
+                            marketOpenClosedSound(marketOpen, wl, mute);
+                            dangerousZoneAlarm(wl.isMarketOpen(), wl, mute);
+                            marketOpen = wl.isMarketOpen();
+
                             if (alerter.status(display, wl)) {
                                 Display.getDefault().syncExec(new Runnable() {
                                     public void run() {
@@ -131,6 +131,20 @@ public class Main {
         watcher.join(10000);
         alerter.dispose();
         display.dispose();
+    }
+
+    private static void dangerousZoneAlarm(boolean marketOpen, WarnLevel wl, boolean mute) {
+        if (marketOpen && wl.getLevel() >= CRITICAL_WARN_THRESHOLD && !mute) {
+            Player.playAsync(MARKET_CRITICAL_SOUND_RESOURCE);
+        }
+    }
+
+    private static void marketOpenClosedSound(boolean wasOpen, WarnLevel wl, boolean mute) {
+        if (wasOpen != wl.isMarketOpen()) {
+            if (!mute) {
+                Player.playAsync(MARKET_BELL_SOUND_RESOURCE);
+            }
+        }
     }
 
     private static String marketStatus(WarnLevel wl) {

@@ -13,6 +13,8 @@ public class Player {
 
     private final static int EXTERNAL_BUFFER_SIZE = 524288; // 128Kb
 
+    private final static Player PLAYER_INSTANCE = new Player();
+
     enum Position {
         LEFT, RIGHT, NORMAL
     }
@@ -60,22 +62,25 @@ public class Player {
                     auline.close();
                 }
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new IOException(e);
         }
     }
 
     public static void playAsync(final String wavResource) {
-        new Thread() {
-            @Override
-            public void run() {
-                try {
-                    Player p = new Player();
-                    p.play(wavResource);
-                } catch (IOException e) {
-                    e.printStackTrace(System.err);
+        synchronized (PLAYER_INSTANCE) {
+            new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        synchronized (PLAYER_INSTANCE) {
+                            PLAYER_INSTANCE.play(wavResource);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace(System.err);
+                    }
                 }
-            }
-        }.start();
+            }.start();
+        }
     }
 } 
