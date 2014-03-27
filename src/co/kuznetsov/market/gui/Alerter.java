@@ -23,8 +23,8 @@ public class Alerter {
     private AtomicInteger currentLevel  = new AtomicInteger(0);
     private AtomicBoolean currentMarket = new AtomicBoolean(false);
 
-    private Image alerter;
-    private GC gc;
+    private volatile Image alerter;
+    private volatile GC gc;
 
     public Alerter(Display display) {
         alerter = new Image(display, 16, 16);
@@ -33,6 +33,10 @@ public class Alerter {
     }
 
     public boolean status(Display display, WarnLevel wl) {
+        alerter.dispose();
+        alerter = new Image(display, 16, 16);
+        gc = new GC(alerter);
+
         Color    c = getWarningColor(display, wl);
         Color cInv = invertColor(display, c);
 
@@ -131,6 +135,10 @@ public class Alerter {
     }
 
     public void offline(Display display) {
+        alerter.dispose();
+        alerter = new Image(display, 16, 16);
+        gc = new GC(alerter);
+
         Color c = new Color(display, 0, 0, 0);
         gc.setBackground(c);
         gc.fillRectangle(alerter.getBounds());
