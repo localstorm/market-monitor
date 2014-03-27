@@ -57,7 +57,9 @@ public class Spread implements Comparable<Spread> {
     }
 
     public String toString() {
-        String exp = ((expiration != null) ? (String.format("Exp: %8s, %3d days left", expiration, expiration.daysLeft())) : "Exp: ?");
+        String exp = (expiration != null) ?
+                      String.format("Exp: %8s, %3s days left", expiration, ""+expiration.daysLeft()) :
+                      String.format("Exp: %8s, %3s days left", "?", "?");
         return String.format("%s: %s-(%s)-%s\t%s", ticker, lo, mid, hi, exp);
     }
 }
