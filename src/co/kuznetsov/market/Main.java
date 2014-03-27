@@ -13,17 +13,18 @@ import org.eclipse.swt.widgets.*;
  */
 public class Main {
     public static final String MARKET_CRITICAL_SOUND_RESOURCE = "critical.wav";
-    public static final String MARKET_BELL_SOUND_RESOURCE     = "bell.wav";
+    public static final String MARKET_BELL_SOUND_RESOURCE = "bell.wav";
     public static final String MUTE_SYSTEM_PROPERTY = "market-monitor.mute";
 
     public static final String APP_NAME = "Market Monitor";
 
-    public static final int  CRITICAL_WARN_THRESHOLD = 8;
-    public static final long REFRESH_LOOP_OPEN       = 5000;
-    public static final long REFRESH_LOOP_CLOSED     = 60000;
+    public static final int CRITICAL_WARN_THRESHOLD = 8;
+    public static final long REFRESH_LOOP_OPEN = 5000;
+    public static final long REFRESH_LOOP_CLOSED = 60000;
 
     public static void main(String[] args) throws Exception {
         final boolean mute = Boolean.parseBoolean(System.getProperty(MUTE_SYSTEM_PROPERTY));
+        System.out.println("Sound: " + (mute ? "off" : "on"));
 
         if (args.length != 1) {
             System.err.println("Usage: <path to market config>");
@@ -53,7 +54,6 @@ public class Main {
         final ToolTip tip = new ToolTip(shell, SWT.BALLOON | SWT.ICON_INFORMATION);
         tip.setMessage("Unable to reload quotes/spreads!");
         final TrayItem item = new TrayItem(tray, SWT.NONE);
-
 
         final Menu menu = new Menu(shell, SWT.POP_UP);
         MenuItem mi = new MenuItem(menu, SWT.PUSH);
@@ -86,8 +86,8 @@ public class Main {
                     while (!this.isInterrupted()) {
                         try {
                             final WarnLevel wl = marketMonitor.getCurrentWarnLevel();
-                            marketOpenClosedSound(marketOpen, wl, mute);
-                            dangerousZoneAlarm(wl.isMarketOpen(), wl, mute);
+                            marketOpenClosedSound(marketOpen != wl.isMarketOpen(), mute);
+                            dangerousZoneAlarm(wl.isMarketOpen(), wl.getLevel(), mute);
                             marketOpen = wl.isMarketOpen();
 
                             if (alerter.status(display, wl)) {
@@ -133,17 +133,15 @@ public class Main {
         display.dispose();
     }
 
-    private static void dangerousZoneAlarm(boolean marketOpen, WarnLevel wl, boolean mute) {
-        if (marketOpen && wl.getLevel() >= CRITICAL_WARN_THRESHOLD && !mute) {
+    private static void dangerousZoneAlarm(boolean marketOpen, int level, boolean mute) {
+        if (marketOpen && level >= CRITICAL_WARN_THRESHOLD && !mute) {
             Player.playAsync(MARKET_CRITICAL_SOUND_RESOURCE);
         }
     }
 
-    private static void marketOpenClosedSound(boolean wasOpen, WarnLevel wl, boolean mute) {
-        if (wasOpen != wl.isMarketOpen()) {
-            if (!mute) {
-                Player.playAsync(MARKET_BELL_SOUND_RESOURCE);
-            }
+    private static void marketOpenClosedSound(boolean change, boolean mute) {
+        if (change && !mute) {
+            Player.playAsync(MARKET_BELL_SOUND_RESOURCE);
         }
     }
 
