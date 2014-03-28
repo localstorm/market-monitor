@@ -17,6 +17,7 @@ public class SpreadsParser {
         List<Spread> result = new ArrayList<Spread>();
         BufferedReader br = new BufferedReader(new FileReader(file));
         String line;
+        int id = 1;
         while ((line = br.readLine()) != null) {
             line = line.trim();
             if (line.length() == 0) {
@@ -64,7 +65,7 @@ public class SpreadsParser {
                     default:
                         throw new IllegalArgumentException("Incorrect spread: [" + line + "]");
                 }
-                result.add(new Spread(t, lo, mid, hi, exp));
+                result.add(new Spread(id++, t, lo, mid, hi, exp));
             } catch (Exception e) {
                 throw new IOException("Problematic line: " + line, e);
             }

@@ -7,13 +7,15 @@ import java.math.BigDecimal;
  *         Date: 21.03.14
  */
 public class Spread implements Comparable<Spread> {
+    private int id;
     private Ticker ticker;
     private BigDecimal lo;
     private BigDecimal mid;
     private BigDecimal hi;
     private Expiration expiration;
 
-    public Spread(Ticker ticker, BigDecimal lo, BigDecimal mid, BigDecimal hi, Expiration exp) {
+    public Spread(int id, Ticker ticker, BigDecimal lo, BigDecimal mid, BigDecimal hi, Expiration exp) {
+        this.id = id;
         this.ticker = ticker;
         this.lo = lo;
         this.hi = hi;
@@ -43,7 +45,43 @@ public class Spread implements Comparable<Spread> {
 
     @Override
     public int compareTo(Spread o) {
-        return expiration.compareTo(o.getExpiration());
+        int exp = expiration.compareTo(o.getExpiration());
+        if (exp == 0 && equals(o)) {
+            return 0;
+        } else {
+            exp = ticker.compareTo(o.getTicker());
+            if (exp == 0) {
+                return (id - o.id);
+            } else {
+                return exp;
+            }
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Spread spread = (Spread) o;
+
+        if (!expiration.equals(spread.expiration)) return false;
+        if (!hi.equals(spread.hi)) return false;
+        if (!lo.equals(spread.lo)) return false;
+        if (!mid.equals(spread.mid)) return false;
+        if (ticker != spread.ticker) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = ticker.hashCode();
+        result = 31 * result + lo.hashCode();
+        result = 31 * result + mid.hashCode();
+        result = 31 * result + hi.hashCode();
+        result = 31 * result + expiration.hashCode();
+        return result;
     }
 
     public String toString() {
