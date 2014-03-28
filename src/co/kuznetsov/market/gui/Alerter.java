@@ -23,47 +23,48 @@ public class Alerter {
     private AtomicInteger currentLevel  = new AtomicInteger(0);
     private AtomicBoolean currentMarket = new AtomicBoolean(false);
 
-    private volatile Image alerter;
-    private volatile GC gc;
 
     public Alerter(Display display) {
-        alerter = new Image(display, 16, 16);
-        gc = new GC(alerter);
         offline(display);
     }
 
-    public boolean status(Display display, WarnLevel wl) {
-        alerter.dispose();
-        alerter = new Image(display, 16, 16);
-        gc = new GC(alerter);
+    public Image status(Display display, WarnLevel wl) {
+        boolean needRefresh = (wl.getLevel() != currentLevel.get()) ||
+                (wl.isMarketOpen() != currentMarket.get()) ||
+                (wl.getDelta() != currentDelta.get());
+        currentDelta.set(wl.getDelta());
+        currentLevel.set(wl.getLevel());
+        currentMarket.set(wl.isMarketOpen());
+
+        if (!needRefresh) {
+            return null;
+        }
+
+        Image img = new Image(display, 16, 16);
+        GC gc = new GC(img);
 
         Color    c = getWarningColor(display, wl);
         Color cInv = invertColor(display, c);
 
         gc.setBackground(c);
-        gc.fillRectangle(alerter.getBounds());
+        gc.fillRectangle(img.getBounds());
 
         if (!wl.isMarketOpen()) {
-            marketClosed(cInv);
+            marketClosed(gc, cInv);
         } else {
             if (wl.getDelta() > 0) {
-                up(cInv);
+                up(gc, cInv);
             }
             if (wl.getDelta() < 0) {
-                down(cInv);
+                down(gc, cInv);
             }
             if (wl.getDelta() == 0) {
-                flat(cInv);
+                flat(gc, cInv);
             }
         }
 
-        boolean needRefresh = (wl.getLevel() != currentLevel.get()) ||
-                              (wl.isMarketOpen() != currentMarket.get()) ||
-                              (wl.getDelta() != currentDelta.get());
-        currentDelta.set(wl.getDelta());
-        currentLevel.set(wl.getLevel());
-        currentMarket.set(wl.isMarketOpen());
-        return needRefresh;
+        gc.dispose();
+        return img;
     }
 
     private Color invertColor(Display display, Color c) {
@@ -75,11 +76,10 @@ public class Alerter {
         int warnLevel = wl.getLevel();
 
         if (warnLevel < 5) {
-            int danger = warnLevel;
-            int safetyLevel = 5 - danger;
-            c = new Color(display, (int) ((0.2 * danger) * YELLOW[0] +  (0.2 * safetyLevel) * GREEN[0]),
-                                   (int) ((0.2 * danger) * YELLOW[1] +  (0.2 * safetyLevel) * GREEN[1]),
-                                   (int) ((0.2 * danger) * YELLOW[2] +  (0.2 * safetyLevel) * GREEN[2]));
+            int safetyLevel = 5 - warnLevel;
+            c = new Color(display, (int) ((0.2 * warnLevel) * YELLOW[0] +  (0.2 * safetyLevel) * GREEN[0]),
+                                   (int) ((0.2 * warnLevel) * YELLOW[1] +  (0.2 * safetyLevel) * GREEN[1]),
+                                   (int) ((0.2 * warnLevel) * YELLOW[2] +  (0.2 * safetyLevel) * GREEN[2]));
         }
         if (warnLevel > 5) {
             int danger = warnLevel - 5;
@@ -91,7 +91,7 @@ public class Alerter {
         return c;
     }
 
-    private void marketClosed(Color с) {
+    private void marketClosed(GC gc, Color с) {
         gc.setForeground(с);
 
         gc.drawLine(2, 2, 13, 13);
@@ -103,7 +103,7 @@ public class Alerter {
         gc.drawLine(13, 3, 3, 13);
     }
 
-    private void up(Color c) {
+    private void up(GC gc, Color c) {
         gc.setForeground(c);
         gc.drawLine(12, 2, 2, 12);
         gc.drawLine(13, 2, 2, 13);
@@ -115,7 +115,7 @@ public class Alerter {
         gc.drawLine(13, 8, 13, 2);
     }
 
-    private void down(Color c) {
+    private void down(GC gc, Color c) {
         gc.setForeground(c);
         gc.drawLine(2, 2, 13, 13);
         gc.drawLine(3, 2, 13, 12);
@@ -127,33 +127,23 @@ public class Alerter {
         gc.drawLine(7, 12, 13, 12);
     }
 
-    private void flat(Color c) {
+    private void flat(GC gc, Color c) {
         gc.setForeground(c);
 
         gc.drawLine(2, 7, 13, 7);
         gc.drawLine(2, 8, 13, 8);
     }
 
-    public void offline(Display display) {
-        alerter.dispose();
-        alerter = new Image(display, 16, 16);
-        gc = new GC(alerter);
-
+    public Image offline(Display display) {
+        Image img = new Image(display, 16, 16);
+        GC gc = new GC(img);
         Color c = new Color(display, 0, 0, 0);
         gc.setBackground(c);
-        gc.fillRectangle(alerter.getBounds());
+        gc.fillRectangle(img.getBounds());
         currentLevel.set(-1);
         currentMarket.set(false);
         currentDelta.set(0);
+        return img;
     }
-
-    public void dispose() {
-        gc.dispose();
-    }
-
-    public Image getImage() {
-        return alerter;
-    }
-
 
 }

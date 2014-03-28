@@ -5,6 +5,7 @@ import co.kuznetsov.market.monitor.MarketMonitor;
 import co.kuznetsov.market.monitor.WarnLevel;
 import co.kuznetsov.market.sound.Player;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.*;
 
 /**
@@ -73,8 +74,7 @@ public class Main {
                 menu.setVisible(true);
             }
         });
-        item.setImage(alerter.getImage());
-        item.setHighlightImage(alerter.getImage());
+        updateIcon(item, alerter.offline(display));
         item.setToolTip(tip);
 
 
@@ -89,26 +89,24 @@ public class Main {
                             marketOpenClosedSound(marketOpen != wl.isMarketOpen(), mute);
                             dangerousZoneAlarm(wl.isMarketOpen(), wl.getLevel(), mute);
                             marketOpen = wl.isMarketOpen();
-
-                            if (alerter.status(display, wl)) {
+                            final Image img = alerter.status(display, wl);
+                            if (img != null) {
                                 Display.getDefault().syncExec(new Runnable() {
                                     public void run() {
                                         item.setToolTipText("Options DEFCON (" + marketStatus(wl) + ")");
-                                        item.setImage(alerter.getImage());
-                                        item.setHighlightImage(alerter.getImage());
+                                        updateIcon(item, img);
                                         tip.setVisible(false);
                                     }
                                 });
                             }
                             Thread.sleep(wl.isMarketOpen() ? REFRESH_LOOP_OPEN : REFRESH_LOOP_CLOSED);
                         } catch (Exception e) {
-                            alerter.offline(display);
                             e.printStackTrace(System.err);
+                            final Image img = alerter.offline(display);
                             Display.getDefault().syncExec(new Runnable() {
                                 public void run() {
                                     item.setToolTipText("Options DEFCON (ERROR!)");
-                                    item.setImage(alerter.getImage());
-                                    item.setHighlightImage(alerter.getImage());
+                                    updateIcon(item, img);
                                     tip.setVisible(true);
                                 }
                             });
@@ -129,8 +127,12 @@ public class Main {
 
         watcher.interrupt();
         watcher.join(10000);
-        alerter.dispose();
         display.dispose();
+    }
+
+    private static void updateIcon(TrayItem item, Image img) {
+        item.setImage(img);
+        item.setHighlightImage(img);
     }
 
     private static void dangerousZoneAlarm(boolean marketOpen, int level, boolean mute) {
