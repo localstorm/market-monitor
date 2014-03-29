@@ -13,14 +13,22 @@ public class Spread implements Comparable<Spread> {
     private BigDecimal mid;
     private BigDecimal hi;
     private Expiration expiration;
+    private String source;
 
-    public Spread(int id, Ticker ticker, BigDecimal lo, BigDecimal mid, BigDecimal hi, Expiration exp) {
+    public Spread(int id,
+                  Ticker ticker,
+                  BigDecimal lo,
+                  BigDecimal mid,
+                  BigDecimal hi,
+                  Expiration exp,
+                  String source) {
         this.id = id;
         this.ticker = ticker;
         this.lo = lo;
         this.hi = hi;
-        this.mid = (mid == null) ? lo.add(hi).divide(BigDecimal.valueOf(2)) : mid;
         this.expiration = exp;
+        this.source = source;
+        this.mid = (mid == null) ? lo.add(hi).divide(BigDecimal.valueOf(2)) : mid;
     }
 
     public BigDecimal getLo() {
@@ -86,10 +94,10 @@ public class Spread implements Comparable<Spread> {
 
     public String toString() {
         String expFormat    = "Exp: %8s, %3s days left";
-        String spreadFormat = "%s: %s-(%s)-%s\t%s";
+        String spreadFormat = "%s: %s-(%s)-%s\t%s (%s)";
         String exp = (expiration != null) ?
                       String.format(expFormat, expiration, ""+expiration.daysLeft()) :
                       String.format(expFormat, "?", "?");
-        return String.format(spreadFormat, ticker, lo, mid, hi, exp);
+        return String.format(spreadFormat, ticker, lo, mid, hi, exp, source);
     }
 }

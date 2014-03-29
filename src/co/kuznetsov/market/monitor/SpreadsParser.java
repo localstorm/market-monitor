@@ -14,7 +14,9 @@ import java.util.List;
  */
 public class SpreadsParser {
     public List<Spread> parse(File file) throws IOException {
-        List<Spread> result = new ArrayList<Spread>();
+        String src = getSource(file);
+
+        List<Spread> result = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader(file));
         String line;
         int id = 1;
@@ -65,12 +67,21 @@ public class SpreadsParser {
                     default:
                         throw new IllegalArgumentException("Incorrect spread: [" + line + "]");
                 }
-                result.add(new Spread(id++, t, lo, mid, hi, exp));
+                result.add(new Spread(id++, t, lo, mid, hi, exp, src));
             } catch (Exception e) {
                 throw new IOException("Problematic line: " + line, e);
             }
         }
         return result;
+    }
+
+    private String getSource(File file) {
+        String src = file.getName();
+        int dot = src.indexOf('.');
+        if (dot > 0) {
+            src = src.substring(0, dot);
+        }
+        return src;
     }
 
     private boolean hasExpiration(String str) {

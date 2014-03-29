@@ -15,7 +15,7 @@ public class MarketMonitor {
     private SpreadHolder spreadHolder = new SpreadHolder();
     private QuoteHolder quoteHolder = new QuoteHolder();
 
-    private String spreadsPath;
+    private String[] spreadsPaths;
 
     private Source[] sources = new Source[]{
             new SourceSNP(),
@@ -37,9 +37,11 @@ public class MarketMonitor {
     private void reloadSpreads() throws IOException  {
         spreadHolder.removeSpreads();
         SpreadsParser sp = new SpreadsParser();
-        List<Spread> spreads = sp.parse(new File(spreadsPath));
-        for (Spread s: spreads) {
-            spreadHolder.addSpread(s);
+        for (String path: spreadsPaths) {
+            List<Spread> spreads = sp.parse(new File(path));
+            for (Spread s : spreads) {
+                spreadHolder.addSpread(s);
+            }
         }
     }
 
@@ -50,8 +52,8 @@ public class MarketMonitor {
         quoteHolder.printQuotes(System.out);
     }
 
-    public void setSpreadsPath(String spreadsPath) {
-        this.spreadsPath = spreadsPath;
+    public void setSpreadsPaths(String[] spreadsPath) {
+        this.spreadsPaths = spreadsPath;
     }
 
     private void loadWithRetry(Source src) throws IOException {

@@ -27,8 +27,8 @@ public class Main {
         final boolean mute = Boolean.parseBoolean(System.getProperty(MUTE_SYSTEM_PROPERTY));
         System.out.println("Sound: " + (mute ? "off" : "on"));
 
-        if (args.length != 1) {
-            System.err.println("Usage: <path to market config>");
+        if (args.length == 0) {
+            System.err.println("Usage: <paths to spread configs>");
             return;
         }
 
@@ -44,7 +44,7 @@ public class Main {
         alerter.status(display, new WarnLevel(0, 0, false));
 
         final MarketMonitor marketMonitor = new MarketMonitor();
-        marketMonitor.setSpreadsPath(args[0]);
+        marketMonitor.setSpreadsPaths(args);
 
         final Tray tray = display.getSystemTray();
         if (tray == null) {
@@ -130,9 +130,13 @@ public class Main {
         display.dispose();
     }
 
-    private static void updateIcon(TrayItem item, Image img) {
-        item.setImage(img);
-        item.setHighlightImage(img);
+    private static void updateIcon(TrayItem item, Image ico) {
+        Image old = item.getImage();
+        item.setImage(ico);
+        item.setHighlightImage(ico);
+        if (old != null) {
+            old.dispose();
+        }
     }
 
     private static void dangerousZoneAlarm(boolean marketOpen, int level, boolean mute) {

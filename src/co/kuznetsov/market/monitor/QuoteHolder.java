@@ -76,7 +76,8 @@ public class QuoteHolder {
     }
 
     public void printQuotes(PrintStream out) {
-        out.println("----["+now()+"]----------------------------------------------->");
+        String opn = String.format("%s", (isMarketOpen() ? "open" : "closed"));
+        out.println("----["+now()+":"+opn+"]----------------------------------------------->");
         for (Ticker ticker : tickers.keySet()) {
             if (ticker.isIndex()) {
                 out.format("%4s: %7s   ", ticker.name(), tickers.get(ticker));
@@ -89,7 +90,7 @@ public class QuoteHolder {
             }
         }
         out.println();
-        out.println("<-------------------------------------------------------------");
+        out.println("<-------------------------------------------------------------------");
     }
 
     private String now() {
