@@ -48,7 +48,7 @@ public class SpreadHolder {
 
         for (Integer level: levels.keySet()) {
             for (Spread spread: levels.get(level)) {
-                System.out.println("[" + level + "]:\t" + spread);
+                System.out.printf("[%d]:"+(level == 10 ? " " : "  ")+"%s\n", level, spread);
             }
         }
         if (prevLevel >= 0) {
