@@ -13,15 +13,14 @@ import org.eclipse.swt.widgets.*;
  *         Date: 21.03.14
  */
 public class Main {
-    public static final String MARKET_CRITICAL_SOUND_RESOURCE = "critical.wav";
-    public static final String MARKET_BELL_SOUND_RESOURCE = "bell.wav";
-    public static final String MUTE_SYSTEM_PROPERTY = "market-monitor.mute";
-
-    public static final String APP_NAME = "Market Monitor";
+    public static final String APP_NAME                         = "Market Monitor";
+    public static final String MARKET_CRITICAL_SOUND_RESOURCE   = "critical.wav";
+    public static final String MARKET_BELL_SOUND_RESOURCE       = "bell.wav";
+    public static final String MUTE_SYSTEM_PROPERTY             = "market-monitor.mute";
 
     public static final int CRITICAL_WARN_THRESHOLD = 8;
-    public static final long REFRESH_LOOP_OPEN = 5000;
-    public static final long REFRESH_LOOP_CLOSED = 60000;
+    public static final long REFRESH_LOOP_OPEN      = 5000;
+    public static final long REFRESH_LOOP_CLOSED    = 60000;
 
     public static void main(String[] args) throws Exception {
         final boolean mute = Boolean.parseBoolean(System.getProperty(MUTE_SYSTEM_PROPERTY));
