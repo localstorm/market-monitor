@@ -25,13 +25,13 @@ public class SpreadHolder {
 
     public WarnLevel getWarnLevel(QuoteHolder quoteHolder) {
         int cur = 0;
-        Map<Integer, TreeSet<Spread>> levels = new TreeMap<>(Collections.reverseOrder());
+        Map<Integer, Set<Spread>> levels = new TreeMap<>(Collections.reverseOrder());
         for(Spread s : spreads) {
             BigDecimal current = quoteHolder.getCurrent(s.getTicker());
             int level = getWarningLevel(s, current);
-            TreeSet<Spread> tickers = levels.get(level);
+            Set<Spread> tickers = levels.get(level);
             if (tickers == null) {
-                tickers = new TreeSet<>(Collections.reverseOrder());
+                tickers = new HashSet<>();
                 levels.put(level, tickers);
             }
             tickers.add(s);
@@ -47,7 +47,9 @@ public class SpreadHolder {
         }
 
         for (Integer level: levels.keySet()) {
-            for (Spread spread: levels.get(level)) {
+            ArrayList<Spread> spreads  = new ArrayList<>(levels.get(level));
+            Collections.sort(spreads);
+            for (Spread spread: spreads) {
                 System.out.printf("[%d]:"+(level == 10 ? " " : "  ")+"%s\n", level, spread);
             }
         }

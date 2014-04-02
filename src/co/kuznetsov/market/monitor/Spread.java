@@ -73,10 +73,12 @@ public class Spread implements Comparable<Spread> {
 
         Spread spread = (Spread) o;
 
-        if (!expiration.equals(spread.expiration)) return false;
-        if (!hi.equals(spread.hi)) return false;
-        if (!lo.equals(spread.lo)) return false;
-        if (!mid.equals(spread.mid)) return false;
+        if (id != spread.id) return false;
+        if (expiration != null ? !expiration.equals(spread.expiration) : spread.expiration != null) return false;
+        if (hi != null ? !hi.equals(spread.hi) : spread.hi != null) return false;
+        if (lo != null ? !lo.equals(spread.lo) : spread.lo != null) return false;
+        if (mid != null ? !mid.equals(spread.mid) : spread.mid != null) return false;
+        if (source != null ? !source.equals(spread.source) : spread.source != null) return false;
         if (ticker != spread.ticker) return false;
 
         return true;
@@ -84,11 +86,13 @@ public class Spread implements Comparable<Spread> {
 
     @Override
     public int hashCode() {
-        int result = ticker.hashCode();
-        result = 31 * result + lo.hashCode();
-        result = 31 * result + mid.hashCode();
-        result = 31 * result + hi.hashCode();
-        result = 31 * result + expiration.hashCode();
+        int result = id;
+        result = 31 * result + (ticker != null ? ticker.hashCode() : 0);
+        result = 31 * result + (lo != null ? lo.hashCode() : 0);
+        result = 31 * result + (mid != null ? mid.hashCode() : 0);
+        result = 31 * result + (hi != null ? hi.hashCode() : 0);
+        result = 31 * result + (expiration != null ? expiration.hashCode() : 0);
+        result = 31 * result + (source != null ? source.hashCode() : 0);
         return result;
     }
 
