@@ -67,6 +67,8 @@ public class Expiration implements Comparable<Expiration> {
                 fridaysCount++;
             }
         }
+
+        c.add(Calendar.DATE, -1);
         return c.getTime();
     }
 
