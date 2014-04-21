@@ -5,21 +5,23 @@ package co.kuznetsov.market.monitor;
  *         Date: 21.03.14
  */
 public enum Ticker {
-    SNP(true, false),
-    RUT(true, false),
-    NDQ(true, false),
-    VIX(false, true),
-    RVX(false, true),
-    QQV(false, true),
-    OEX(true, false),
-    VXO(false, true);
+    SNP(true, false, 0),
+    RUT(true, false, -1),
+    NDQ(true, false, -1),
+    VIX(false, true, 0),
+    RVX(false, true, 0),
+    QQV(false, true, 0),
+    OEX(true, false, 0),
+    VXO(false, true, 0);
 
     private final boolean volatility;
     private final boolean index;
+    private final int     expirationOffset;
 
-    Ticker(boolean index, boolean volatility) {
+    Ticker(boolean index, boolean volatility, int expirationOffset) {
         this.index = index;
         this.volatility = volatility;
+        this.expirationOffset = expirationOffset;
     }
 
     public boolean isVolatility() {
@@ -28,5 +30,9 @@ public enum Ticker {
 
     public boolean isIndex() {
         return index;
+    }
+
+    public int getExpirationOffset() {
+        return expirationOffset;
     }
 }

@@ -13,7 +13,9 @@ import java.util.List;
  */
 public class MarketMonitor {
     private SpreadHolder spreadHolder = new SpreadHolder();
-    private QuoteHolder quoteHolder = new QuoteHolder();
+    private QuoteHolder quoteHolder   = new QuoteHolder();
+    private TickerDeviations tickerDeviations = new TickerDeviations();
+    private DeviationMonitor deviationMonitor = new DeviationMonitor(quoteHolder, tickerDeviations);
 
     private String[] spreadsPaths;
 
@@ -34,6 +36,10 @@ public class MarketMonitor {
         return spreadHolder.getWarnLevel(quoteHolder);
     }
 
+    public Deviation getHighestDeviation() {
+        return this.deviationMonitor.getHighestDeviation();
+    }
+
     private void reloadSpreads() throws IOException  {
         spreadHolder.removeSpreads();
         SpreadsParser sp = new SpreadsParser();
@@ -50,6 +56,7 @@ public class MarketMonitor {
             loadWithRetry(s);
         }
         quoteHolder.printQuotes(System.out);
+        //deviationMonitor.printOpportunities();
     }
 
     public void setSpreadsPaths(String[] spreadsPath) {

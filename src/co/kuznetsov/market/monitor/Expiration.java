@@ -68,7 +68,6 @@ public class Expiration implements Comparable<Expiration> {
             }
         }
 
-        c.add(Calendar.DATE, -1);
         return c.getTime();
     }
 

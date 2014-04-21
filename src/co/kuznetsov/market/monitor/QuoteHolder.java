@@ -16,8 +16,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class QuoteHolder {
     private static final long MARKET_WARN_FIXING_THRESHOLD   = 1200000L; // 20 minutes of downtime -> fix
     private static final long MARKET_DATA_DOWNTIME_THRESHOLD = 120000L;  // 2 minutes of downtime
-    private static final int FIXING_THRESHOLD = 20;
+    private static final int  FIXING_THRESHOLD = 100;
 
+    private Map<Ticker, BigDecimal> lows = new ConcurrentSkipListMap<>();
+    private Map<Ticker, BigDecimal> highs = new ConcurrentSkipListMap<>();
     private Map<Ticker, BigDecimal> tickers = new ConcurrentSkipListMap<>();
     private Map<Ticker, AtomicInteger> noChangeCounters = new ConcurrentHashMap<>();
     private Fixing fixing = new Fixing();
@@ -32,7 +34,10 @@ public class QuoteHolder {
     }
 
     public void update(Ticker ticker, BigDecimal current) {
-        BigDecimal prev = this.tickers.put(ticker, current);
+        checkHighs(ticker, current);
+        checkLows(ticker, current);
+
+        BigDecimal prev   = this.tickers.put(ticker, current);
         if (prev != null && prev.equals(current)) {
             AtomicInteger count = noChangeCounters.get(ticker);
             if (count == null) {
@@ -43,6 +48,8 @@ public class QuoteHolder {
             }
             if (count.get() >= FIXING_THRESHOLD) {
                 if (!current.equals(fixing.getQuote(ticker))) {
+                    highs.put(ticker, current);
+                    lows.put(ticker, current);
                     fixing.fixQuote(ticker, current);
                     System.out.println("Fixing: " + ticker + ": " + current);
                 }
@@ -54,8 +61,53 @@ public class QuoteHolder {
         marketHash.update(this);
     }
 
+    private void checkHighs(Ticker ticker, BigDecimal current) {
+        BigDecimal prevHi = this.highs.get(ticker);
+        if (marketHash.getLastUpdate() > (System.currentTimeMillis() - MARKET_WARN_FIXING_THRESHOLD)) {
+            if (prevHi == null) {
+                prevHi = current;
+            } else if (prevHi.compareTo(current) < 0) {
+                prevHi = current;
+            }
+        } else {
+            prevHi = current;
+        }
+        this.highs.put(ticker, prevHi);
+    }
+
+    private void checkLows(Ticker ticker, BigDecimal current) {
+        BigDecimal prevLo = this.lows.get(ticker);
+        if (marketHash.getLastUpdate() > (System.currentTimeMillis() - MARKET_WARN_FIXING_THRESHOLD)) {
+            if (prevLo == null) {
+                prevLo = current;
+            } else if (prevLo.compareTo(current) < 0) {
+                prevLo = current;
+            }
+        } else {
+            prevLo = current;
+        }
+        this.lows.put(ticker, prevLo);
+    }
+
     public BigDecimal getCurrent(Ticker ticker) {
         return this.tickers.get(ticker);
+    }
+
+    public BigDecimal getHigh(Ticker ticker) {
+        BigDecimal high = this.highs.get(ticker);
+        return (high == null) ? getCurrent(ticker) : high;
+    }
+
+    public BigDecimal getLow(Ticker ticker) {
+        BigDecimal low = this.lows.get(ticker);
+        return (low == null) ? getCurrent(ticker) : low;
+    }
+
+    public Deviation getDeviation(Ticker ticker) {
+        BigDecimal current = getCurrent(ticker);
+        BigDecimal low     = getLow(ticker);
+        BigDecimal high    = getHigh(ticker);
+        return new Deviation(ticker, current, low, high);
     }
 
     public BigDecimal getLastFixing(Ticker ticker) {
@@ -98,6 +150,5 @@ public class QuoteHolder {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         return sdf.format(now);
     }
-
 
 }

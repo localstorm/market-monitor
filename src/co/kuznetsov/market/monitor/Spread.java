@@ -100,7 +100,7 @@ public class Spread implements Comparable<Spread> {
         String expFormat    = "Exp: %8s, %3s days left";
         String spreadFormat = "%s: %s-(%s)-%s\t%s (%s)";
         String exp = (expiration != null) ?
-                      String.format(expFormat, expiration, ""+expiration.daysLeft()) :
+                      String.format(expFormat, expiration, "" + (expiration.daysLeft() + ticker.getExpirationOffset())) :
                       String.format(expFormat, "?", "?");
         return String.format(spreadFormat, ticker, lo, mid, hi, exp, source);
     }
