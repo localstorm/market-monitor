@@ -1,5 +1,6 @@
 package co.kuznetsov.market.monitor;
 
+import java.io.PrintStream;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.*;
@@ -103,6 +104,7 @@ public class SpreadHolder {
     private int round(BigDecimal val) {
         return val.setScale(0, BigDecimal.ROUND_UP).intValueExact();
     }
+
 }
 
 
