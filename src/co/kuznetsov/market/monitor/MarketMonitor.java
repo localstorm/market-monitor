@@ -31,9 +31,16 @@ public class MarketMonitor {
     };
 
     public WarnLevel getCurrentWarnLevel() throws IOException {
+        WarnLevel before = spreadHolder.getWarnLevel(quoteHolder);
         reloadSpreads();
         reloadQuotes();
-        return spreadHolder.getWarnLevel(quoteHolder);
+        WarnLevel after = spreadHolder.getWarnLevel(quoteHolder);
+        if (Math.abs(before.getLevel()-after.getLevel())>=2) {
+            reloadSpreads();
+            reloadQuotes();
+            return spreadHolder.getWarnLevel(quoteHolder);
+        }
+        return after;
     }
 
     public Deviation getHighestDeviation() {
