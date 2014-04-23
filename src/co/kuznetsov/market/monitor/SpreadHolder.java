@@ -46,6 +46,29 @@ public class SpreadHolder {
             quoteHolder.fixWarnLevel(cur);
             prevLevel = cur;
         }
+        if (prevLevel >= 0) {
+            return new WarnLevel(cur, cur - prevLevel, open);
+        } else {
+            return new WarnLevel(cur, 0, open);
+        }
+    }
+
+    public void printSpreads(QuoteHolder quoteHolder) {
+        int cur = 0;
+        Map<Integer, Set<Spread>> levels = new TreeMap<>(Collections.reverseOrder());
+        for(Spread s : spreads) {
+            BigDecimal current = quoteHolder.getCurrent(s.getTicker());
+            int level = getWarningLevel(s, current);
+            Set<Spread> tickers = levels.get(level);
+            if (tickers == null) {
+                tickers = new HashSet<>();
+                levels.put(level, tickers);
+            }
+            tickers.add(s);
+            if (cur < level) {
+                cur = level;
+            }
+        }
 
         for (Integer level: levels.keySet()) {
             ArrayList<Spread> spreads  = new ArrayList<>(levels.get(level));
@@ -53,11 +76,6 @@ public class SpreadHolder {
             for (Spread spread: spreads) {
                 System.out.printf("[%d]:"+(level == 10 ? " " : "  ")+"%s\n", level, spread);
             }
-        }
-        if (prevLevel >= 0) {
-            return new WarnLevel(cur, cur - prevLevel, open);
-        } else {
-            return new WarnLevel(cur, 0, open);
         }
     }
 

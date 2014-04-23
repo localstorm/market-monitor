@@ -6,16 +6,19 @@ import co.kuznetsov.market.feeds.yahoo.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @author localstorm
  *         Date: 21.03.14
  */
 public class MarketMonitor {
-    private SpreadHolder spreadHolder = new SpreadHolder();
-    private QuoteHolder quoteHolder   = new QuoteHolder();
-    private TickerDeviations tickerDeviations = new TickerDeviations();
-    private DeviationMonitor deviationMonitor = new DeviationMonitor(quoteHolder, tickerDeviations);
+    private SpreadHolder spreadHolder           = new SpreadHolder();
+    private QuoteHolder quoteHolder             = new QuoteHolder();
+    private TickerDeviations tickerDeviations   = new TickerDeviations();
+    private DeviationMonitor deviationMonitor   = new DeviationMonitor(quoteHolder, tickerDeviations);
+    private AtomicReference<WarnLevel> WARN_LEVEL = new AtomicReference<>(null);
 
     private String[] spreadsPaths;
 
@@ -32,10 +35,19 @@ public class MarketMonitor {
 
     public WarnLevel getCurrentWarnLevel() throws IOException {
         reloadSpreads();
+
         reloadQuotes();
+        WarnLevel newLevel = spreadHolder.getWarnLevel(quoteHolder);
+        if (WARN_LEVEL.get() != null && Math.abs(WARN_LEVEL.get().getLevel() - newLevel.getLevel()) >= 2) {
+            reloadQuotes();
+            newLevel = spreadHolder.getWarnLevel(quoteHolder);
+        }
+        WARN_LEVEL.set(newLevel);
         quoteHolder.printQuotes(System.out);
+        spreadHolder.printSpreads(quoteHolder);
+
         //deviationMonitor.printOpportunities();
-        return spreadHolder.getWarnLevel(quoteHolder);
+        return newLevel;
     }
 
     public Deviation getHighestDeviation() {
