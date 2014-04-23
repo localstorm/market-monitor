@@ -18,9 +18,10 @@ public class Main {
     public static final String MARKET_BELL_SOUND_RESOURCE       = "bell.wav";
     public static final String MUTE_SYSTEM_PROPERTY             = "market-monitor.mute";
 
-    public static final int CRITICAL_WARN_THRESHOLD = 8;
-    public static final long REFRESH_LOOP_OPEN      = 5000;
-    public static final long REFRESH_LOOP_CLOSED    = 60000;
+    public static final int DANGEROUS_WARN_THRESHOLD = 8;
+    public static final int CRITICAL_WARN_THRESHOLD  = 9;
+    public static final long REFRESH_LOOP_OPEN       = 5000;
+    public static final long REFRESH_LOOP_CLOSED     = 60000;
 
     public static void main(String[] args) throws Exception {
         final boolean mute = Boolean.parseBoolean(System.getProperty(MUTE_SYSTEM_PROPERTY));
@@ -141,6 +142,11 @@ public class Main {
     private static void dangerousZoneAlarm(boolean marketOpen, int level, boolean mute) {
         if (marketOpen && level >= CRITICAL_WARN_THRESHOLD && !mute) {
             Player.playAsync(MARKET_CRITICAL_SOUND_RESOURCE);
+            return;
+        }
+        if (marketOpen && level >= DANGEROUS_WARN_THRESHOLD && !mute) {
+            Player.playAsync(MARKET_CRITICAL_SOUND_RESOURCE);
+            return;
         }
     }
 
