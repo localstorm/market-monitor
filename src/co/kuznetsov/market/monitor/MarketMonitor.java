@@ -14,11 +14,11 @@ import java.util.concurrent.atomic.AtomicReference;
  *         Date: 21.03.14
  */
 public class MarketMonitor {
-    private SpreadHolder spreadHolder           = new SpreadHolder();
-    private QuoteHolder quoteHolder             = new QuoteHolder();
-    private TickerDeviations tickerDeviations   = new TickerDeviations();
-    private DeviationMonitor deviationMonitor   = new DeviationMonitor(quoteHolder, tickerDeviations);
-    private AtomicReference<WarnLevel> WARN_LEVEL = new AtomicReference<>(null);
+    private SpreadHolder spreadHolder               = new SpreadHolder();
+    private QuoteHolder quoteHolder                 = new QuoteHolder();
+    private TickerDeviations tickerDeviations       = new TickerDeviations();
+    private DeviationMonitor deviationMonitor       = new DeviationMonitor(quoteHolder, tickerDeviations);
+    private AtomicReference<WarnLevel> WARN_LEVEL   = new AtomicReference<>(null);
 
     private String[] spreadsPaths;
 
