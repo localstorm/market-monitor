@@ -23,7 +23,7 @@ public class SourceChain {
         put(Ticker.RVX, new YFSourceRVX());
         put(Ticker.VIX, new YFSourceVIX());
         put(Ticker.QQV, new YFSourceQQV());
-        put(Ticker.VXO, new YFSourceOEX());
+        put(Ticker.VXO, new YFSourceVXO());
     }};
 
     private Map<Ticker, Source> backup = new HashMap<Ticker, Source>() {{
