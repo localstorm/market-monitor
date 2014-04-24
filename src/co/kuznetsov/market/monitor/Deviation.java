@@ -1,71 +1,33 @@
 package co.kuznetsov.market.monitor;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 
-/**
- * Created by localstorm on 4/5/14.
- */
-public class Deviation implements Comparable<Deviation> {
-    private Ticker ticker;
-    private BigDecimal current;
-    private BigDecimal high;
-    private BigDecimal low;
-    private BigDecimal deviation;
-    private boolean opportunity;
+public class Deviation {
+    private Ticker      ticker;
+    private BigDecimal  currentDeviation;
+    private BigDecimal  currentDeviationPct;
 
-    public Deviation(Ticker ticker,
-                     BigDecimal current,
-                     BigDecimal low,
-                     BigDecimal high) {
+    public Deviation(Ticker ticker, BigDecimal current, BigDecimal fixing) {
         this.ticker  = ticker;
-        this.current = current;
-        this.low = low;
-        this.high = high;
-        if (current.subtract(low).compareTo(high.subtract(current)) >= 0) {
-            deviation = current.subtract(low);
+        this.currentDeviation    = current.subtract(fixing);
+        if (fixing.equals(BigDecimal.ZERO)) {
+            this.currentDeviationPct = BigDecimal.ZERO;
         } else {
-            deviation = current.subtract(high);
+            this.currentDeviationPct = new BigDecimal(((int)(currentDeviation.doubleValue() / fixing.doubleValue() * 10000)) / 100.0, new MathContext(2));
         }
-        this.opportunity = false;
     }
 
     public Ticker getTicker() {
         return ticker;
     }
 
-    public BigDecimal getCurrent() {
-        return current;
+    public BigDecimal getCurrentDeviation() {
+        return currentDeviation;
     }
 
-    public BigDecimal getHigh() {
-        return high;
+    public BigDecimal getCurrentDeviationPct() {
+        return currentDeviationPct;
     }
-
-    public BigDecimal getLow() {
-        return low;
-    }
-
-    public boolean isOpportunity() {
-        return opportunity;
-    }
-
-    public void setOpportunity(boolean opportunity) {
-        this.opportunity = opportunity;
-    }
-
-    public BigDecimal getDeviation() {
-        return this.deviation;
-    }
-
-    @Override
-    public int compareTo(Deviation o) {
-        return Double.compare(Math.abs(deviation.doubleValue()), Math.abs(o.deviation.doubleValue()));
-    }
-
-    @Override
-    public String toString() {
-        return "deviation(" + ticker.name() + "): " + deviation;
-    }
-
 
 }

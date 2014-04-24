@@ -93,23 +93,6 @@ public class QuoteHolder {
         return this.tickers.get(ticker);
     }
 
-    public BigDecimal getHigh(Ticker ticker) {
-        BigDecimal high = this.highs.get(ticker);
-        return (high == null) ? getCurrent(ticker) : high;
-    }
-
-    public BigDecimal getLow(Ticker ticker) {
-        BigDecimal low = this.lows.get(ticker);
-        return (low == null) ? getCurrent(ticker) : low;
-    }
-
-    public Deviation getDeviation(Ticker ticker) {
-        BigDecimal current = getCurrent(ticker);
-        BigDecimal low     = getLow(ticker);
-        BigDecimal high    = getHigh(ticker);
-        return new Deviation(ticker, current, low, high);
-    }
-
     public BigDecimal getLastFixing(Ticker ticker) {
         BigDecimal f = this.fixing.getQuote(ticker);
         if (f == null) {
@@ -127,28 +110,29 @@ public class QuoteHolder {
         fixing.fixWarnLevel(currentLevel);
     }
 
-    public void printQuotes(PrintStream out) {
-        String opn = String.format("%s", (isMarketOpen() ? "open" : "closed"));
-        out.println("----["+now()+":"+opn+"]----------------------------------------------->");
-        for (Ticker ticker : tickers.keySet()) {
-            if (ticker.isIndex()) {
-                out.format("%4s: %7s   ", ticker.name(), tickers.get(ticker));
+    public void printQuotes(PrintStream out, boolean index, boolean tickerName) {
+        if (index) {
+            for (Ticker ticker : tickers.keySet()) {
+                if (ticker.isIndex()) {
+                    if (tickerName) {
+                        out.format("%4s: %7s   ", ticker.name(), tickers.get(ticker));
+                    } else {
+                        out.format("     %7s   ", tickers.get(ticker));
+                    }
+                }
+            }
+        } else {
+            for (Ticker ticker : tickers.keySet()) {
+                if (ticker.isVolatility()) {
+                    if (tickerName) {
+                        out.format("%4s: %7s   ", ticker.name(), tickers.get(ticker));
+                    } else {
+                        out.format("     %7s   ", tickers.get(ticker));
+                    }
+                }
             }
         }
         out.println();
-        for (Ticker ticker : tickers.keySet()) {
-            if (ticker.isVolatility()) {
-                out.format("%4s: %7s   ", ticker.name(), tickers.get(ticker));
-            }
-        }
-        out.println();
-        out.println("<-------------------------------------------------------------------");
-    }
-
-    private String now() {
-        Date now = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        return sdf.format(now);
     }
 
 }

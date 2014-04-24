@@ -53,7 +53,7 @@ public class SpreadHolder {
         }
     }
 
-    public void printSpreads(QuoteHolder quoteHolder) {
+    public void printSpreads(PrintStream out, QuoteHolder quoteHolder) {
         int cur = 0;
         Map<Integer, Set<Spread>> levels = new TreeMap<>(Collections.reverseOrder());
         for(Spread s : spreads) {
@@ -74,7 +74,7 @@ public class SpreadHolder {
             ArrayList<Spread> spreads  = new ArrayList<>(levels.get(level));
             Collections.sort(spreads);
             for (Spread spread: spreads) {
-                System.out.printf("[%d]:"+(level == 10 ? " " : "  ")+"%s\n", level, spread);
+                out.printf("[%d]:"+(level == 10 ? " " : "  ")+"%s\n", level, spread);
             }
         }
     }

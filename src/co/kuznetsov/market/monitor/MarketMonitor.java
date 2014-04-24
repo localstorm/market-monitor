@@ -5,8 +5,10 @@ import co.kuznetsov.market.feeds.yahoo.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -16,8 +18,7 @@ import java.util.concurrent.atomic.AtomicReference;
 public class MarketMonitor {
     private SpreadHolder spreadHolder               = new SpreadHolder();
     private QuoteHolder quoteHolder                 = new QuoteHolder();
-    private TickerDeviations tickerDeviations       = new TickerDeviations();
-    private DeviationMonitor deviationMonitor       = new DeviationMonitor(quoteHolder, tickerDeviations);
+    private DeviationMonitor deviationMonitor       = new DeviationMonitor(quoteHolder);
     private AtomicReference<WarnLevel> WARN_LEVEL   = new AtomicReference<>(null);
 
     private String[] spreadsPaths;
@@ -43,15 +44,30 @@ public class MarketMonitor {
             newLevel = spreadHolder.getWarnLevel(quoteHolder);
         }
         WARN_LEVEL.set(newLevel);
-        quoteHolder.printQuotes(System.out);
-        spreadHolder.printSpreads(quoteHolder);
-
-        //deviationMonitor.printOpportunities();
+        beginOutput(System.out);
+        //if (quoteHolder.isMarketOpen()) {
+            quoteHolder.printQuotes(System.out, true, true);
+            deviationMonitor.printDeviations(System.out, true, false);
+            deviationMonitor.printDeviationsPct(System.out, true, false);
+            quoteHolder.printQuotes(System.out, false, true);
+            deviationMonitor.printDeviations(System.out, true, false);
+            deviationMonitor.printDeviationsPct(System.out, false, false);
+        //} else {
+        //    quoteHolder.printQuotes(System.out, true, true);
+        //    quoteHolder.printQuotes(System.out, false, true);
+        //}
+        endOutput(System.out);
+        spreadHolder.printSpreads(System.out, quoteHolder);
         return newLevel;
     }
 
-    public Deviation getHighestDeviation() {
-        return this.deviationMonitor.getHighestDeviation();
+    private void beginOutput(PrintStream out) {
+        String opn = String.format("%s", (quoteHolder.isMarketOpen() ? "open" : "closed"));
+        out.println("----["+now()+":"+opn+"]----------------------------------------------->");
+    }
+
+    private void endOutput(PrintStream out) {
+        out.println("<-------------------------------------------------------------------");
     }
 
     private void reloadSpreads() throws IOException  {
@@ -88,5 +104,11 @@ public class MarketMonitor {
                 }
             }
         } while (true);
+    }
+
+    private String now() {
+        Date now = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        return sdf.format(now);
     }
 }
