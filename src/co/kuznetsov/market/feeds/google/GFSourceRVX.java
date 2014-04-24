@@ -1,4 +1,4 @@
-package co.kuznetsov.market.feeds.yahoo;
+package co.kuznetsov.market.feeds.google;
 
 import co.kuznetsov.market.feeds.Source;
 import co.kuznetsov.market.monitor.Ticker;
@@ -17,27 +17,28 @@ import static co.kuznetsov.market.feeds.SanityUtils.sanity;
  * @author localstorm
  *         Date: 21.03.14
  */
-public class SourceVXO implements Source {
+public class GFSourceRVX implements Source {
+
     @Override
     public BigDecimal getCurrent() throws IOException {
-        Document doc = Jsoup.parse(new URL("http://finance.yahoo.com/q?s=%5EVXO"), 10000);
-        Elements elements = doc.getElementsByAttributeValue("id", "yfs_l10_^vxo");
+        Document doc = Jsoup.parse(new URL("https://www.google.com/finance?q=INDEXCBOE%3ARVX"), 10000);
+        Elements elements = doc.getElementsByAttributeValue("id", "ref_22304677664342_l");
         if (elements.isEmpty()) {
-            throw new IOException("Unable to extract " + getTicker());
+            throw new IOException("Unable to extract "+getTicker());
         } else {
-            for (Element e : elements) {
+            for (Element e: elements) {
                 if (e.nodeName().equalsIgnoreCase("span")) {
                     String txt = e.text();
                     txt = txt.replace(",", "");
-                    return sanity(getTicker().name(), new BigDecimal(txt), 5, 100);
+                    return sanity(getTicker().name(), new BigDecimal(txt), 500,5000);
                 }
             }
-            throw new IOException("Unable to extract " + getTicker());
+            throw new IOException("Unable to extract "+getTicker());
         }
     }
 
     @Override
     public Ticker getTicker() {
-        return Ticker.VXO;
+        return Ticker.RVX;
     }
 }

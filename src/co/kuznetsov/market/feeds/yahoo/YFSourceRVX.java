@@ -15,29 +15,30 @@ import static co.kuznetsov.market.feeds.SanityUtils.sanity;
 
 /**
  * @author localstorm
- *         Date: 21.03.14
+ *         Date: 25.03.14
  */
-public class SourceRUT implements Source {
+public class YFSourceRVX implements Source {
+
     @Override
     public BigDecimal getCurrent() throws IOException {
-        Document doc = Jsoup.parse(new URL("http://finance.yahoo.com/q?s=%5ERUT"), 10000);
-        Elements elements = doc.getElementsByAttributeValue("id", "yfs_l10_^rut");
+        Document doc = Jsoup.parse(new URL("http://finance.yahoo.com/q?s=%5ERVX"), 10000);
+        Elements elements = doc.getElementsByAttributeValue("id", "yfs_l10_^rvx");
         if (elements.isEmpty()) {
-            throw new IOException("Unable to extract "+getTicker());
+            throw new IOException("Unable to extract " + getTicker());
         } else {
-            for (Element e: elements) {
+            for (Element e : elements) {
                 if (e.nodeName().equalsIgnoreCase("span")) {
                     String txt = e.text();
                     txt = txt.replace(",", "");
-                    return sanity(getTicker().name(), new BigDecimal(txt), 100, 3000);
+                    return sanity(getTicker().name(), new BigDecimal(txt), 2, 100);
                 }
             }
-            throw new IOException("Unable to extract "+getTicker());
+            throw new IOException("Unable to extract " + getTicker());
         }
     }
 
     @Override
     public Ticker getTicker() {
-        return Ticker.RUT;
+        return Ticker.RVX;
     }
 }

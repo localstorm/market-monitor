@@ -1,4 +1,4 @@
-package co.kuznetsov.market.feeds.yahoo;
+package co.kuznetsov.market.feeds.google;
 
 import co.kuznetsov.market.feeds.Source;
 import co.kuznetsov.market.monitor.Ticker;
@@ -17,12 +17,12 @@ import static co.kuznetsov.market.feeds.SanityUtils.sanity;
  * @author localstorm
  *         Date: 21.03.14
  */
-public class SourceSNP implements Source {
+public class GFSourceSNP implements Source {
 
     @Override
     public BigDecimal getCurrent() throws IOException {
-        Document doc = Jsoup.parse(new URL("http://finance.yahoo.com/q?s=%5EGSPC"), 10000);
-        Elements elements = doc.getElementsByAttributeValue("id", "yfs_l10_^gspc");
+        Document doc = Jsoup.parse(new URL("https://www.google.com/finance?q=INDEXSP:.INX"), 10000);
+        Elements elements = doc.getElementsByAttributeValue("id", "ref_626307_l");
         if (elements.isEmpty()) {
             throw new IOException("Unable to extract "+getTicker());
         } else {

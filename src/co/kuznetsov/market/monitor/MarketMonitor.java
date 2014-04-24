@@ -1,6 +1,7 @@
 package co.kuznetsov.market.monitor;
 
 import co.kuznetsov.market.feeds.Source;
+import co.kuznetsov.market.feeds.google.GFSourceSNP;
 import co.kuznetsov.market.feeds.yahoo.*;
 
 import java.io.File;
@@ -20,19 +21,9 @@ public class MarketMonitor {
     private QuoteHolder quoteHolder                 = new QuoteHolder();
     private DeviationMonitor deviationMonitor       = new DeviationMonitor(quoteHolder);
     private AtomicReference<WarnLevel> WARN_LEVEL   = new AtomicReference<>(null);
+    private SourceChain sourceChain                 = new SourceChain();
 
     private String[] spreadsPaths;
-
-    private Source[] sources = new Source[]{
-            new SourceSNP(),
-            new SourceRUT(),
-            new SourceNDQ(),
-            new SourceVIX(),
-            new SourceRVX(),
-            new SourceQQV(),
-            new SourceOEX(),
-            new SourceVXO()
-    };
 
     public WarnLevel getCurrentWarnLevel() throws IOException {
         reloadSpreads();
@@ -82,8 +73,8 @@ public class MarketMonitor {
     }
 
     private void reloadQuotes() throws IOException {
-        for (Source s: sources) {
-            loadWithRetry(s);
+        for (Ticker t: Ticker.values()) {
+            loadWithRetry(t);
         }
     }
 
@@ -91,12 +82,12 @@ public class MarketMonitor {
         this.spreadsPaths = spreadsPath;
     }
 
-    private void loadWithRetry(Source src) throws IOException {
+    private void loadWithRetry(Ticker ticker) throws IOException {
         int retry = 5;
         do {
             try {
                 retry--;
-                quoteHolder.update(src.getTicker(), src.getCurrent());
+                quoteHolder.update(ticker, sourceChain.getCurrent(ticker));
                 return;
             } catch(Exception e) {
                 if (retry == 0) {
