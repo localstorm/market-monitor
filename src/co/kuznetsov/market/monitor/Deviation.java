@@ -1,7 +1,6 @@
 package co.kuznetsov.market.monitor;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 public class Deviation {
     private Ticker      ticker;
@@ -14,7 +13,7 @@ public class Deviation {
         if (fixing.equals(BigDecimal.ZERO)) {
             this.currentDeviationPct = BigDecimal.ZERO;
         } else {
-            this.currentDeviationPct = new BigDecimal(((int)(currentDeviation.doubleValue() / fixing.doubleValue() * 10000)) / 100.0, new MathContext(2));
+            this.currentDeviationPct = currentDeviation.divide(fixing).multiply(new BigDecimal(100));
         }
     }
 

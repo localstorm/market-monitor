@@ -18,6 +18,7 @@ import static co.kuznetsov.market.feeds.SanityUtils.sanity;
  *         Date: 21.03.14
  */
 public class YFSourceRUT implements Source {
+
     @Override
     public BigDecimal getCurrent() throws IOException {
         Document doc = Jsoup.parse(new URL("http://finance.yahoo.com/q?s=%5ERUT"), 10000);
