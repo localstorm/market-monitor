@@ -8,8 +8,6 @@ import java.math.BigDecimal;
 public class Fixing {
     private final static String STORAGE_PATH = initStoragePath();
 
-
-
     public void fixQuote(Ticker ticker, BigDecimal current) {
         try {
             EnvironmentConfig envConf = new EnvironmentConfig();
