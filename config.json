@@ -1,9 +1,0 @@
-{
-    "spreadPaths" : [
-        "/Users/localstorm/Dropbox/Covert/Finance/Options/SpreadsMonitoring/Iron Condors.txt",
-        "/Users/localstorm/Dropbox/Covert/Finance/Options/SpreadsMonitoring/Experimental.txt"
-    ],
-    "tickerDeviations": {
-        "SNP": 1.1
-    }
-}
