@@ -8,7 +8,7 @@ import java.util.Date;
  *         Date: 3/27/14
  */
 public class Expiration implements Comparable<Expiration> {
-    private static final String WEEKLY_EXPIRATION  = "([jJ]an|[fF]eb|[mM]ar|[aA]pr|[mM]ay|[jJ]un|[jJ]ul|[aA]ug|[sS]ep|[oO]ct|[nN]ov|[dD]ec)\\d{2}[wW][kK](1|2|4)";
+    private static final String WEEKLY_EXPIRATION  = "([jJ]an|[fF]eb|[mM]ar|[aA]pr|[mM]ay|[jJ]un|[jJ]ul|[aA]ug|[sS]ep|[oO]ct|[nN]ov|[dD]ec)\\d{2}[wW][kK](1|2|4|5)";
     private static final String MONTHLY_EXPIRATION = "([jJ]an|[fF]eb|[mM]ar|[aA]pr|[mM]ay|[jJ]un|[jJ]ul|[aA]ug|[sS]ep|[oO]ct|[nN]ov|[dD]ec)\\d{2}";
 
     private int month;
