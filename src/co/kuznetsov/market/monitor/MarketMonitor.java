@@ -45,17 +45,17 @@ public class MarketMonitor {
         }
         WARN_LEVEL.set(newLevel);
         beginOutput(System.out);
-        //if (quoteHolder.isMarketOpen()) {
+        if (quoteHolder.isMarketOpen()) {
             quoteHolder.printQuotes(System.out, true, true);
             deviationMonitor.printDeviations(System.out, true, false);
             deviationMonitor.printDeviationsPct(System.out, true, false);
             quoteHolder.printQuotes(System.out, false, true);
             deviationMonitor.printDeviations(System.out, true, false);
             deviationMonitor.printDeviationsPct(System.out, false, false);
-        //} else {
-        //    quoteHolder.printQuotes(System.out, true, true);
-        //    quoteHolder.printQuotes(System.out, false, true);
-        //}
+        } else {
+            quoteHolder.printQuotes(System.out, true, true);
+            quoteHolder.printQuotes(System.out, false, true);
+        }
         endOutput(System.out);
         spreadHolder.printSpreads(System.out, quoteHolder);
         return newLevel;
