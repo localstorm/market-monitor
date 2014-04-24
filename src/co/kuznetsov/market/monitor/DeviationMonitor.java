@@ -2,8 +2,6 @@ package co.kuznetsov.market.monitor;
 
 import java.io.PrintStream;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class DeviationMonitor {
     private QuoteHolder quoteHolder;

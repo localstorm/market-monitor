@@ -2,8 +2,6 @@ package co.kuznetsov.market.monitor;
 
 import java.io.PrintStream;
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListMap;
@@ -16,7 +14,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class QuoteHolder {
     private static final long MARKET_WARN_FIXING_THRESHOLD   = 1200000L; // 20 minutes of downtime -> fix
     private static final long MARKET_DATA_DOWNTIME_THRESHOLD = 120000L;  // 2 minutes of downtime
-    private static final int  FIXING_THRESHOLD = 100;
+    private static final int  FIXING_THRESHOLD               = 100;
 
     private Map<Ticker, BigDecimal> tickers = new ConcurrentSkipListMap<>();
     private Map<Ticker, AtomicInteger> noChangeCounters = new ConcurrentHashMap<>();
@@ -44,7 +42,6 @@ public class QuoteHolder {
             if (count.get() >= FIXING_THRESHOLD) {
                 if (!current.equals(fixing.getQuote(ticker))) {
                     fixing.fixQuote(ticker, current);
-                    System.out.println("Fixing: " + ticker + ": " + current);
                 }
                 noChangeCounters.remove(ticker);
             }
