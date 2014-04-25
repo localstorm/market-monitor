@@ -41,7 +41,7 @@ public class MarketMonitor {
             deviationMonitor.printDeviations(System.out, true, false);
             deviationMonitor.printDeviationsPct(System.out, true, false);
             quoteHolder.printQuotes(System.out, false, true);
-            deviationMonitor.printDeviations(System.out, true, false);
+            deviationMonitor.printDeviations(System.out, false, false);
             deviationMonitor.printDeviationsPct(System.out, false, false);
         } else {
             quoteHolder.printQuotes(System.out, true, true);
