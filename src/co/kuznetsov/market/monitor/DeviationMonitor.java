@@ -3,6 +3,8 @@ package co.kuznetsov.market.monitor;
 import java.io.PrintStream;
 import java.math.BigDecimal;
 
+import static co.kuznetsov.market.util.DecimalUtil.signed;
+
 public class DeviationMonitor {
     private QuoteHolder quoteHolder;
 
@@ -22,9 +24,9 @@ public class DeviationMonitor {
                 if (ticker.isIndex()) {
                     Deviation d = getDeviation(ticker);
                     if (tickerName) {
-                        out.format("%4s: %6s%%   ", ticker.name(), d.getCurrentDeviationPct());
+                        out.format("%4s: %6s%%   ", ticker.name(), signed(d.getCurrentDeviationPct()));
                     } else {
-                        out.format("       %6s%%  ", d.getCurrentDeviationPct());
+                        out.format("       %6s%%  ", signed(d.getCurrentDeviationPct()));
                     }
                 }
             }
@@ -33,9 +35,9 @@ public class DeviationMonitor {
                 if (ticker.isVolatility()) {
                     Deviation d = getDeviation(ticker);
                     if (tickerName) {
-                        out.format("%4s: %6s%%   ", ticker.name(), d.getCurrentDeviationPct());
+                        out.format("%4s: %6s%%   ", ticker.name(), signed(d.getCurrentDeviationPct()));
                     } else {
-                        out.format("       %6s%%  ", d.getCurrentDeviationPct());
+                        out.format("       %6s%%  ", signed(d.getCurrentDeviationPct()));
                     }
                 }
             }
@@ -49,9 +51,9 @@ public class DeviationMonitor {
                 if (ticker.isIndex()) {
                     Deviation d = getDeviation(ticker);
                     if (tickerName) {
-                        out.format("%4s: %6s   ", ticker.name(), d.getCurrentDeviation());
+                        out.format("%4s: %6s   ", ticker.name(), signed(d.getCurrentDeviation()));
                     } else {
-                        out.format("       %6s   ", d.getCurrentDeviation());
+                        out.format("       %6s   ", signed(d.getCurrentDeviation()));
                     }
                 }
             }
@@ -60,9 +62,9 @@ public class DeviationMonitor {
                 if (ticker.isVolatility()) {
                     Deviation d = getDeviation(ticker);
                     if (tickerName) {
-                        out.format("%4s: %6s   ", ticker.name(), d.getCurrentDeviation());
+                        out.format("%4s: %6s   ", ticker.name(), signed(d.getCurrentDeviation()));
                     } else {
-                        out.format("       %6s   ", d.getCurrentDeviation());
+                        out.format("       %6s   ", signed(d.getCurrentDeviation()));
                     }
                 }
             }
