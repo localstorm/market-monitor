@@ -30,7 +30,7 @@ public class YFSourceRUT implements Source {
                 if (e.nodeName().equalsIgnoreCase("span")) {
                     String txt = e.text();
                     txt = txt.replace(",", "");
-                    return sanity(getTicker().name(), new BigDecimal(txt), 100, 3000);
+                    return sanity(getTicker().name(), new BigDecimal(txt), 300, 4000);
                 }
             }
             throw new IOException("Unable to extract "+getTicker());

@@ -30,7 +30,7 @@ public class GFSourceOEX implements Source {
                 if (e.nodeName().equalsIgnoreCase("span")) {
                     String txt = e.text();
                     txt = txt.replace(",", "");
-                    return sanity(getTicker().name(), new BigDecimal(txt), 500,5000);
+                    return sanity(getTicker().name(), new BigDecimal(txt), 100, 2000);
                 }
             }
             throw new IOException("Unable to extract "+getTicker());

@@ -30,7 +30,7 @@ public class GFSourceNDQ implements Source {
                 if (e.nodeName().equalsIgnoreCase("span")) {
                     String txt = e.text();
                     txt = txt.replace(",", "");
-                    return sanity(getTicker().name(), new BigDecimal(txt), 500,5000);
+                    return sanity(getTicker().name(), new BigDecimal(txt), 500, 10000);
                 }
             }
             throw new IOException("Unable to extract "+getTicker());

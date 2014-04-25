@@ -29,7 +29,7 @@ public class YFSourceVIX implements Source {
                 if (e.nodeName().equalsIgnoreCase("span")) {
                     String txt = e.text();
                     txt = txt.replace(",", "");
-                    return sanity(getTicker().name(), new BigDecimal(txt), 5, 100);
+                    return sanity(getTicker().name(), new BigDecimal(txt), 2, 100);
                 }
             }
             throw new IOException("Unable to extract " + getTicker());
