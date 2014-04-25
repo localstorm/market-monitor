@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
@@ -73,8 +74,29 @@ public class MarketMonitor {
     }
 
     private void reloadQuotes() throws IOException {
+        ArrayList<Thread> threads = new ArrayList<>();
         for (Ticker t: Ticker.values()) {
-            loadWithRetry(t);
+            final Ticker tt = t;
+            Thread th = new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        loadWithRetry(tt);
+                    } catch (IOException e) {
+                        e.printStackTrace(System.err);
+                    }
+                }
+            };
+            th.setDaemon(true);
+            th.start();
+            threads.add(th);
+        }
+        for (Thread t: threads) {
+            try {
+                t.join();
+            } catch (InterruptedException e) {
+                t.stop();
+            }
         }
     }
 
