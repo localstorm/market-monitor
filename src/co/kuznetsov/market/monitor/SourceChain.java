@@ -34,7 +34,7 @@ public class SourceChain {
         put(Ticker.RVX, new GFSourceRVX());
         put(Ticker.VIX, new YFSourceVIX());
         put(Ticker.QQV, new GFSourceQQV());
-        put(Ticker.VXO, new GFSourceOEX());
+        put(Ticker.VXO, new GFSourceVXO());
     }};
 
     public BigDecimal getCurrent(Ticker ticker) throws IOException {
