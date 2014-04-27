@@ -21,24 +21,25 @@ public class YFSourceNDQ implements Source {
 
     @Override
     public BigDecimal getCurrent() throws IOException {
-        Document doc = Jsoup.parse(new URL("http://finance.yahoo.com/q?s=%5EIXIC"), 10000);
-        Elements elements = doc.getElementsByAttributeValue("id", "yfs_l10_^ixic");
-        if (elements.isEmpty()) {
-            throw new IOException("Unable to extract " + getTicker());
-        } else {
-            for (Element e : elements) {
-                if (e.nodeName().equalsIgnoreCase("span")) {
-                    String txt = e.text();
-                    txt = txt.replace(",", "");
-                    return sanity(getTicker().name(), new BigDecimal(txt), 500, 10000);
-                }
-            }
-            throw new IOException("Unable to extract " + getTicker());
-        }
+        return YFUtil.getCurrent("http://finance.yahoo.com/q?s=%5EIXIC",
+                                 "yfs_l10_^ixic",
+                                 Ticker.NDQ,
+                                 500,
+                                 10000);
     }
 
     @Override
     public Ticker getTicker() {
         return Ticker.NDQ;
+    }
+
+    @Override
+    public BigDecimal getRank() throws IOException {
+        return null;
+    }
+
+    @Override
+    public boolean isRankSupported() {
+        return false;
     }
 }

@@ -21,24 +21,25 @@ public class YFSourceQQV implements Source {
 
     @Override
     public BigDecimal getCurrent() throws IOException {
-        Document doc = Jsoup.parse(new URL("http://finance.yahoo.com/q?s=%5EQQV"), 10000);
-        Elements elements = doc.getElementsByAttributeValue("id", "yfs_l10_^qqv");
-        if (elements.isEmpty()) {
-            throw new IOException("Unable to extract " + getTicker());
-        } else {
-            for (Element e : elements) {
-                if (e.nodeName().equalsIgnoreCase("span")) {
-                    String txt = e.text();
-                    txt = txt.replace(",", "");
-                    return sanity(getTicker().name(), new BigDecimal(txt), 2, 100);
-                }
-            }
-            throw new IOException("Unable to extract " + getTicker());
-        }
+        return YFUtil.getCurrent("http://finance.yahoo.com/q?s=%5EQQV",
+                "yfs_l10_^qqv",
+                Ticker.QQV,
+                2,
+                100);
     }
 
     @Override
     public Ticker getTicker() {
         return Ticker.QQV;
+    }
+
+    @Override
+    public BigDecimal getRank() throws IOException {
+        return null;
+    }
+
+    @Override
+    public boolean isRankSupported() {
+        return false;
     }
 }

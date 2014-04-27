@@ -41,4 +41,14 @@ public class GFSourceRUT implements Source {
     public Ticker getTicker() {
         return Ticker.RUT;
     }
+
+    @Override
+    public BigDecimal getRank() throws IOException {
+        return null;
+    }
+
+    @Override
+    public boolean isRankSupported() {
+        return false;
+    }
 }

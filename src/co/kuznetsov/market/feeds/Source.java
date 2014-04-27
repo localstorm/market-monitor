@@ -12,6 +12,8 @@ import java.math.BigDecimal;
 public interface Source {
 
     BigDecimal getCurrent() throws IOException;
+    BigDecimal getRank()    throws IOException;
+    boolean isRankSupported();
     Ticker     getTicker();
 
 }

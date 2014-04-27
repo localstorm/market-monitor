@@ -21,24 +21,25 @@ public class GFSourceSNP implements Source {
 
     @Override
     public BigDecimal getCurrent() throws IOException {
-        Document doc = Jsoup.parse(new URL("https://www.google.com/finance?q=INDEXSP:.INX"), 10000);
-        Elements elements = doc.getElementsByAttributeValue("id", "ref_626307_l");
-        if (elements.isEmpty()) {
-            throw new IOException("Unable to extract "+getTicker());
-        } else {
-            for (Element e: elements) {
-                if (e.nodeName().equalsIgnoreCase("span")) {
-                    String txt = e.text();
-                    txt = txt.replace(",", "");
-                    return sanity(getTicker().name(), new BigDecimal(txt), 500, 5000);
-                }
-            }
-            throw new IOException("Unable to extract "+getTicker());
-        }
+        return GFUtil.getCurrent("https://www.google.com/finance?q=INDEXSP:.INX",
+                "ref_626307_l",
+                Ticker.SNP,
+                500,
+                5000);
     }
 
     @Override
     public Ticker getTicker() {
         return Ticker.SNP;
+    }
+
+    @Override
+    public BigDecimal getRank() throws IOException {
+        return null;
+    }
+
+    @Override
+    public boolean isRankSupported() {
+        return false;
     }
 }

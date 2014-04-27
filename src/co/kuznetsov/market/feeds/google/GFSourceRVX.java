@@ -21,24 +21,25 @@ public class GFSourceRVX implements Source {
 
     @Override
     public BigDecimal getCurrent() throws IOException {
-        Document doc = Jsoup.parse(new URL("https://www.google.com/finance?q=INDEXCBOE%3ARVX"), 10000);
-        Elements elements = doc.getElementsByAttributeValue("id", "ref_22304677664342_l");
-        if (elements.isEmpty()) {
-            throw new IOException("Unable to extract "+getTicker());
-        } else {
-            for (Element e: elements) {
-                if (e.nodeName().equalsIgnoreCase("span")) {
-                    String txt = e.text();
-                    txt = txt.replace(",", "");
-                    return sanity(getTicker().name(), new BigDecimal(txt), 2, 100);
-                }
-            }
-            throw new IOException("Unable to extract "+getTicker());
-        }
+        return GFUtil.getCurrent("https://www.google.com/finance?q=INDEXCBOE%3ARVX",
+                "ref_22304677664342_l",
+                Ticker.RVX,
+                2,
+                100);
     }
 
     @Override
     public Ticker getTicker() {
         return Ticker.RVX;
+    }
+
+    @Override
+    public BigDecimal getRank() throws IOException {
+        return null;
+    }
+
+    @Override
+    public boolean isRankSupported() {
+        return true;
     }
 }

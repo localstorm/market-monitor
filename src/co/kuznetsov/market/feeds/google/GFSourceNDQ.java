@@ -21,24 +21,25 @@ public class GFSourceNDQ implements Source {
 
     @Override
     public BigDecimal getCurrent() throws IOException {
-        Document doc = Jsoup.parse(new URL("https://www.google.com/finance?q=INDEXNASDAQ%3A.IXIC"), 10000);
-        Elements elements = doc.getElementsByAttributeValue("id", "ref_13756934_l");
-        if (elements.isEmpty()) {
-            throw new IOException("Unable to extract "+getTicker());
-        } else {
-            for (Element e: elements) {
-                if (e.nodeName().equalsIgnoreCase("span")) {
-                    String txt = e.text();
-                    txt = txt.replace(",", "");
-                    return sanity(getTicker().name(), new BigDecimal(txt), 500, 10000);
-                }
-            }
-            throw new IOException("Unable to extract "+getTicker());
-        }
+        return GFUtil.getCurrent("https://www.google.com/finance?q=INDEXNASDAQ%3A.IXIC",
+                                 "ref_13756934_l",
+                                 Ticker.NDQ,
+                                 500,
+                                 10000);
     }
 
     @Override
     public Ticker getTicker() {
         return Ticker.NDQ;
+    }
+
+    @Override
+    public BigDecimal getRank() throws IOException {
+        return null;
+    }
+
+    @Override
+    public boolean isRankSupported() {
+        return false;
     }
 }

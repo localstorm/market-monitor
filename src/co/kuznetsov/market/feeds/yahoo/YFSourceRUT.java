@@ -21,24 +21,25 @@ public class YFSourceRUT implements Source {
 
     @Override
     public BigDecimal getCurrent() throws IOException {
-        Document doc = Jsoup.parse(new URL("http://finance.yahoo.com/q?s=%5ERUT"), 10000);
-        Elements elements = doc.getElementsByAttributeValue("id", "yfs_l10_^rut");
-        if (elements.isEmpty()) {
-            throw new IOException("Unable to extract "+getTicker());
-        } else {
-            for (Element e: elements) {
-                if (e.nodeName().equalsIgnoreCase("span")) {
-                    String txt = e.text();
-                    txt = txt.replace(",", "");
-                    return sanity(getTicker().name(), new BigDecimal(txt), 300, 4000);
-                }
-            }
-            throw new IOException("Unable to extract "+getTicker());
-        }
+        return YFUtil.getCurrent("http://finance.yahoo.com/q?s=%5ERUT",
+                "yfs_l10_^rut",
+                Ticker.RUT,
+                300,
+                4000);
     }
 
     @Override
     public Ticker getTicker() {
         return Ticker.RUT;
+    }
+
+    @Override
+    public BigDecimal getRank() throws IOException {
+        return null;
+    }
+
+    @Override
+    public boolean isRankSupported() {
+        return false;
     }
 }
