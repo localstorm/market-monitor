@@ -45,6 +45,7 @@ public class Main {
 
         final MarketMonitor marketMonitor = new MarketMonitor();
         marketMonitor.setSpreadsPaths(args);
+        marketMonitor.refreshStatic();
 
         final Tray tray = display.getSystemTray();
         if (tray == null) {
@@ -99,7 +100,7 @@ public class Main {
                                     }
                                 });
                             }
-                            Thread.sleep(wl.isMarketOpen() ? REFRESH_LOOP_OPEN : REFRESH_LOOP_CLOSED);
+                            smartSleep(wl);
                         } catch (Exception e) {
                             e.printStackTrace(System.err);
                             final Image img = alerter.offline(display);
@@ -115,6 +116,16 @@ public class Main {
                     }
                 } catch (InterruptedException e) {
                     // do nothing
+                }
+            }
+
+            private void smartSleep(WarnLevel wl) throws InterruptedException {
+                long toSleep = wl.isMarketOpen() ? REFRESH_LOOP_OPEN : REFRESH_LOOP_CLOSED;
+                long start = System.currentTimeMillis();
+                marketMonitor.refreshStatic();
+                toSleep -= (System.currentTimeMillis() - start);
+                if (toSleep > 0) {
+                    Thread.sleep(toSleep);
                 }
             }
         };

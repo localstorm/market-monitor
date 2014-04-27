@@ -1,5 +1,6 @@
 package co.kuznetsov.market.monitor;
 
+import co.kuznetsov.market.feeds.HiLo;
 import co.kuznetsov.market.feeds.Source;
 import co.kuznetsov.market.feeds.google.GFSourceSNP;
 import co.kuznetsov.market.feeds.yahoo.*;
@@ -26,6 +27,11 @@ public class MarketMonitor {
 
     private String[] spreadsPaths;
 
+
+    public void refreshStatic() {
+        reloadRanges();
+    }
+
     public WarnLevel getCurrentWarnLevel() throws IOException {
         reloadSpreads();
 
@@ -44,14 +50,17 @@ public class MarketMonitor {
             quoteHolder.printQuotes(System.out, false, true);
             deviationMonitor.printDeviations(System.out, false, false);
             deviationMonitor.printDeviationsPct(System.out, false, false);
+            deviationMonitor.printIVRanks(System.out);
         } else {
             quoteHolder.printQuotes(System.out, true, true);
             quoteHolder.printQuotes(System.out, false, true);
+            deviationMonitor.printIVRanks(System.out);
         }
         endOutput(System.out);
         spreadHolder.printSpreads(System.out, quoteHolder);
         return newLevel;
     }
+
 
     private void beginOutput(PrintStream out) {
         String opn = String.format("%s", (quoteHolder.isMarketOpen() ? "open" : "closed"));
@@ -100,6 +109,37 @@ public class MarketMonitor {
         }
     }
 
+    private void reloadRanges() {
+        ArrayList<Thread> threads = new ArrayList<>();
+        for (Ticker t: Ticker.values()) {
+            if (!t.isVolatility()) {
+                continue;
+            }
+            final Ticker tt = t;
+            Thread th = new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        load52wRangesWithRetry(tt);
+                    } catch (IOException e) {
+                        e.printStackTrace(System.err);
+                    }
+                }
+            };
+            th.setDaemon(true);
+            th.start();
+            threads.add(th);
+        }
+        for (Thread t: threads) {
+            try {
+                t.join();
+            } catch (InterruptedException e) {
+                t.stop();
+            }
+        }
+
+    }
+
     public void setSpreadsPaths(String[] spreadsPath) {
         this.spreadsPaths = spreadsPath;
     }
@@ -118,6 +158,25 @@ public class MarketMonitor {
             }
         } while (true);
     }
+
+    private void load52wRangesWithRetry(Ticker ticker) throws IOException {
+        int retry = 5;
+        do {
+            try {
+                retry--;
+                HiLo range = sourceChain.get52wRange(ticker);
+                if (range != null) {
+                    quoteHolder.update52wRange(ticker, range);
+                }
+                return;
+            } catch(Exception e) {
+                if (retry == 0) {
+                    throw e;
+                }
+            }
+        } while (true);
+    }
+
 
     private String now() {
         Date now = new Date();

@@ -12,8 +12,8 @@ import java.math.BigDecimal;
 public interface Source {
 
     BigDecimal getCurrent() throws IOException;
-    BigDecimal getRank()    throws IOException;
-    boolean isRankSupported();
+    HiLo get52wRange()    throws IOException;
+    boolean    is52wRangeSupported();
     Ticker     getTicker();
 
 }
