@@ -11,20 +11,20 @@ import java.math.BigDecimal;
  * @author localstorm
  *         Date: 21.03.14
  */
-public class GFSourceNDQ implements Source {
+public class GFSourceNDX implements Source {
 
     @Override
     public BigDecimal getCurrent() throws IOException {
-        return GFUtil.getCurrent("https://www.google.com/finance?q=INDEXNASDAQ%3A.IXIC",
-                                 "ref_13756934_l",
-                                 Ticker.NDQ,
+        return GFUtil.getCurrent("https://www.google.com/finance?q=INDEXNASDAQ%3ANDX",
+                                 "ref_11517216_l",
+                                 Ticker.NDX,
                                  500,
                                  10000);
     }
 
     @Override
     public Ticker getTicker() {
-        return Ticker.NDQ;
+        return Ticker.NDX;
     }
 
     @Override

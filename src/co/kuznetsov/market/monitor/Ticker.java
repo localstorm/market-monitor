@@ -7,7 +7,7 @@ package co.kuznetsov.market.monitor;
 public enum Ticker {
     SNP(true, false, 0),
     RUT(true, false, -1),
-    NDQ(true, false, -1),
+    NDX(true, false, -1),
     VIX(false, true, 0),
     RVX(false, true, 0),
     QQV(false, true, 0),

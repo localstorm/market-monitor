@@ -18,7 +18,7 @@ public class SourceChain {
 
     private Map<Ticker, Source> primary = new HashMap<Ticker, Source>() {{
         put(Ticker.SNP, new GFSourceSNP());
-        put(Ticker.NDQ, new GFSourceNDQ());
+        put(Ticker.NDX, new GFSourceNDX());
         put(Ticker.RUT, new GFSourceRUT());
         put(Ticker.OEX, new GFSourceOEX());
         put(Ticker.RVX, new GFSourceRVX());
@@ -29,7 +29,7 @@ public class SourceChain {
 
     private Map<Ticker, Source> backup = new HashMap<Ticker, Source>() {{
         put(Ticker.SNP, new YFSourceSNP());
-        put(Ticker.NDQ, new YFSourceNDQ());
+        put(Ticker.NDX, new YFSourceNDX());
         put(Ticker.RUT, new YFSourceRUT());
         put(Ticker.OEX, new YFSourceOEX());
         put(Ticker.RVX, new YFSourceRVX());

@@ -11,20 +11,20 @@ import java.math.BigDecimal;
  * @author localstorm
  *         Date: 21.03.14
  */
-public class YFSourceNDQ implements Source {
+public class YFSourceNDX implements Source {
 
     @Override
     public BigDecimal getCurrent() throws IOException {
-        return YFUtil.getCurrent("http://finance.yahoo.com/q?s=%5EIXIC",
-                                 "yfs_l10_^ixic",
-                                 Ticker.NDQ,
+        return YFUtil.getCurrent("http://finance.yahoo.com/q?s=%5ENDX",
+                                 "yfs_l10_^ndx",
+                                 Ticker.NDX,
                                  500,
                                  10000);
     }
 
     @Override
     public Ticker getTicker() {
-        return Ticker.NDQ;
+        return Ticker.NDX;
     }
 
     @Override
