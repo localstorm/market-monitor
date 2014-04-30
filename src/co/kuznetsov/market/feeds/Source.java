@@ -11,9 +11,9 @@ import java.math.BigDecimal;
  */
 public interface Source {
 
-    BigDecimal getCurrent() throws IOException;
-    HiLo get52wRange()    throws IOException;
-    boolean    is52wRangeSupported();
-    Ticker     getTicker();
+    BigDecimal  getCurrent()    throws IOException;
+    HiLo        get52wRange()   throws IOException;
+    boolean     is52wRangeSupported();
+    Ticker      getTicker();
 
 }
