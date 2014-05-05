@@ -6,6 +6,7 @@ import co.kuznetsov.market.monitor.Ticker;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import static co.kuznetsov.market.feeds.google.GFUtil.*;
 
 /**
  * @author localstorm

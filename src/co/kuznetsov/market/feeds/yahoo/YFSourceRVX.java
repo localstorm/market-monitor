@@ -31,11 +31,11 @@ public class YFSourceRVX implements Source {
 
     @Override
     public HiLo get52wRange() throws IOException {
-        return null;
+        return YFUtil.get52wRange(TICKER_URL, getTicker(), 2, 100);
     }
 
     @Override
     public boolean is52wRangeSupported() {
-        return false;
+        return true;
     }
 }

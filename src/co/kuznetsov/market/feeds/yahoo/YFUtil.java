@@ -12,6 +12,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static co.kuznetsov.market.feeds.SanityUtils.sanity;
 
@@ -19,9 +20,22 @@ import static co.kuznetsov.market.feeds.SanityUtils.sanity;
  * Created by localstorm on 4/27/14.
  */
 public class YFUtil {
+
+    private final static ConcurrentHashMap<String, Document> REUSE_CACHE = new ConcurrentHashMap<>();
+
+    private static Document get(String url) throws IOException {
+        Document doc = REUSE_CACHE.remove(url);
+        if (doc == null) {
+            doc = Jsoup.parse(new URL(url), 10000);
+            REUSE_CACHE.put(url, doc);
+            return doc;
+        } else {
+            return doc;
+        }
+    }
+
     public static BigDecimal getCurrent(String url, String id, Ticker ticker, int sanityMin, int sanityMax) throws IOException {
-        Document doc = Jsoup.parse(new URL(url), 10000);
-        Elements elements = doc.getElementsByAttributeValue("id", id);
+        Elements elements = get(url).getElementsByAttributeValue("id", id);
         if (elements.isEmpty()) {
             throw new IOException("Unable to extract "+ticker);
         } else {
@@ -38,8 +52,7 @@ public class YFUtil {
 
     public static HiLo get52wRange(String url, Ticker ticker, int sanityMin, int sanityMax) throws IOException {
         try {
-            Document doc = Jsoup.parse(new URL(url), 10000);
-            Elements tab = doc.getElementsByAttributeValue("id", "table2");
+            Elements tab = get(url).getElementsByAttributeValue("id", "table2");
             Element  loe = (Element) tab.first().childNode(0).childNode(1).childNode(1).childNode(0);
             Element  hie = (Element) tab.first().childNode(0).childNode(1).childNode(1).childNode(2);
             HiLo result = new HiLo(new BigDecimal(hie.text()), new BigDecimal(loe.text()));
