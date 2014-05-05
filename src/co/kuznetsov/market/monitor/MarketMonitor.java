@@ -5,9 +5,7 @@ import co.kuznetsov.market.feeds.Source;
 import co.kuznetsov.market.feeds.google.GFSourceSNP;
 import co.kuznetsov.market.feeds.yahoo.*;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintStream;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,22 +40,29 @@ public class MarketMonitor {
             newLevel = spreadHolder.getWarnLevel(quoteHolder);
         }
         WARN_LEVEL.set(newLevel);
-        beginOutput(System.out);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream buf = new PrintStream(baos);
+
+        beginOutput(buf);
         if (quoteHolder.isMarketOpen()) {
-            quoteHolder.printQuotes(System.out, true, true);
-            deviationMonitor.printDeviations(System.out, true, false);
-            deviationMonitor.printDeviationsPct(System.out, true, false);
-            quoteHolder.printQuotes(System.out, false, true);
-            deviationMonitor.printDeviations(System.out, false, false);
-            deviationMonitor.printDeviationsPct(System.out, false, false);
-            deviationMonitor.printIVRanks(System.out);
+            quoteHolder.printQuotes(buf, true, true);
+            deviationMonitor.printDeviations(buf, true, false);
+            deviationMonitor.printDeviationsPct(buf, true, false);
+            quoteHolder.printQuotes(buf, false, true);
+            deviationMonitor.printDeviations(buf, false, false);
+            deviationMonitor.printDeviationsPct(buf, false, false);
+            deviationMonitor.printIVRanks(buf);
         } else {
-            quoteHolder.printQuotes(System.out, true, true);
-            quoteHolder.printQuotes(System.out, false, true);
-            deviationMonitor.printIVRanks(System.out);
+            quoteHolder.printQuotes(buf, true, true);
+            quoteHolder.printQuotes(buf, false, true);
+            deviationMonitor.printIVRanks(buf);
         }
-        endOutput(System.out);
-        spreadHolder.printSpreads(System.out, quoteHolder);
+        endOutput(buf);
+        spreadHolder.printSpreads(buf, quoteHolder);
+
+        buf.close();
+        System.out.print(baos.toString());
         return newLevel;
     }
 
