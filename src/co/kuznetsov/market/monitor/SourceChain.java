@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author localstorm
@@ -16,7 +17,7 @@ import java.util.Map;
  */
 public class SourceChain {
 
-    private Map<Ticker, Source> primary = new HashMap<Ticker, Source>() {{
+    private Map<Ticker, Source> primary = new ConcurrentHashMap<Ticker, Source>() {{
         put(Ticker.SNP, new GFSourceSNP());
         put(Ticker.NDX, new GFSourceNDX());
         put(Ticker.RUT, new GFSourceRUT());
@@ -25,7 +26,7 @@ public class SourceChain {
         put(Ticker.QQV, new GFSourceQQV());
     }};
 
-    private Map<Ticker, Source> backup = new HashMap<Ticker, Source>() {{
+    private Map<Ticker, Source> backup = new ConcurrentHashMap<Ticker, Source>() {{
         put(Ticker.SNP, new YFSourceSNP());
         put(Ticker.NDX, new YFSourceNDX());
         put(Ticker.RUT, new YFSourceRUT());
@@ -35,10 +36,14 @@ public class SourceChain {
     }};
 
     public BigDecimal getCurrent(Ticker ticker) throws IOException {
+        Source p = primary.get(ticker);
+        Source b = backup.get(ticker);
+
         try {
-            return primary.get(ticker).getCurrent();
+            return p.getCurrent();
         } catch (IOException e) {
-            return backup.get(ticker).getCurrent();
+            swap(ticker);
+            return b.getCurrent();
         }
     }
 
@@ -51,6 +56,7 @@ public class SourceChain {
                 return p.get52wRange();
             } catch (IOException e) {
                 if (b.is52wRangeSupported()) {
+                    swap(ticker);
                     return b.get52wRange();
                 }
             }
@@ -58,5 +64,12 @@ public class SourceChain {
             return b.get52wRange();
         }
         return null;
+    }
+
+    private void swap(Ticker ticker) {
+        Source p = primary.get(ticker);
+        Source b = backup.get(ticker);
+        primary.put(ticker, b);
+        backup.put(ticker, p);
     }
 }

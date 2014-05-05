@@ -34,7 +34,7 @@ public class GFSourceRUT implements Source {
                     return sanity(getTicker().name(), new BigDecimal(txt), 300, 4000);
                 }
             }
-            throw new IOException("Unable to extract "+getTicker());
+            throw new IOException("Unable to extract " + getTicker());
         }
     }
 
