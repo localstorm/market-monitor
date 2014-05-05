@@ -10,9 +10,7 @@ public enum Ticker {
     NDX(true, false, -1),
     VIX(false, true, 0),
     RVX(false, true, 0),
-    QQV(false, true, 0),
-    OEX(true, false, 0),
-    VXO(false, true, 0);
+    QQV(false, true, 0);
 
     private final boolean volatility;
     private final boolean index;

@@ -20,22 +20,18 @@ public class SourceChain {
         put(Ticker.SNP, new GFSourceSNP());
         put(Ticker.NDX, new GFSourceNDX());
         put(Ticker.RUT, new GFSourceRUT());
-        put(Ticker.OEX, new GFSourceOEX());
         put(Ticker.RVX, new GFSourceRVX());
         put(Ticker.VIX, new GFSourceVIX());
         put(Ticker.QQV, new GFSourceQQV());
-        put(Ticker.VXO, new GFSourceVXO());
     }};
 
     private Map<Ticker, Source> backup = new HashMap<Ticker, Source>() {{
         put(Ticker.SNP, new YFSourceSNP());
         put(Ticker.NDX, new YFSourceNDX());
         put(Ticker.RUT, new YFSourceRUT());
-        put(Ticker.OEX, new YFSourceOEX());
         put(Ticker.RVX, new YFSourceRVX());
         put(Ticker.VIX, new YFSourceVIX());
         put(Ticker.QQV, new YFSourceQQV());
-        put(Ticker.VXO, new YFSourceVXO());
     }};
 
     public BigDecimal getCurrent(Ticker ticker) throws IOException {
