@@ -7,7 +7,6 @@ import co.kuznetsov.market.feeds.yahoo.*;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -66,7 +65,7 @@ public class SourceChain {
         return null;
     }
 
-    private void swap(Ticker ticker) {
+    private synchronized void swap(Ticker ticker) {
         Source p = primary.get(ticker);
         Source b = backup.get(ticker);
         primary.put(ticker, b);
