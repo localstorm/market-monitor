@@ -18,7 +18,7 @@ public class GFSourceVIX implements Source {
         return GFUtil.getCurrent("https://www.google.com/finance?q=INDEXCBOE%3AVIX",
                 "ref_87692982100134_l",
                 Ticker.VIX,
-                5,
+                0,
                 100);
     }
 
@@ -32,7 +32,7 @@ public class GFSourceVIX implements Source {
         return GFUtil.get52wRange(
                 "https://www.google.com/finance?q=INDEXCBOE%3AVIX",
                 Ticker.VIX,
-                2,
+                0,
                 100
         );
     }

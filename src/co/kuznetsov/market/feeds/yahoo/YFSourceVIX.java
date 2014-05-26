@@ -20,7 +20,7 @@ public class YFSourceVIX implements Source {
         return YFUtil.getCurrent(TICKER_URL,
                 "yfs_l10_^vix",
                 Ticker.VIX,
-                2,
+                0,
                 100);
     }
 

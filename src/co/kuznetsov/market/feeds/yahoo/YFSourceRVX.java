@@ -20,7 +20,7 @@ public class YFSourceRVX implements Source {
         return YFUtil.getCurrent(TICKER_URL,
                 "yfs_l10_^rvx",
                 Ticker.RVX,
-                2,
+                0,
                 100);
     }
 

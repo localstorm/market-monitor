@@ -20,7 +20,7 @@ public class YFSourceQQV implements Source {
         return YFUtil.getCurrent(TICKER_URL,
                 "yfs_l10_^qqv",
                 Ticker.QQV,
-                2,
+                0,
                 100);
     }
 

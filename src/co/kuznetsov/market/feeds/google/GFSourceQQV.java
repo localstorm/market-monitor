@@ -18,7 +18,7 @@ public class GFSourceQQV implements Source {
         return GFUtil.getCurrent("https://www.google.com/finance?q=INDEXNYSEGIS%3AQQV",
                 "ref_13628789_l",
                 Ticker.QQV,
-                2,
+                0,
                 100);
     }
 
@@ -32,7 +32,7 @@ public class GFSourceQQV implements Source {
         return GFUtil.get52wRange(
                     "https://www.google.com/finance?q=INDEXNYSEGIS%3AQQV",
                     Ticker.QQV,
-                    2,
+                    0,
                     100
                );
     }

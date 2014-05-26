@@ -18,7 +18,7 @@ public class GFSourceRVX implements Source {
         return GFUtil.getCurrent("https://www.google.com/finance?q=INDEXCBOE%3ARVX",
                 "ref_22304677664342_l",
                 Ticker.RVX,
-                2,
+                0,
                 100);
     }
 
@@ -32,7 +32,7 @@ public class GFSourceRVX implements Source {
         return GFUtil.get52wRange(
                 "https://www.google.com/finance?q=INDEXCBOE%3ARVX",
                 Ticker.RVX,
-                2,
+                0,
                 100
         );
     }
